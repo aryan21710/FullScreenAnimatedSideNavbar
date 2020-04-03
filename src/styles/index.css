@@ -18,19 +18,11 @@ body {
   position: relative;
   top: 0;
   left: 0;
-  z-index: -1;
+  z-index: 1;
+  cursor: pointer;
 }
 
-.SideBarWrapper {
-  background: rgba(0, 95, 139, 0.918);
-  position: absolute;
-  top: 0vh;
-  left: -40vw;
-  /* left: 0vw; */
-  height: 100vh;
-  z-index: 2;
-  animation: slideOut 1s cubic-bezier(1, 0, 0, 1) 1s 1 forwards;
-}
+
 
 .toggleBarWrapper {
   width: 3vw;
@@ -78,21 +70,45 @@ body {
   transform: rotate(-45deg);
   top: 2.2vh;
   transition: transform 0.1s ease-in-out;
+  width: 1.5vw;
+
 }
 
 .rotate-45 {
   transform: rotate(45deg);
   top: 2.2vh;
+  width: 1.5vw;
   transition: transform 0.1s ease-in-out;
 }
 
-.toggleSideBar {
+.SideBarWrapper {
+    background: rgba(0, 95, 139, 0.918);
+    position: absolute;
+    top: 5vh;
+    left: -40vw;
+    /* left: 0vw; */
+    height: 100vh;
+    z-index: 2;
+  }
+
+
+.slideOutSideBar {
+    background: rgba(0, 95, 139, 0.918);
+    position: absolute;
+    top: 5vh;
+    left: -40vw;
+    /* left: 0vw; */
+    height: 100vh;
+    z-index: 2;
+    animation: slideOut 0.25s cubic-bezier(1, 0, 0, 1) 1 forwards;
+}
+.slideInSideBar {
   background: rgba(0, 95, 139, 0.918);
   position: absolute;
   top: 5vh;
   height: 100vh;
   z-index: 2;
-  animation: slideIn 0.5s ease-in-out 1 forwards;
+  animation: slideIn 0.25s cubic-bezier(1, 0, 0, 1) 1 forwards;
 }
 
 @keyframes slideOut {
@@ -132,7 +148,10 @@ body {
 .mainList {
   list-style-type: none;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
   margin-top: 20vh;
+  padding: 0;
 }
 
 .mainList li {
@@ -140,5 +159,5 @@ body {
   width: 15vw;
   margin: 2vh 0vw;
   color: white;
-  font: 1vw;
+  flex-direction: row;
 }

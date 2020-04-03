@@ -1,12 +1,18 @@
-import React from 'react';
-import Header from '../src/components/Header'
-import SideBar from './components/SideBar';
+import React, { useState } from "react";
+import Header from "../src/components/Header";
+import SideBar from "./components/SideBar";
 
-function App() {
+const App = () => {
+  const [toggle, setToggle] = useState(false);
+
+  const toggleSideBar=(value)=>{
+    setToggle(value);
+  }
+
   return (
     <div className="App">
-      <Header/>
-      <SideBar/>
+      <Header toggle={toggleSideBar}/>
+      <SideBar openSideNavBar={toggle}/>
     </div>
   );
 }
