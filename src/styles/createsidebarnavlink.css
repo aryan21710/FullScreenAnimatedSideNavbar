@@ -1,0 +1,96 @@
+.sideNavBarLinks {
+  width: 50vw;
+  height: 95vh;
+  background: black;
+}
+
+.SideBarWrapper {
+  background: rgba(0, 0, 0, 1);
+  position: absolute;
+  top: 4.6vh;
+  left: -100vw;
+  height: 95.4vh;
+  z-index: 2;
+}
+
+.slideOutSideBar {
+    background: rgba(0, 0, 0, 1);
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    top: 4.6vh;
+    left: -40vw;
+    /* left: 0vw; */
+    height: 95.4vh;
+    z-index: 1000;
+    animation: slideOut 0.25s ease-in-out 1 forwards;
+  }
+  .slideInSideBar {
+    position: absolute;
+    top: 4.6vh;
+    height: 95.4vh;
+    z-index: 2;
+    animation: slideIn 0.25s ease-in-out 1 forwards;
+  }
+
+  @keyframes slideOut {
+    from {
+      z-index: -1;
+    }
+  
+    to {
+      left: 0vw;
+      z-index: 1000;
+    }
+  }
+  
+  @keyframes slideIn {
+    from {
+      left: 0vw;
+      z-index: 2;
+    }
+  
+    to {
+      left: -100vw;
+      z-index: -1;
+    }
+  }
+
+.close {
+  outline: none;
+  padding: 0.5vh 0.5vw;
+  position: absolute;
+  top: 1vh;
+  left: 5vw;
+  font-size: 2vw;
+  color: white;
+  cursor: pointer;
+}
+
+.mainList {
+  list-style-type: none;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 20vh;
+  padding: 0;
+}
+
+.mainList li {
+  display: inline-block;
+  width: 15vw;
+  margin: 2vh 0vw;
+  color: white;
+  flex-direction: row;
+}
+
+.mycases {
+  margin: 0;
+  padding: 0;
+}
+
+.mycases li {
+  display: flex;
+  justify-content: center;
+}

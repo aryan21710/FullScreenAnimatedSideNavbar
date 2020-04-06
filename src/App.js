@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Header from "../src/components/Header";
 import SideBar from "./components/SideBar";
+import CreateSideBarNavLink from './components/CreateSideBarNavLink'
 
 const App = () => {
   const [toggle, setToggle] = useState(false);
@@ -12,7 +13,7 @@ const App = () => {
   return (
     <div className="App">
       <Header toggle={toggleSideBar}/>
-      <SideBar openSideNavBar={toggle}/>
+      <CreateSideBarNavLink openSideNavBar={toggle}/>
     </div>
   );
 }

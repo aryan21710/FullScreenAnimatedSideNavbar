@@ -1,108 +1,47 @@
-import React, { Component } from "react";
+import React from "react";
+import CreateSideBarNavLink from "./CreateSideBarNavLink";
+import '../styles/createsidebarnavlink.css'
 
-class SideBar extends Component {
-  state = {
-    slide: "SideBarWrapper"
+
+export const SideBar = () => {
+  const myData = {
+    navbarLinks: {
+      IconSet: [
+        '<i className="fa fa-fw fa-list" style={{ marginLeft: "15px", fontSize: "1vw" }}/>',
+        '<i className="fa fa-fw fa-edit" style={{ marginLeft: "15px", fontSize: "1vw" }}/>',
+        '<i className="fa fa-fw fa-file" style={{ marginLeft: "15px", fontSize: "1vw" }}/>',
+      ],
+      Text: [
+        "My Cases",
+        "New Submission",
+        "Upload Documents",
+      ],
+      Route: [
+        "/mycases",
+        "/petitionersection",
+        "/upload-documents-section",
+      ],
+      Expandable: true,
+      ExpandableLevel: 0,
+      children: [
+        {
+          IconSet: ['<i class="fas fa-gavel"></i>','<i class="fas fa-gavel"></i>','<i class="fas fa-gavel"></i>'],
+          Text: ["MC2830-2017", "GNWC175-2019", "XYZA-18"],
+          Expandable: false,
+          ExpandableLevel: -1,
+          Route: [
+            "/mycases/mc2830-2017",
+            "/mycases/mc2831-2017",
+          ],
+          children: null,
+        },
+      ],
+    },
   };
 
-  componentDidUpdate(prevProps) {
-    const openSideNavBar = this.props.openSideNavBar;
-
-    if (prevProps.openSideNavBar !== openSideNavBar) {
-      this.toggleClass();
-    }
-  }
-
-  toggleClass = () => {
-    const openSideNavBar = this.props.openSideNavBar;
-
-    if (openSideNavBar) {
-      this.setState({ slide: "slideOutSideBar" });
-    } else {
-      this.setState({ slide: "slideInSideBar" });
-    }
-  };
-
-  render() {
-    return (
-      <React.Fragment>
-        <div className={this.state.slide}>
-          <ul className="flexStyling mainList ">
-            <li className="flexStyling">
-              <div>
-                <i
-                  className="fa fa-fw fa-list"
-                  style={{ marginLeft: "15px", fontSize: "1em" }}
-                />{" "}
-                <span style={{ marginLeft: "5px", fontSize: "1vw" }}>
-                  {" "}
-                  My Cases
-                </span>
-              </div>
-            </li>
-            <li className="flexStyling">
-              {" "}
-              <div>
-                <i
-                  className="fa fa-fw fa-edit"
-                  style={{ marginLeft: "15px", fontSize: "1em" }}
-                />{" "}
-                <span style={{ marginLeft: "5px", fontSize: "1vw" }}>
-                  {" "}
-                  New Submission
-                </span>
-              </div>
-            </li>
-            <li className="flexStyling">
-              {" "}
-              <div>
-                <i
-                  className="fa fa-fw fa-file"
-                  style={{ marginLeft: "15px", fontSize: "1em" }}
-                />{" "}
-                <span style={{ marginLeft: "5px", fontSize: "1vw" }}>
-                  {" "}
-                  Upload Documents
-                </span>
-              </div>
-            </li>
-            <li className="flexStyling">
-              {" "}
-              <div>
-                <i
-                  className="fa fa-fw fa-file"
-                  style={{ marginLeft: "15px", fontSize: "1em" }}
-                />{" "}
-                <span
-                  style={{
-                    marginLeft: "5px",
-                    fontSize: "1vw",
-                    height: "100%"
-                  }}
-                >
-                  {" "}
-                  Browse Documents
-                </span>
-              </div>
-            </li>
-            <li className="flexStyling">
-              {" "}
-              <div>
-                <i
-                  className="fa fa-fw fa-bell"
-                  style={{ marginLeft: "15px", fontSize: "1em" }}
-                />{" "}
-                <span style={{ marginLeft: "5px", fontSize: "1vw" }}>
-                  {" "}
-                  Notifications
-                </span>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </React.Fragment>
-    );
-  }
-}
-
-export default SideBar;
+  return (
+    <div>
+      <CreateSideBarNavLink data={myData} />
+    </div>
+  );
+};
