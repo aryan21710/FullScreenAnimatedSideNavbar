@@ -101,8 +101,7 @@ const styles = {
     borderRadius: "10px",
   },
   profileInfo: {
-    width: "12vw",
-    height: "10vh",
+    padding: '1vh 1vw',
     flexDirection: "column",
     alignItems: "start",
     justifyContent: "flex-start",
