@@ -24,10 +24,24 @@ class CreateSideBarNavLink extends Component {
 
   render() {
     const ParentLinksGrid = (props) => {
-      const { parentLink, Text } = props.myData.navbarLinks;
+      const {
+        parentLink,
+        Text,
+        children,
+        ExpandableLevel,
+      } = this.props.myData.navbarLinks;
       return Text.length == parentLink
         ? Text.map((_, idx) => {
-            return <div>{_}</div>;
+            return (
+              <div style={styles.parentLinkWrapper}>
+                <div style={styles.parentLinkIcon}></div>
+                <div style={styles.parentLinkText}></div>
+                <div style={styles.parentLinkExpandIcon}></div>
+                {ExpandableLevel == idx && (
+                  <div style={styles.parentLinkChildren}></div>
+                )}
+              </div>
+            );
           })
         : null;
     };
@@ -37,10 +51,7 @@ class CreateSideBarNavLink extends Component {
         <div style={styles.UserInfoGrid}>
           <div style={{ ...styles.profilePicWrapper, ...styles.flexStyling }}>
             <div style={{ ...styles.flexStyling, ...styles.profilePic }}>
-              <i className="fas fa-user-tie"
-              style={styles.profilePicIcon}
-              >
-              </i>
+              <i className="fas fa-user-tie" style={styles.profilePicIcon}></i>
             </div>
           </div>
           <div style={{ ...styles.flexStyling, ...styles.profileInfoWrapper }}>
@@ -62,6 +73,7 @@ class CreateSideBarNavLink extends Component {
               <div className={this.state.slide}>
                 <div className="sideNavBarLinks">
                   <UserInfoGrid />
+                  <ParentLinksGrid />
                 </div>
               </div>
             </React.Fragment>
@@ -82,8 +94,9 @@ const styles = {
     display: "grid",
     gridTemplateColumns: "8vw 12vw",
     height: "20vh",
-    borderBottom: "1px solid white",
+    borderBottom: "1px solid rgba(255,255,255,0.5)",
     boxSizing: "border-box",
+    marginBottom: "7vh",
   },
   profilePicWrapper: {
     width: "100%",
@@ -92,16 +105,15 @@ const styles = {
   profileInfoWrapper: {
     width: "100%",
     height: "100%",
-
     justifyContent: "flex-start",
   },
   profilePic: {
     background: "white",
-    padding: '1vh 1vw',
+    padding: "1vh 1vw",
     borderRadius: "10px",
   },
   profileInfo: {
-    padding: '1vh 1vw',
+    padding: "1vh 1vw",
     flexDirection: "column",
     alignItems: "start",
     justifyContent: "flex-start",
@@ -117,8 +129,32 @@ const styles = {
     margin: "0.5vh 0vw",
   },
   profilePicIcon: {
-      fontSize: '4vw'
-  }
+    fontSize: "4vw",
+  },
+  parentLinkWrapper: {
+    display: "grid",
+    gridTemplateColumns: "5vw 10vw 2vw",
+    gridColumnGap: "1vw",
+    gridTemplateRows: "5vh 15vh",
+    width: "20vw",
+    borderBottom: "1px solid rgba(255,255,255,0.5)",
+  },
+  parentLinkIcon: {
+    gridArea: "1/1/2/2",
+    background: "green",
+  },
+  parentLinkText: {
+    gridArea: "1/2/2/3",
+    background: "yellow",
+  },
+  parentLinkExpandIcon: {
+    gridArea: "1/3/2/4",
+    background: "blue",
+  },
+  parentLinkChildren: {
+    gridArea: "2/1/3/4",
+    background: "orange",
+  },
 };
 
 export default CreateSideBarNavLink;
