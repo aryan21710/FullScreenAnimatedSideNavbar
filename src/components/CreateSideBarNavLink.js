@@ -100,11 +100,9 @@ class CreateSideBarNavLink extends Component {
                   style={{ ...styles.flexStyling, ...styles.textChildren }}
                   className={`${Text.replace(" ", "").toLowerCase()}_child`}
                 >
-                  <div>
-                    {children.map((_) => {
-                      return <div style={styles.childIcon}>{_.Text}</div>;
-                    })}
-                  </div>
+                  {children.map((_) => {
+                    return <div style={styles.childIcon}>{_.Text}</div>;
+                  })}
                 </div>
               </div>
             )}
@@ -143,7 +141,7 @@ class CreateSideBarNavLink extends Component {
               <div className={this.state.slide}>
                 <div className="sideNavBarLinks">
                   <UserInfoGrid />
-                  <NavbarLinksGrid/>
+                  <NavbarLinksGrid />
                 </div>
               </div>
             </React.Fragment>
@@ -264,10 +262,10 @@ const styles = {
     fontSize: "1vw",
   },
   childText: {
-    margin: " 1vh 0 1vh 1vw",
+    margin: " 0.5vh 0 0.5vh 1vw",
   },
   childIcon: {
-    margin: " 1vh 0 1vh 0vw",
+    margin: " 0.5vh 0 0.5vh 0vw",
   },
 };
 
