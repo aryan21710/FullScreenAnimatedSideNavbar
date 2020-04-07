@@ -204,7 +204,6 @@ const styles = {
     gridTemplateRows: "5vh 12vh",
     width: "20vw",
     margin: "1vh 0vw",
-    // borderBottom: "1px solid rgba(255,255,255,0.5)",
   },
   parentLinkWrapperNoChildren: {
     display: "grid",
@@ -212,12 +211,10 @@ const styles = {
     gridTemplateRows: "5vh",
     width: "20vw",
     margin: "1vh 0vw",
-    // borderBottom: "1px solid rgba(255,255,255,0.5)",
   },
   parentLinkIconWrapper: {
     gridArea: "1/1/2/2",
     justifyContent: "flex-end",
-    // background: "green",
   },
   parentLinkIcon: {
     borderRadius: "5px",
@@ -229,7 +226,6 @@ const styles = {
   },
   parentLinkText: {
     gridArea: "1/2/2/3",
-    // background: "yellow",
     justifyContent: "flex-start",
     fontSize: '1.1vw',
     color: "white",
@@ -244,7 +240,10 @@ const styles = {
     gridArea: "2/1/3/4",
     display: "grid",
     gridTemplateColumns: "4vw 16vw",
-    background: 'rgb(140, 140, 140)'
+    marginTop: '0.5vh',
+    background: 'rgb(140, 140, 140)',
+    boxShadow: " black 0px 0px 4px 0px"
+
   },
   error: {
     fontSize: "1.5vw",
@@ -255,7 +254,7 @@ const styles = {
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "flex-start",
-    color: "rgba(255,255,255,0.5)",
+    color: "rgba(255,255,255,0.6)",
     fontSize: "1vw",
   },
   iconChildren: {
@@ -273,7 +272,7 @@ const styles = {
     margin: " 0.35vh 0 0.35vh 0vw",
     borderRadius: "5px",
     background: "#cccccc",
-    color: "rgba(255,255,255,0.5)",
+    color: "rgba(255,255,255,0.6)",
     padding: '0.15vh 0.15vw',
     boxShadow: "black 0px 0px 4px 0px",
     fontSize: "1vw",
