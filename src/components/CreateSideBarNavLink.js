@@ -33,7 +33,13 @@ class CreateSideBarNavLink extends Component {
       return Text.length == parentLink
         ? Text.map((_, idx) => {
             return (
-              <div style={styles.parentLinkWrapper}>
+              <div
+                style={
+                  ExpandableLevel != idx
+                    ? styles.parentLinkWrapperNoChildren
+                    : styles.parentLinkWrapperWithChildren
+                }
+              >
                 <div style={styles.parentLinkIcon}></div>
                 <div style={styles.parentLinkText}></div>
                 <div style={styles.parentLinkExpandIcon}></div>
@@ -131,11 +137,19 @@ const styles = {
   profilePicIcon: {
     fontSize: "4vw",
   },
-  parentLinkWrapper: {
+  parentLinkWrapperWithChildren: {
     display: "grid",
     gridTemplateColumns: "5vw 10vw 2vw",
     gridColumnGap: "1vw",
     gridTemplateRows: "5vh 15vh",
+    width: "20vw",
+    borderBottom: "1px solid rgba(255,255,255,0.5)",
+  },
+  parentLinkWrapperNoChildren: {
+    display: "grid",
+    gridTemplateColumns: "5vw 10vw 2vw",
+    gridColumnGap: "1vw",
+    gridTemplateRows: "5vh",
     width: "20vw",
     borderBottom: "1px solid rgba(255,255,255,0.5)",
   },
