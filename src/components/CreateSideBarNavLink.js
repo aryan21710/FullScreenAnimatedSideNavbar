@@ -4,6 +4,7 @@ import "../../node_modules/@fortawesome/fontawesome-free/css/all.css";
 class CreateSideBarNavLink extends Component {
   state = {
     slide: "SideBarWrapper",
+    error: false,
   };
 
   componentDidUpdate(prevProps) {
@@ -22,34 +23,97 @@ class CreateSideBarNavLink extends Component {
     }
   };
 
-  render() {
-    const ParentLinksGrid = (props) => {
-      const {
-        parentLink,
-        Text,
-        children,
-        ExpandableLevel,
-      } = this.props.myData.navbarLinks;
-      return Text.length == parentLink
-        ? Text.map((_, idx) => {
-            return (
+  validateData = (props) => {
+    const {
+      parentLink,
+      Text,
+      IconSet,
+      Route,
+      children,
+    } = this.props.myData.navbarLinks;
+    if (
+      Text.length == parentLink &&
+      parentLink == IconSet.length &&
+      parentLink == Route.length
+    ) {
+      while (children.length > 0 || children != null) {}
+    } else {
+      this.setState({ error: true })(
+        <div styles={{ ...styles.flexStyling, ...styles.error }}>
+          DATA INCOMPATIBLE TO CREATE THE SIDEBAR. NUMBER OF ICON's, ROUTE's and
+          TEXT PROVIDED NEEDS TO BE SAME
+        </div>
+      );
+    }
+  };
+
+  render(props) {
+    console.count("render");
+
+    const NavbarLinksGrid = (props) => {
+      const { myData } = this.props;
+      const returnData = [];
+
+      for (let i in myData) {
+        const {
+          Expandable,
+          IconSet,
+          Text,
+          Route,
+          children,
+          ExpandableIconset,
+        } = myData[i];
+
+        returnData.push(
+          <div
+            style={
+              !Expandable
+                ? styles.parentLinkWrapperNoChildren
+                : styles.parentLinkWrapperWithChildren
+            }
+          >
+            <div style={{ ...styles.flexStyling, ...styles.parentLinkIcon }}>
+              {IconSet}
+            </div>
+            <div style={{ ...styles.flexStyling, ...styles.parentLinkText }}>
+              {Text}
+            </div>
+            {Expandable && (
               <div
-                style={
-                  ExpandableLevel != idx
-                    ? styles.parentLinkWrapperNoChildren
-                    : styles.parentLinkWrapperWithChildren
-                }
+                style={{
+                  ...styles.flexStyling,
+                  ...styles.parentLinkExpandIcon,
+                }}
               >
-                <div style={styles.parentLinkIcon}></div>
-                <div style={styles.parentLinkText}></div>
-                <div style={styles.parentLinkExpandIcon}></div>
-                {ExpandableLevel == idx && (
-                  <div style={styles.parentLinkChildren}></div>
-                )}
+                {ExpandableIconset}
               </div>
-            );
-          })
-        : null;
+            )}
+
+            {Expandable && (
+              <div style={styles.parentLinkChildren}>
+                <div style={{ ...styles.flexStyling, ...styles.iconChildren }}>
+                  {children.map((_) => {
+                    return <div style={styles.childIcon}>{_.IconSet}</div>;
+                  })}
+                </div>
+                <div
+                  style={{ ...styles.flexStyling, ...styles.textChildren }}
+                  className={`${Text.replace(" ", "").toLowerCase()}_child`}
+                >
+                  <div>
+                    {children.map((_) => {
+                      return <div style={styles.childIcon}>{_.Text}</div>;
+                    })}
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        );
+      }
+      console.log("returnData", returnData);
+
+      return returnData.map((_) => _);
     };
 
     const UserInfoGrid = () => {
@@ -79,7 +143,7 @@ class CreateSideBarNavLink extends Component {
               <div className={this.state.slide}>
                 <div className="sideNavBarLinks">
                   <UserInfoGrid />
-                  <ParentLinksGrid />
+                  <NavbarLinksGrid/>
                 </div>
               </div>
             </React.Fragment>
@@ -139,35 +203,71 @@ const styles = {
   },
   parentLinkWrapperWithChildren: {
     display: "grid",
-    gridTemplateColumns: "5vw 10vw 2vw",
-    gridColumnGap: "1vw",
+    gridTemplateColumns: "4vw 13vw 3vw",
     gridTemplateRows: "5vh 15vh",
     width: "20vw",
+    margin: "2vh 0vw",
     borderBottom: "1px solid rgba(255,255,255,0.5)",
   },
   parentLinkWrapperNoChildren: {
     display: "grid",
-    gridTemplateColumns: "5vw 10vw 2vw",
-    gridColumnGap: "1vw",
+    gridTemplateColumns: "4vw 16vw",
     gridTemplateRows: "5vh",
     width: "20vw",
+    margin: "2vh 0vw",
     borderBottom: "1px solid rgba(255,255,255,0.5)",
   },
   parentLinkIcon: {
     gridArea: "1/1/2/2",
-    background: "green",
+    justifyContent: "center",
+    // background: "green",
+    color: "white",
+    borderRadius: "5px",
+    background: "#cccccc",
+    marginLeft: "1vw",
   },
   parentLinkText: {
     gridArea: "1/2/2/3",
-    background: "yellow",
+    // background: "yellow",
+    justifyContent: "flex-start",
+    color: "white",
+    marginLeft: "10px",
+    cursor: "pointer",
   },
   parentLinkExpandIcon: {
     gridArea: "1/3/2/4",
-    background: "blue",
+    cursor: "pointer",
   },
   parentLinkChildren: {
     gridArea: "2/1/3/4",
-    background: "orange",
+    display: "grid",
+    gridTemplateColumns: "4vw 16vw",
+  },
+  error: {
+    fontSize: "1.5vw",
+    color: "red",
+    fontWeight: "900",
+  },
+  textChildren: {
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "flex-start",
+    color: "white",
+    fontSize: "1vw",
+  },
+  iconChildren: {
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+
+    color: "white",
+    fontSize: "1vw",
+  },
+  childText: {
+    margin: " 1vh 0 1vh 1vw",
+  },
+  childIcon: {
+    margin: " 1vh 0 1vh 0vw",
   },
 };
 
