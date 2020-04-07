@@ -72,8 +72,8 @@ class CreateSideBarNavLink extends Component {
                 : styles.parentLinkWrapperWithChildren
             }
           >
-            <div style={{ ...styles.flexStyling, ...styles.parentLinkIcon }}>
-              {IconSet}
+            <div style={{ ...styles.flexStyling, ...styles.parentLinkIconWrapper }}>
+              <div style={styles.parentLinkIcon}>{IconSet}</div>
             </div>
             <div style={{ ...styles.flexStyling, ...styles.parentLinkText }}>
               {Text}
@@ -101,7 +101,7 @@ class CreateSideBarNavLink extends Component {
                   className={`${Text.replace(" ", "").toLowerCase()}_child`}
                 >
                   {children.map((_) => {
-                    return <div style={styles.childIcon}>{_.Text}</div>;
+                    return <div style={styles.childText}>{_.Text}</div>;
                   })}
                 </div>
               </div>
@@ -164,7 +164,6 @@ const styles = {
     height: "20vh",
     borderBottom: "1px solid rgba(255,255,255,0.5)",
     boxSizing: "border-box",
-    marginBottom: "7vh",
   },
   profilePicWrapper: {
     width: "100%",
@@ -202,32 +201,37 @@ const styles = {
   parentLinkWrapperWithChildren: {
     display: "grid",
     gridTemplateColumns: "4vw 13vw 3vw",
-    gridTemplateRows: "5vh 15vh",
+    gridTemplateRows: "5vh 12vh",
     width: "20vw",
-    margin: "2vh 0vw",
-    borderBottom: "1px solid rgba(255,255,255,0.5)",
+    margin: "1vh 0vw",
+    // borderBottom: "1px solid rgba(255,255,255,0.5)",
   },
   parentLinkWrapperNoChildren: {
     display: "grid",
     gridTemplateColumns: "4vw 16vw",
     gridTemplateRows: "5vh",
     width: "20vw",
-    margin: "2vh 0vw",
-    borderBottom: "1px solid rgba(255,255,255,0.5)",
+    margin: "1vh 0vw",
+    // borderBottom: "1px solid rgba(255,255,255,0.5)",
+  },
+  parentLinkIconWrapper: {
+    gridArea: "1/1/2/2",
+    justifyContent: "flex-end",
+    // background: "green",
   },
   parentLinkIcon: {
-    gridArea: "1/1/2/2",
-    justifyContent: "center",
-    // background: "green",
-    color: "white",
     borderRadius: "5px",
     background: "#cccccc",
-    marginLeft: "1vw",
+    color: "white",
+    padding: '0.5vh 0.5vw',
+    boxShadow: " black 0px 0px 4px 0px"
+
   },
   parentLinkText: {
     gridArea: "1/2/2/3",
     // background: "yellow",
     justifyContent: "flex-start",
+    fontSize: '1.1vw',
     color: "white",
     marginLeft: "10px",
     cursor: "pointer",
@@ -240,6 +244,7 @@ const styles = {
     gridArea: "2/1/3/4",
     display: "grid",
     gridTemplateColumns: "4vw 16vw",
+    background: 'rgb(140, 140, 140)'
   },
   error: {
     fontSize: "1.5vw",
@@ -250,22 +255,29 @@ const styles = {
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "flex-start",
-    color: "white",
+    color: "rgba(255,255,255,0.5)",
     fontSize: "1vw",
   },
   iconChildren: {
     flexDirection: "column",
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: "flex-end",
 
-    color: "white",
-    fontSize: "1vw",
   },
   childText: {
     margin: " 0.5vh 0 0.5vh 1vw",
+    fontSize: "1vw",
+
   },
   childIcon: {
-    margin: " 0.5vh 0 0.5vh 0vw",
+    margin: " 0.35vh 0 0.35vh 0vw",
+    borderRadius: "5px",
+    background: "#cccccc",
+    color: "rgba(255,255,255,0.5)",
+    padding: '0.15vh 0.15vw',
+    boxShadow: "black 0px 0px 4px 0px",
+    fontSize: "1vw",
+
   },
 };
 

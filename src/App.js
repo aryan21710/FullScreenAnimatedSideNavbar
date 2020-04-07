@@ -133,6 +133,37 @@ const App = () => {
       Route: "/mydocuments",
       children: null,
     },
+
+    link4: {
+      IconSet: <i className="fa fa-fw fa-file" style={{ fontSize: "1vw" }} />,
+      Text: "Upload Documents",
+      Expandable: false,
+      ExpandableIconset: (
+        <i
+          className="fas fa-angle-right angleIcon"
+          style={{ fontSize: "1vw", color: "white" }}
+        />
+      ),
+
+      Route: "/mydocuments/upload",
+      children: null,
+    },
+
+
+    link5: {
+      IconSet: <i className="fa fa-fw fa-file" style={{ fontSize: "1vw" }} />,
+      Text: "Notifications",
+      Expandable: false,
+      ExpandableIconset: (
+        <i
+          className="fas fa-angle-right angleIcon"
+          style={{ fontSize: "1vw", color: "white" }}
+        />
+      ),
+
+      Route: "/notifications",
+      children: null,
+    },
   };
 
   return (
