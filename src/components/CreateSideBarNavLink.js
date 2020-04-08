@@ -1,25 +1,35 @@
 import React, { Component } from "react";
 import { BrowserRouter, NavLink, Route } from "react-router-dom";
 import "../../node_modules/@fortawesome/fontawesome-free/css/all.css";
-import UserInfoGrid from './UserInfoGrid';
+import UserInfoGrid from "./UserInfoGrid";
 
 class CreateSideBarNavLink extends Component {
   state = {
     slide: "SideBarWrapper",
     error: false,
-    expandStatus: false,
-    findLinkToExpand: "",
+    whichLinkToToggle: [],
+    toggle: false,
+    arrayOfTextForLinks: [],
+    updateStyleToRotateIcon: styles.collapseIcon,
+    updateStyleToToggleChild: styles.collapseChildren
   };
+
+  componentDidMount() {
+    this.updateTextArray();
+  }
 
   componentDidUpdate(prevProps, prevState) {
     const openSideNavBar = this.props.openSideNavBar;
     if (prevProps.openSideNavBar !== openSideNavBar) {
-      this.toggleClass();
+      this.toggleClassForSideBar();
     }
-   
+    if (prevState.whichLinkToToggle !== this.state.whichLinkToToggle) {
+      console.log("COMPONENT DID UPDATE NOW");
+      this.collapseOther();
+    }
   }
 
-  toggleClass = () => {
+  toggleClassForSideBar = () => {
     const openSideNavBar = this.props.openSideNavBar;
     if (openSideNavBar) {
       this.setState({ slide: "slideOutSideBar" });
@@ -28,25 +38,16 @@ class CreateSideBarNavLink extends Component {
     }
   };
 
-  onExpand = (linkText) => {
-    this.setState({
-      expandStatus: !this.state.expandStatus,
-      findLinkToExpand: linkText,
-    });
-  };
-
-  attachClassToExpand = (Text) => {
-    if (Text === this.state.findLinkToExpand) {
-      return this.state.expandStatus
-        ? styles.expandChildren
-        : styles.collapseChildren;
-    } else {
-      return styles.collapseChildren;
-    }
-  };
+//   attachClassToExpand = (Text) => {
+//     if (Text === this.state.whichLinkToToggle) {
+//       return styles.expandChildren;
+//     } else {
+//       return styles.collapseChildren;
+//     }
+//   };
 
   createChildLinks = (children, Text) => {
-    if (this.state.expandStatus && Text === this.state.findLinkToExpand) {
+    if (Text === this.state.whichLinkToToggle) {
       return (
         <React.Fragment>
           <div style={{ ...styles.flexStyling, ...styles.iconChildren }}>
@@ -64,14 +65,40 @@ class CreateSideBarNavLink extends Component {
     }
   };
 
-  toggleExpandIcon = (Text) => {
-    const { expandStatus } = this.state;
- 
-    if (expandStatus && Text === this.state.findLinkToExpand) {
-        return styles.expandIcon
-    } else {
-        return styles.collapseIcon
+  onExpand = (linkText) => {
+    this.setState({
+      whichLinkToToggle: linkText,
+      updateStyleToRotateIcon: this.state.updateStyleToRotateIcon===styles.expandIcon ? styles.collapseIcon: styles.expandIcon,
+      updateStyleToToggleChild: this.state.updateStyleToToggleChild===styles.expandChildren ? styles.collapseChildren: styles.expandChildren
+    });
+  };
 
+  collapseOther = () => {
+    const { arrayOfTextForLinks, whichLinkToToggle } = this.state;
+    arrayOfTextForLinks.forEach((_) => {
+      if (_ !== whichLinkToToggle) {
+        console.log("MATCHED FOR:-", _, ":", whichLinkToToggle);
+
+        this.setState({
+            updateStyleToRotateIcon: styles.collapseIcon,
+            updateStyleToToggleChild: styles.collapseChildren
+          });
+      }  else {
+        this.setState({
+            updateStyleToRotateIcon:  styles.expandIcon,
+            updateStyleToToggleChild: styles.expandChildren
+          });
+      }
+    });
+  };
+
+  updateTextArray = () => {
+    const { myData } = this.props;
+    for (let i in myData) {
+      const { Text } = myData[i];
+      this.setState((prevState) => {
+        return { arrayOfTextForLinks: [...prevState.arrayOfTextForLinks, Text] };
+      });
     }
   };
 
@@ -87,7 +114,6 @@ class CreateSideBarNavLink extends Component {
           Expandable,
           IconSet,
           Text,
-          Route,
           children,
           ExpandableIconset,
         } = myData[i];
@@ -102,9 +128,10 @@ class CreateSideBarNavLink extends Component {
             <div style={{ ...styles.flexStyling, ...styles.parentLinkText }}>
               {Text}
             </div>
+
             {Expandable && (
               <div
-                style={this.toggleExpandIcon(Text)}
+                style={this.state.updateStyleToRotateIcon}
                 data-value={Text}
                 onClick={() => {
                   this.onExpand(Text);
@@ -115,7 +142,7 @@ class CreateSideBarNavLink extends Component {
             )}
 
             {Expandable && (
-              <div style={this.attachClassToExpand(Text)}>
+              <div style={this.state.updateStyleToToggleChild}>
                 {this.createChildLinks(children, Text)}
               </div>
             )}
@@ -126,8 +153,6 @@ class CreateSideBarNavLink extends Component {
 
       return returnData.map((_) => _);
     };
-
-
 
     return (
       <BrowserRouter>
@@ -155,7 +180,6 @@ const styles = {
     alignItems: "center",
   },
 
- 
   parentLinkWrapper: {
     display: "grid",
     gridTemplateColumns: "4vw 13vw 3vw",
@@ -188,7 +212,6 @@ const styles = {
     alignItems: "center",
     gridArea: "1/3/2/4",
     cursor: "pointer",
-  
   },
   error: {
     fontSize: "1.5vw",
