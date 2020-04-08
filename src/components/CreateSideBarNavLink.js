@@ -5,12 +5,18 @@ class CreateSideBarNavLink extends Component {
   state = {
     slide: "SideBarWrapper",
     error: false,
+    expandStatus: false,
+    expandIconClass: "",
+    findLinkToExpand: "",
   };
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     const openSideNavBar = this.props.openSideNavBar;
     if (prevProps.openSideNavBar !== openSideNavBar) {
       this.toggleClass();
+    }
+    if (prevState.expandStatus !== this.state.expandStatus) {
+      this.changeExpandClassName();
     }
   }
 
@@ -47,6 +53,70 @@ class CreateSideBarNavLink extends Component {
     }
   };
 
+  onExpand = (linkText) => {
+    this.setState({
+      expandStatus: !this.state.expandStatus,
+      findLinkToExpand: linkText,
+    });
+  };
+
+  attachClassToExpand = (Text) => {
+    if (Text === this.state.findLinkToExpand) {
+      return this.state.expandStatus ? "expandChildren" : "collapseChildren";
+    } else {
+      return "parentLinkWrapperWithNoChildren";
+    }
+  };
+
+  attachClassToExpandToChild = (Text) => {
+    if (Text === this.state.findLinkToExpand) {
+      return this.state.expandStatus ? "show" : "hide";
+    } else {
+      return "hide";
+    }
+  };
+
+  createChildLinks = (children, Text) => {
+    if (this.state.expandStatus && Text === this.state.findLinkToExpand) {
+      return (
+        <React.Fragment>
+          <div style={{ ...styles.flexStyling, ...styles.iconChildren }}>
+            {children.map((_) => {
+              return <div style={styles.childIcon}>{_.IconSet}</div>;
+            })}
+          </div>
+          <div
+            style={{ ...styles.flexStyling, ...styles.textChildren }}
+            className={`${Text.replace(" ", "").toLowerCase()}_child`}
+          >
+            {children.map((_) => {
+              return <div style={styles.childText}>{_.Text}</div>;
+            })}
+          </div>
+        </React.Fragment>
+      );
+    }
+  };
+
+  changeExpandClassName = () => {
+    const { expandStatus } = this.state;
+
+    const expandIconClass = this.state.expandIconClass.replace(
+      /collapseIcon/g,
+      ""
+    );
+    console.log("expandIconClass", expandIconClass);
+
+    expandStatus
+      ? this.setState({ expandIconClass: expandIconClass + " expand" })
+      : this.setState({
+          expandIconClass: this.state.expandIconClass.replace(
+            "expand",
+            "collapseIcon"
+          ),
+        });
+  };
+
   render(props) {
     console.count("render");
 
@@ -65,14 +135,10 @@ class CreateSideBarNavLink extends Component {
         } = myData[i];
 
         returnData.push(
-          <div
-            style={
-              !Expandable
-                ? styles.parentLinkWrapperNoChildren
-                : styles.parentLinkWrapperWithChildren
-            }
-          >
-            <div style={{ ...styles.flexStyling, ...styles.parentLinkIconWrapper }}>
+          <div style={styles.parentLinkWrapper}>
+            <div
+              style={{ ...styles.flexStyling, ...styles.parentLinkIconWrapper }}
+            >
               <div style={styles.parentLinkIcon}>{IconSet}</div>
             </div>
             <div style={{ ...styles.flexStyling, ...styles.parentLinkText }}>
@@ -80,9 +146,14 @@ class CreateSideBarNavLink extends Component {
             </div>
             {Expandable && (
               <div
+                className={this.state.expandIconClass}
                 style={{
                   ...styles.flexStyling,
                   ...styles.parentLinkExpandIcon,
+                }}
+                data-value={Text}
+                onClick={() => {
+                  this.onExpand(Text);
                 }}
               >
                 {ExpandableIconset}
@@ -90,20 +161,8 @@ class CreateSideBarNavLink extends Component {
             )}
 
             {Expandable && (
-              <div style={styles.parentLinkChildren}>
-                <div style={{ ...styles.flexStyling, ...styles.iconChildren }}>
-                  {children.map((_) => {
-                    return <div style={styles.childIcon}>{_.IconSet}</div>;
-                  })}
-                </div>
-                <div
-                  style={{ ...styles.flexStyling, ...styles.textChildren }}
-                  className={`${Text.replace(" ", "").toLowerCase()}_child`}
-                >
-                  {children.map((_) => {
-                    return <div style={styles.childText}>{_.Text}</div>;
-                  })}
-                </div>
+              <div className={this.attachClassToExpand(Text)}>
+                {this.createChildLinks(children, Text)}
               </div>
             )}
           </div>
@@ -198,19 +257,19 @@ const styles = {
   profilePicIcon: {
     fontSize: "4vw",
   },
-  parentLinkWrapperWithChildren: {
+  parentLinkWrapper: {
     display: "grid",
     gridTemplateColumns: "4vw 13vw 3vw",
-    gridTemplateRows: "5vh 12vh",
+    gridTemplateRows: "5vh",
     width: "20vw",
     margin: "1vh 0vw",
   },
   parentLinkWrapperNoChildren: {
-    display: "grid",
-    gridTemplateColumns: "4vw 16vw",
-    gridTemplateRows: "5vh",
-    width: "20vw",
-    margin: "1vh 0vw",
+    // display: "grid",
+    // gridTemplateColumns: "4vw 16vw",
+    // gridTemplateRows: "5vh",
+    // width: "20vw",
+    // margin: "1vh 0vw",
   },
   parentLinkIconWrapper: {
     gridArea: "1/1/2/2",
@@ -220,14 +279,13 @@ const styles = {
     borderRadius: "5px",
     background: "#cccccc",
     color: "white",
-    padding: '0.5vh 0.5vw',
-    boxShadow: " black 0px 0px 4px 0px"
-
+    padding: "0.5vh 0.5vw",
+    boxShadow: " black 0px 0px 4px 0px",
   },
   parentLinkText: {
     gridArea: "1/2/2/3",
     justifyContent: "flex-start",
-    fontSize: '1.1vw',
+    fontSize: "1.1vw",
     color: "white",
     marginLeft: "10px",
     cursor: "pointer",
@@ -236,15 +294,15 @@ const styles = {
     gridArea: "1/3/2/4",
     cursor: "pointer",
   },
-  parentLinkChildren: {
-    gridArea: "2/1/3/4",
-    display: "grid",
-    gridTemplateColumns: "4vw 16vw",
-    marginTop: '0.5vh',
-    background: 'rgb(140, 140, 140)',
-    boxShadow: " black 0px 0px 4px 0px"
+  //   parentLinkChildren: {
+  //     gridArea: "2/1/3/4",
+  //     display: "grid",
+  //     gridTemplateColumns: "4vw 16vw",
+  //     marginTop: '0.5vh',
+  //     background: 'rgb(140, 140, 140)',
+  //     boxShadow: " black 0px 0px 4px 0px"
 
-  },
+  //   },
   error: {
     fontSize: "1.5vw",
     color: "red",
@@ -261,22 +319,19 @@ const styles = {
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "flex-end",
-
   },
   childText: {
     margin: " 0.5vh 0 0.5vh 1vw",
     fontSize: "1vw",
-
   },
   childIcon: {
     margin: " 0.35vh 0 0.35vh 0vw",
     borderRadius: "5px",
     background: "#cccccc",
     color: "rgba(255,255,255,0.6)",
-    padding: '0.15vh 0.15vw',
+    padding: "0.15vh 0.15vw",
     boxShadow: "black 0px 0px 4px 0px",
     fontSize: "1vw",
-
   },
 };
 

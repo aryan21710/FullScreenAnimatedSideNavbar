@@ -103,19 +103,6 @@ const App = () => {
           children: null,
           Route: "/mycases/respondentsection",
         },
-
-        {
-          IconSet: (
-            <i
-              className="fas fa-gavel"
-              style={{ fontSize: "1vw", color: "white" }}
-            ></i>
-          ),
-          Text: "uploadDocuments",
-          Expandable: false,
-          children: null,
-          Route: "/mycases/uploadDocuments",
-        },
       ],
     },
 
@@ -149,11 +136,10 @@ const App = () => {
       children: null,
     },
 
-
     link5: {
       IconSet: <i className="fa fa-fw fa-file" style={{ fontSize: "1vw" }} />,
       Text: "Notifications",
-      Expandable: false,
+      Expandable: true,
       ExpandableIconset: (
         <i
           className="fas fa-angle-right angleIcon"
@@ -162,7 +148,70 @@ const App = () => {
       ),
 
       Route: "/notifications",
-      children: null,
+      children: [
+        {
+          IconSet: (
+            <i
+              className="fas fa-gavel"
+              style={{ fontSize: "1vw", color: "white" }}
+            ></i>
+          ),
+          Text: "MC2830-2017",
+          Expandable: false,
+          children: null,
+          Route: "/mycases/mc2830-2017",
+        },
+
+        {
+          IconSet: (
+            <i
+              className="fas fa-gavel"
+              style={{ fontSize: "1vw", color: "white" }}
+            ></i>
+          ),
+          Text: "MC2831-2017",
+          Expandable: false,
+          children: null,
+          Route: "/mycases/mc2831-2017",
+        },
+
+        {
+          IconSet: (
+            <i
+              className="fas fa-gavel"
+              style={{ fontSize: "1vw", color: "white" }}
+            ></i>
+          ),
+          Text: "MC2832-2017",
+          Expandable: false,
+          children: null,
+          Route: "/mycases/mc2832-2017",
+        },
+        {
+          IconSet: (
+            <i
+              className="fas fa-gavel"
+              style={{ fontSize: "1vw", color: "white" }}
+            ></i>
+          ),
+          Text: "MC2832-2017",
+          Expandable: false,
+          children: null,
+          Route: "/mycases/mc2832-2017",
+        },
+        {
+          IconSet: (
+            <i
+              className="fas fa-gavel"
+              style={{ fontSize: "1vw", color: "white" }}
+            ></i>
+          ),
+          Text: "MC2832-2017",
+          Expandable: false,
+          children: null,
+          Route: "/mycases/mc2832-2017",
+        },
+      ],
     },
   };
 

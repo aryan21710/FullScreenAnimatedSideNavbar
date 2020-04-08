@@ -14,48 +14,48 @@
 }
 
 .slideOutSideBar {
-    background: rgba(0, 0, 0, 1);
-    width: 100vw;
-    display: flex;
-    flex-direction: row;
-    position: absolute;
-    top: 4.6vh;
-    left: -40vw;
-    /* left: 0vw; */
-    height: 95.4vh;
-    z-index: 1000;
-    animation: slideOut 0.25s ease-in-out 1 forwards;
-  }
-  .slideInSideBar {
-    position: absolute;
-    top: 4.6vh;
-    height: 95.4vh;
-    z-index: 2;
-    animation: slideIn 0.25s ease-in-out 1 forwards;
+  background: rgba(0, 0, 0, 1);
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  top: 4.6vh;
+  left: -40vw;
+  /* left: 0vw; */
+  height: 95.4vh;
+  z-index: 1000;
+  animation: slideOut 0.25s ease-in-out 1 forwards;
+}
+.slideInSideBar {
+  position: absolute;
+  top: 4.6vh;
+  height: 95.4vh;
+  z-index: 2;
+  animation: slideIn 0.25s ease-in-out 1 forwards;
+}
+
+@keyframes slideOut {
+  from {
+    z-index: -1;
   }
 
-  @keyframes slideOut {
-    from {
-      z-index: -1;
-    }
-  
-    to {
-      left: 0vw;
-      z-index: 1000;
-    }
+  to {
+    left: 0vw;
+    z-index: 1000;
   }
-  
-  @keyframes slideIn {
-    from {
-      left: 0vw;
-      z-index: 2;
-    }
-  
-    to {
-      left: -100vw;
-      z-index: -1;
-    }
+}
+
+@keyframes slideIn {
+  from {
+    left: 0vw;
+    z-index: 2;
   }
+
+  to {
+    left: -100vw;
+    z-index: -1;
+  }
+}
 
 .close {
   outline: none;
@@ -93,4 +93,65 @@
 .mycases li {
   display: flex;
   justify-content: center;
+}
+
+.parentLinkWrapperWithChildren {
+  display: grid;
+  grid-template-columns: 4vw 13vw 3vw;
+  grid-template-rows: 5vh;
+  width: 20vw;
+  margin: 1vh 0vw;
+}
+
+.collapseChildren {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 0.5vh;
+  background: rgb(140, 140, 140);
+  box-shadow: black 0px 0px 4px 0px;
+  width: 20vw;
+  padding: 0vh 0vw;
+}
+
+
+
+.expandChildren {
+  animation: paddingForExpandIcon 0.001s 1 ease-in-out forwards;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 0.5vh;
+  background: rgb(140, 140, 140);
+  box-shadow: black 0px 0px 4px 0px;
+  width: 20vw;
+  padding: 0vh 0vw;
+}
+
+
+@keyframes paddingForExpandIcon {
+  from {
+    padding: 0vh 0vw;
+  }
+  to {
+    padding: 2vh 0vw;
+  }
+}
+
+.expand {
+  transform: rotate(90deg);
+  transition: transform 0.1s ease-in-out;
+}
+
+.collapseIcon {
+  transform: rotate(0deg);
+  transition: transform 0.1s ease-in-out;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
 }
