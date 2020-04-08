@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { BrowserRouter, NavLink, Route } from "react-router-dom";
 import "../../node_modules/@fortawesome/fontawesome-free/css/all.css";
+import UserInfoGrid from './UserInfoGrid';
+
 class CreateSideBarNavLink extends Component {
   state = {
     slide: "SideBarWrapper",
     error: false,
     expandStatus: false,
-    expandIconClass: "",
     findLinkToExpand: "",
   };
 
@@ -15,9 +16,7 @@ class CreateSideBarNavLink extends Component {
     if (prevProps.openSideNavBar !== openSideNavBar) {
       this.toggleClass();
     }
-    if (prevState.expandStatus !== this.state.expandStatus) {
-      this.changeExpandClassName();
-    }
+   
   }
 
   toggleClass = () => {
@@ -26,30 +25,6 @@ class CreateSideBarNavLink extends Component {
       this.setState({ slide: "slideOutSideBar" });
     } else {
       this.setState({ slide: "slideInSideBar" });
-    }
-  };
-
-  validateData = (props) => {
-    const {
-      parentLink,
-      Text,
-      IconSet,
-      Route,
-      children,
-    } = this.props.myData.navbarLinks;
-    if (
-      Text.length == parentLink &&
-      parentLink == IconSet.length &&
-      parentLink == Route.length
-    ) {
-      while (children.length > 0 || children != null) {}
-    } else {
-      this.setState({ error: true })(
-        <div styles={{ ...styles.flexStyling, ...styles.error }}>
-          DATA INCOMPATIBLE TO CREATE THE SIDEBAR. NUMBER OF ICON's, ROUTE's and
-          TEXT PROVIDED NEEDS TO BE SAME
-        </div>
-      );
     }
   };
 
@@ -62,17 +37,11 @@ class CreateSideBarNavLink extends Component {
 
   attachClassToExpand = (Text) => {
     if (Text === this.state.findLinkToExpand) {
-      return this.state.expandStatus ? "expandChildren" : "collapseChildren";
+      return this.state.expandStatus
+        ? styles.expandChildren
+        : styles.collapseChildren;
     } else {
-      return "parentLinkWrapperWithNoChildren";
-    }
-  };
-
-  attachClassToExpandToChild = (Text) => {
-    if (Text === this.state.findLinkToExpand) {
-      return this.state.expandStatus ? "show" : "hide";
-    } else {
-      return "hide";
+      return styles.collapseChildren;
     }
   };
 
@@ -85,10 +54,7 @@ class CreateSideBarNavLink extends Component {
               return <div style={styles.childIcon}>{_.IconSet}</div>;
             })}
           </div>
-          <div
-            style={{ ...styles.flexStyling, ...styles.textChildren }}
-            className={`${Text.replace(" ", "").toLowerCase()}_child`}
-          >
+          <div style={{ ...styles.flexStyling, ...styles.textChildren }}>
             {children.map((_) => {
               return <div style={styles.childText}>{_.Text}</div>;
             })}
@@ -98,23 +64,15 @@ class CreateSideBarNavLink extends Component {
     }
   };
 
-  changeExpandClassName = () => {
+  toggleExpandIcon = (Text) => {
     const { expandStatus } = this.state;
+ 
+    if (expandStatus && Text === this.state.findLinkToExpand) {
+        return styles.expandIcon
+    } else {
+        return styles.collapseIcon
 
-    const expandIconClass = this.state.expandIconClass.replace(
-      /collapseIcon/g,
-      ""
-    );
-    console.log("expandIconClass", expandIconClass);
-
-    expandStatus
-      ? this.setState({ expandIconClass: expandIconClass + " expand" })
-      : this.setState({
-          expandIconClass: this.state.expandIconClass.replace(
-            "expand",
-            "collapseIcon"
-          ),
-        });
+    }
   };
 
   render(props) {
@@ -146,11 +104,7 @@ class CreateSideBarNavLink extends Component {
             </div>
             {Expandable && (
               <div
-                className={this.state.expandIconClass}
-                style={{
-                  ...styles.flexStyling,
-                  ...styles.parentLinkExpandIcon,
-                }}
+                style={this.toggleExpandIcon(Text)}
                 data-value={Text}
                 onClick={() => {
                   this.onExpand(Text);
@@ -161,7 +115,7 @@ class CreateSideBarNavLink extends Component {
             )}
 
             {Expandable && (
-              <div className={this.attachClassToExpand(Text)}>
+              <div style={this.attachClassToExpand(Text)}>
                 {this.createChildLinks(children, Text)}
               </div>
             )}
@@ -173,24 +127,7 @@ class CreateSideBarNavLink extends Component {
       return returnData.map((_) => _);
     };
 
-    const UserInfoGrid = () => {
-      return (
-        <div style={styles.UserInfoGrid}>
-          <div style={{ ...styles.profilePicWrapper, ...styles.flexStyling }}>
-            <div style={{ ...styles.flexStyling, ...styles.profilePic }}>
-              <i className="fas fa-user-tie" style={styles.profilePicIcon}></i>
-            </div>
-          </div>
-          <div style={{ ...styles.flexStyling, ...styles.profileInfoWrapper }}>
-            <div style={{ ...styles.flexStyling, ...styles.profileInfo }}>
-              <span style={styles.uname}>FirstName LastName</span>
-              <span style={styles.role}>Description/Role/Alias</span>
-              <span style={styles.role}>Email</span>
-            </div>
-          </div>
-        </div>
-      );
-    };
+
 
     return (
       <BrowserRouter>
@@ -217,59 +154,14 @@ const styles = {
     justifyContent: "center",
     alignItems: "center",
   },
-  UserInfoGrid: {
-    display: "grid",
-    gridTemplateColumns: "8vw 12vw",
-    height: "20vh",
-    borderBottom: "1px solid rgba(255,255,255,0.5)",
-    boxSizing: "border-box",
-  },
-  profilePicWrapper: {
-    width: "100%",
-    height: "100%",
-  },
-  profileInfoWrapper: {
-    width: "100%",
-    height: "100%",
-    justifyContent: "flex-start",
-  },
-  profilePic: {
-    background: "white",
-    padding: "1vh 1vw",
-    borderRadius: "10px",
-  },
-  profileInfo: {
-    padding: "1vh 1vw",
-    flexDirection: "column",
-    alignItems: "start",
-    justifyContent: "flex-start",
-  },
-  uname: {
-    fontSize: "1vw",
-    color: "white",
-    margin: "0.5vh 0vw",
-  },
-  role: {
-    fontSize: "0.8vw",
-    color: "white",
-    margin: "0.5vh 0vw",
-  },
-  profilePicIcon: {
-    fontSize: "4vw",
-  },
+
+ 
   parentLinkWrapper: {
     display: "grid",
     gridTemplateColumns: "4vw 13vw 3vw",
     gridTemplateRows: "5vh",
     width: "20vw",
     margin: "1vh 0vw",
-  },
-  parentLinkWrapperNoChildren: {
-    // display: "grid",
-    // gridTemplateColumns: "4vw 16vw",
-    // gridTemplateRows: "5vh",
-    // width: "20vw",
-    // margin: "1vh 0vw",
   },
   parentLinkIconWrapper: {
     gridArea: "1/1/2/2",
@@ -291,18 +183,13 @@ const styles = {
     cursor: "pointer",
   },
   parentLinkExpandIcon: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
     gridArea: "1/3/2/4",
     cursor: "pointer",
+  
   },
-  //   parentLinkChildren: {
-  //     gridArea: "2/1/3/4",
-  //     display: "grid",
-  //     gridTemplateColumns: "4vw 16vw",
-  //     marginTop: '0.5vh',
-  //     background: 'rgb(140, 140, 140)',
-  //     boxShadow: " black 0px 0px 4px 0px"
-
-  //   },
   error: {
     fontSize: "1.5vw",
     color: "red",
@@ -321,17 +208,56 @@ const styles = {
     alignItems: "flex-end",
   },
   childText: {
-    margin: " 0.5vh 0 0.5vh 1vw",
+    margin: " 1vh 0vw 1vh 1vw",
     fontSize: "1vw",
   },
   childIcon: {
-    margin: " 0.35vh 0 0.35vh 0vw",
+    margin: " 0.75vh 0vw",
     borderRadius: "5px",
     background: "#cccccc",
     color: "rgba(255,255,255,0.6)",
     padding: "0.15vh 0.15vw",
     boxShadow: "black 0px 0px 4px 0px",
     fontSize: "1vw",
+  },
+  collapseChildren: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    marginTop: "0.5vh",
+    background: "rgb(140, 140, 140)",
+    boxShadow: "black 0px 0px 4px 0px",
+    width: "20vw",
+    padding: "0vh 0vw",
+  },
+  expandChildren: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    marginTop: "0.5vh",
+    background: "rgb(140, 140, 140)",
+    boxShadow: "black 0px 0px 4px 0px",
+    width: "20vw",
+    padding: "2vh 0vw",
+  },
+  expandIcon: {
+    transform: "rotate(90deg)",
+    transition: "transform 1s ease-in-out",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    gridArea: "1/3/2/4",
+    cursor: "pointer",
+  },
+
+  collapseIcon: {
+    transform: "rotate(0deg)",
+    transition: "transform 1s ease-in-out",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    gridArea: "1/3/2/4",
+    cursor: "pointer",
   },
 };
 
