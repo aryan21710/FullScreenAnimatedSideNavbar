@@ -148,3 +148,11 @@
   transition: transform 0.1s ease-in-out;
 }
 
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+

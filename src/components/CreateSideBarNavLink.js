@@ -20,10 +20,6 @@ class CreateSideBarNavLink extends Component {
     if (prevProps.openSideNavBar !== openSideNavBar) {
       this.toggleClassForSideBar();
     }
-    // if (prevState.whichLinkToToggle !== this.state.whichLinkToToggle) {
-    //   console.log("COMPONENT DID UPDATE NOW");
-    //   this.collapseOther();
-    // }
   }
 
   toggleClassForSideBar = () => {
@@ -35,26 +31,32 @@ class CreateSideBarNavLink extends Component {
     }
   };
 
-  //   attachClassToExpand = (Text) => {
-  //     if (Text === this.state.whichLinkToToggle) {
-  //       return styles.expandChildren;
-  //     } else {
-  //       return styles.collapseChildren;
-  //     }
-  //   };
-
   createChildLinks = (children, Text) => {
     if (Text === this.state.whichLinkToToggle) {
       return (
         <React.Fragment>
           <div style={{ ...styles.flexStyling, ...styles.iconChildren }}>
             {children.map((_) => {
-              return <div style={styles.childIcon}>{_.IconSet}</div>;
+              return (
+                <div
+                  className={this.updateStyleForChidrenIconAndText(Text)}
+                  style={styles.childIcon}
+                >
+                  {_.IconSet}
+                </div>
+              );
             })}
           </div>
           <div style={{ ...styles.flexStyling, ...styles.textChildren }}>
             {children.map((_) => {
-              return <div style={styles.childText}>{_.Text}</div>;
+              return (
+                <div
+                  className={this.updateStyleForChidrenIconAndText(Text)}
+                  style={styles.childText}
+                >
+                  {_.Text}
+                </div>
+              );
             })}
           </div>
         </React.Fragment>
@@ -68,55 +70,60 @@ class CreateSideBarNavLink extends Component {
       whichLinkToToggle: linkText,
     });
 
-    const myobj={}
+    const myobj = {};
     for (let i in linksAndStatus) {
-        const _ = {};
+      const _ = {};
 
       if (i === linkText) {
-         _['toggle'] = !linksAndStatus[i]['toggle'];
-         _['rotateIcon'] = _['toggle'] ? styles.expandIcon : styles.collapseIcon
-         _['childLinkWrapper'] = _['toggle'] ? styles.expandChildren : styles.collapseChildren
+        _["toggle"] = !linksAndStatus[i]["toggle"];
+        _["rotateIcon"] = _["toggle"] ? styles.expandIcon : styles.collapseIcon;
+        _["childLinkWrapper"] = _["toggle"]
+          ? styles.expandChildren
+          : styles.collapseChildren;
+        _["childLinkData"] = _["toggle"] ? "show" : "hide";
 
-        myobj[i]=_
-       
+        myobj[i] = _;
       } else {
-        _['toggle'] = linksAndStatus[i]['toggle']===true ? false : false;
-        _['rotateIcon'] = _['toggle'] ? styles.expandIcon : styles.collapseIcon
-        _['childLinkWrapper'] = _['toggle'] ? styles.expandChildren : styles.collapseChildren  
-        myobj[i]=_
-     
+        _["toggle"] = linksAndStatus[i]["toggle"] === true ? false : false;
+        _["rotateIcon"] = _["toggle"] ? styles.expandIcon : styles.collapseIcon;
+        _["childLinkData"] = _["toggle"] ? "hide" : "show";
+        myobj[i] = _;
       }
     }
-    console.log('myobj',myobj);
- 
     this.setState({
       linksAndStatus: myobj,
     });
-    
   };
 
   updateStyleForToggleIcon = (linkText) => {
     const { linksAndStatus } = this.state;
-   
-    for (let i in linksAndStatus) {
-        if (i===linkText) {
-            return linksAndStatus[i]['rotateIcon']
-        }
-    };
-}
 
-  updateStyleForToggleChildren = (linkText) => {
-    const { linksAndStatus } = this.state;
-   
     for (let i in linksAndStatus) {
-        if (i===linkText) {
-            return linksAndStatus[i]['childLinkWrapper']
-        }
+      if (i === linkText) {
+        return linksAndStatus[i]["rotateIcon"];
+      }
     }
-}
+  };
 
+  updateStyleForChidrenIconAndText = (linkText) => {
+    const { linksAndStatus } = this.state;
 
-  
+    for (let i in linksAndStatus) {
+      if (i === linkText) {
+        return linksAndStatus[i]["childLinkData"];
+      }
+    }
+  };
+
+  updateStyleForChildLinkWrapper = (linkText) => {
+    const { linksAndStatus } = this.state;
+
+    for (let i in linksAndStatus) {
+      if (i === linkText) {
+        return linksAndStatus[i]["childLinkWrapper"];
+      }
+    }
+  };
 
   updateTextArray = () => {
     const { myData } = this.props;
@@ -124,17 +131,18 @@ class CreateSideBarNavLink extends Component {
 
     for (let i in myData) {
       const { Text } = myData[i];
-      myObj[Text] = {'toggle': false, 'rotateIcon': styles.collapseIcon,
-      'childLinkWrapper': styles.collapseChildren}
-    } 
+      myObj[Text] = {
+        toggle: false,
+        rotateIcon: styles.collapseIcon,
+        childLinkWrapper: styles.collapseChildren,
+        childLinkData: "hide",
+      };
+    }
 
     this.setState({
-        linksAndStatus: myObj
-    })
-};
-    
-  
-  
+      linksAndStatus: myObj,
+    });
+  };
 
   render(props) {
     console.count("render");
@@ -176,7 +184,7 @@ class CreateSideBarNavLink extends Component {
             )}
 
             {Expandable && (
-              <div style={this.updateStyleForToggleChildren(Text)}>
+              <div style={this.updateStyleForChildLinkWrapper(Text)}>
                 {this.createChildLinks(children, Text)}
               </div>
             )}
