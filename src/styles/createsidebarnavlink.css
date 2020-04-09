@@ -125,7 +125,7 @@
   background: rgb(140, 140, 140);
   box-shadow: black 0px 0px 4px 0px;
   width: 20vw;
-  padding: 0vh 0vw;
+  padding: 2vh 0vw;
 }
 
 
@@ -148,10 +148,3 @@
   transition: transform 0.1s ease-in-out;
 }
 
-.show {
-  display: block;
-}
-
-.hide {
-  display: none;
-}

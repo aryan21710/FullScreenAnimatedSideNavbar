@@ -8,10 +8,7 @@ class CreateSideBarNavLink extends Component {
     slide: "SideBarWrapper",
     error: false,
     whichLinkToToggle: [],
-    toggle: false,
-    arrayOfTextForLinks: [],
-    updateStyleToRotateIcon: styles.collapseIcon,
-    updateStyleToToggleChild: styles.collapseChildren
+    linksAndStatus: {},
   };
 
   componentDidMount() {
@@ -23,10 +20,10 @@ class CreateSideBarNavLink extends Component {
     if (prevProps.openSideNavBar !== openSideNavBar) {
       this.toggleClassForSideBar();
     }
-    if (prevState.whichLinkToToggle !== this.state.whichLinkToToggle) {
-      console.log("COMPONENT DID UPDATE NOW");
-      this.collapseOther();
-    }
+    // if (prevState.whichLinkToToggle !== this.state.whichLinkToToggle) {
+    //   console.log("COMPONENT DID UPDATE NOW");
+    //   this.collapseOther();
+    // }
   }
 
   toggleClassForSideBar = () => {
@@ -38,13 +35,13 @@ class CreateSideBarNavLink extends Component {
     }
   };
 
-//   attachClassToExpand = (Text) => {
-//     if (Text === this.state.whichLinkToToggle) {
-//       return styles.expandChildren;
-//     } else {
-//       return styles.collapseChildren;
-//     }
-//   };
+  //   attachClassToExpand = (Text) => {
+  //     if (Text === this.state.whichLinkToToggle) {
+  //       return styles.expandChildren;
+  //     } else {
+  //       return styles.collapseChildren;
+  //     }
+  //   };
 
   createChildLinks = (children, Text) => {
     if (Text === this.state.whichLinkToToggle) {
@@ -66,41 +63,78 @@ class CreateSideBarNavLink extends Component {
   };
 
   onExpand = (linkText) => {
+    const { linksAndStatus } = this.state;
     this.setState({
       whichLinkToToggle: linkText,
-      updateStyleToRotateIcon: this.state.updateStyleToRotateIcon===styles.expandIcon ? styles.collapseIcon: styles.expandIcon,
-      updateStyleToToggleChild: this.state.updateStyleToToggleChild===styles.expandChildren ? styles.collapseChildren: styles.expandChildren
     });
-  };
 
-  collapseOther = () => {
-    const { arrayOfTextForLinks, whichLinkToToggle } = this.state;
-    arrayOfTextForLinks.forEach((_) => {
-      if (_ !== whichLinkToToggle) {
-        console.log("MATCHED FOR:-", _, ":", whichLinkToToggle);
+    const myobj={}
+    for (let i in linksAndStatus) {
+        const _ = {};
 
-        this.setState({
-            updateStyleToRotateIcon: styles.collapseIcon,
-            updateStyleToToggleChild: styles.collapseChildren
-          });
-      }  else {
-        this.setState({
-            updateStyleToRotateIcon:  styles.expandIcon,
-            updateStyleToToggleChild: styles.expandChildren
-          });
+      if (i === linkText) {
+         _['toggle'] = !linksAndStatus[i]['toggle'];
+         _['rotateIcon'] = _['toggle'] ? styles.expandIcon : styles.collapseIcon
+         _['childLinkWrapper'] = _['toggle'] ? styles.expandChildren : styles.collapseChildren
+
+        myobj[i]=_
+       
+      } else {
+        _['toggle'] = linksAndStatus[i]['toggle']===true ? false : false;
+        _['rotateIcon'] = _['toggle'] ? styles.expandIcon : styles.collapseIcon
+        _['childLinkWrapper'] = _['toggle'] ? styles.expandChildren : styles.collapseChildren  
+        myobj[i]=_
+     
       }
+    }
+    console.log('myobj',myobj);
+ 
+    this.setState({
+      linksAndStatus: myobj,
     });
+    
   };
+
+  updateStyleForToggleIcon = (linkText) => {
+    const { linksAndStatus } = this.state;
+   
+    for (let i in linksAndStatus) {
+        if (i===linkText) {
+            return linksAndStatus[i]['rotateIcon']
+        }
+    };
+}
+
+  updateStyleForToggleChildren = (linkText) => {
+    const { linksAndStatus } = this.state;
+   
+    for (let i in linksAndStatus) {
+        if (i===linkText) {
+            return linksAndStatus[i]['childLinkWrapper']
+        }
+    }
+}
+
+
+  
 
   updateTextArray = () => {
     const { myData } = this.props;
+    const myObj = {};
+
     for (let i in myData) {
       const { Text } = myData[i];
-      this.setState((prevState) => {
-        return { arrayOfTextForLinks: [...prevState.arrayOfTextForLinks, Text] };
-      });
-    }
-  };
+      myObj[Text] = {'toggle': false, 'rotateIcon': styles.collapseIcon,
+      'childLinkWrapper': styles.collapseChildren}
+    } 
+
+    this.setState({
+        linksAndStatus: myObj
+    })
+};
+    
+  
+  
 
   render(props) {
     console.count("render");
@@ -131,7 +165,7 @@ class CreateSideBarNavLink extends Component {
 
             {Expandable && (
               <div
-                style={this.state.updateStyleToRotateIcon}
+                style={this.updateStyleForToggleIcon(Text)}
                 data-value={Text}
                 onClick={() => {
                   this.onExpand(Text);
@@ -142,7 +176,7 @@ class CreateSideBarNavLink extends Component {
             )}
 
             {Expandable && (
-              <div style={this.state.updateStyleToToggleChild}>
+              <div style={this.updateStyleForToggleChildren(Text)}>
                 {this.createChildLinks(children, Text)}
               </div>
             )}
@@ -244,6 +278,7 @@ const styles = {
     fontSize: "1vw",
   },
   collapseChildren: {
+    padding: "0vh 0vw",
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
@@ -254,6 +289,7 @@ const styles = {
     padding: "0vh 0vw",
   },
   expandChildren: {
+    padding: "2vh 0vw",
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
@@ -261,7 +297,6 @@ const styles = {
     background: "rgb(140, 140, 140)",
     boxShadow: "black 0px 0px 4px 0px",
     width: "20vw",
-    padding: "2vh 0vw",
   },
   expandIcon: {
     transform: "rotate(90deg)",
