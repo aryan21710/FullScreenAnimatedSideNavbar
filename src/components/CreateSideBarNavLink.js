@@ -36,9 +36,10 @@ class CreateSideBarNavLink extends Component {
       return (
         <React.Fragment>
           <div style={{ ...styles.flexStyling, ...styles.iconChildren }}>
-            {children.map((_) => {
+            {children.map((_,idx) => {
               return (
                 <div
+                key={idx}
                   className={this.updateStyleForChidrenIconAndText(Text)}
                   style={styles.childIcon}
                 >
@@ -48,9 +49,12 @@ class CreateSideBarNavLink extends Component {
             })}
           </div>
           <div style={{ ...styles.flexStyling, ...styles.textChildren }}>
-            {children.map((_) => {
+            {children.map((_,idx) => {
+            
               return (
                 <div
+                key={idx}
+
                   className={this.updateStyleForChidrenIconAndText(Text)}
                   style={styles.childText}
                 >
@@ -158,6 +162,7 @@ class CreateSideBarNavLink extends Component {
           Text,
           children,
           ExpandableIconset,
+          Route
         } = myData[i];
 
         returnData.push(
@@ -168,7 +173,8 @@ class CreateSideBarNavLink extends Component {
               <div style={styles.parentLinkIcon}>{IconSet}</div>
             </div>
             <div style={{ ...styles.flexStyling, ...styles.parentLinkText }}>
-              {Text}
+            <NavLink activeStyle={styles.navlinks} to={Route}>{Text}</NavLink>
+              
             </div>
 
             {Expandable && (
@@ -248,6 +254,10 @@ const styles = {
     marginLeft: "10px",
     cursor: "pointer",
   },
+  navlinks : {
+    textDecoration: 'none',
+    color: 'blue'
+  },
   parentLinkExpandIcon: {
     display: "flex",
     justifyContent: "center",
@@ -294,7 +304,6 @@ const styles = {
     background: "rgb(140, 140, 140)",
     boxShadow: "black 0px 0px 4px 0px",
     width: "20vw",
-    padding: "0vh 0vw",
   },
   expandChildren: {
     padding: "2vh 0vw",

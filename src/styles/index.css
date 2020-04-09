@@ -11,6 +11,10 @@ body {
   align-items: center;
 }
 
+a {
+  text-decoration: none;
+  color: white;
+}
 
 
 
@@ -73,96 +77,4 @@ body {
   top: 2.2vh;
   width: 1.5vw;
   transition: transform 0.1s ease-in-out;
-}
-
-.SideBarWrapper {
-    background: #007bff;
-    position: absolute;
-    top: 5vh;
-    left: -40vw;
-    /* left: 0vw; */
-    height: 100vh;
-    z-index: 2;
-  }
-
-
-.slideOutSideBar {
-    background: #007bff;
-    position: absolute;
-    top: 5vh;
-    left: -40vw;
-    /* left: 0vw; */
-    height: 100vh;
-    z-index: 2;
-    animation: slideOut 0.25s cubic-bezier(1, 0, 0, 1) 1 forwards;
-}
-.slideInSideBar {
-  background: rgba(0, 95, 139, 0.918);
-  position: absolute;
-  top: 5vh;
-  height: 100vh;
-  z-index: 2;
-  animation: slideIn 0.25s cubic-bezier(1, 0, 0, 1) 1 forwards;
-}
-
-@keyframes slideOut {
-  from {
-    z-index: -1;
-  }
-
-  to {
-    left: 0vw;
-    z-index: 2;
-  }
-}
-
-@keyframes slideIn {
-  from {
-    left: 0vw;
-    z-index: 2;
-  }
-
-  to {
-    left: -40vw;
-    z-index: -1;
-  }
-}
-
-.close {
-  outline: none;
-  padding: 0.5vh 0.5vw;
-  position: absolute;
-  top: 1vh;
-  left: 5vw;
-  font-size: 2vw;
-  color: white;
-  cursor: pointer;
-}
-
-.mainList {
-  list-style-type: none;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  margin-top: 20vh;
-  padding: 0;
-}
-
-.mainList li {
-  display: inline-block;
-  width: 15vw;
-  margin: 2vh 0vw;
-  color: white;
-  flex-direction: row;
-}
-
-.mycases {
-
-  margin: 0;
-  padding: 0;
-}
-
-.mycases li {
-  display: flex;
-  justify-content: center;
 }

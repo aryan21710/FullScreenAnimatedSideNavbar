@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Header from "../src/components/Header";
-import SideBar from "./components/SideBar";
 import CreateSideBarNavLink from "./components/CreateSideBarNavLink";
 
 const App = () => {
@@ -12,9 +11,9 @@ const App = () => {
 
   const myData = {
     link1: {
-      IconSet: <i className="fa fa-fw fa-list" style={{ fontSize: "1vw" }} />,
-      Text: "My Cases",
-      Expandable: true,
+      IconSet: <i className="fa fa-fw fa-file" style={{ fontSize: "1vw" }} />,
+      Text: "Home",
+      Expandable: false,
       ExpandableIconset: (
         <i
           className="fas fa-angle-right angleIcon"
@@ -22,52 +21,12 @@ const App = () => {
         />
       ),
 
-      Route: "/mycases",
-      children: [
-        {
-          IconSet: (
-            <i
-              className="fas fa-gavel"
-              style={{ fontSize: "1vw", color: "white" }}
-            ></i>
-          ),
-          Text: "MC2830-2017",
-          Expandable: false,
-          children: null,
-          Route: "/mycases/mc2830-2017",
-        },
-
-        {
-          IconSet: (
-            <i
-              className="fas fa-gavel"
-              style={{ fontSize: "1vw", color: "white" }}
-            ></i>
-          ),
-          Text: "MC2831-2017",
-          Expandable: false,
-          children: null,
-          Route: "/mycases/mc2831-2017",
-        },
-
-        {
-          IconSet: (
-            <i
-              className="fas fa-gavel"
-              style={{ fontSize: "1vw", color: "white" }}
-            ></i>
-          ),
-          Text: "MC2832-2017",
-          Expandable: false,
-          children: null,
-          Route: "/mycases/mc2832-2017",
-        },
-      ],
+      Route: "/home",
+      children: null,
     },
-
     link2: {
-      IconSet: <i className="fa fa-fw fa-edit" style={{ fontSize: "1vw" }} />,
-      Text: "New Submission",
+      IconSet: <i className="fa fa-fw fa-list" style={{ fontSize: "1vw" }} />,
+      Text: "Products",
       Expandable: true,
       ExpandableIconset: (
         <i
@@ -76,7 +35,7 @@ const App = () => {
         />
       ),
 
-      Route: "/newsubmission",
+      Route: "/products",
       children: [
         {
           IconSet: (
@@ -85,10 +44,10 @@ const App = () => {
               style={{ fontSize: "1vw", color: "white" }}
             ></i>
           ),
-          Text: "petitionersection",
+          Text: "PRODUCT1",
           Expandable: false,
           children: null,
-          Route: "/mycases/petitionersection",
+          Route: "/products/product1",
         },
 
         {
@@ -98,47 +57,30 @@ const App = () => {
               style={{ fontSize: "1vw", color: "white" }}
             ></i>
           ),
-          Text: "respondentsection",
+          Text: "PRODUCT2",
           Expandable: false,
           children: null,
-          Route: "/mycases/respondentsection",
+          Route: "/products/product2",
+        },
+
+        {
+          IconSet: (
+            <i
+              className="fas fa-gavel"
+              style={{ fontSize: "1vw", color: "white" }}
+            ></i>
+          ),
+          Text: "PRODUCT3",
+          Expandable: false,
+          children: null,
+          Route: "/products/product3",
         },
       ],
     },
 
     link3: {
-      IconSet: <i className="fa fa-fw fa-file" style={{ fontSize: "1vw" }} />,
-      Text: "My Documents",
-      Expandable: false,
-      ExpandableIconset: (
-        <i
-          className="fas fa-angle-right angleIcon"
-          style={{ fontSize: "1vw", color: "white" }}
-        />
-      ),
-
-      Route: "/mydocuments",
-      children: null,
-    },
-
-    link4: {
-      IconSet: <i className="fa fa-fw fa-file" style={{ fontSize: "1vw" }} />,
-      Text: "Upload Documents",
-      Expandable: false,
-      ExpandableIconset: (
-        <i
-          className="fas fa-angle-right angleIcon"
-          style={{ fontSize: "1vw", color: "white" }}
-        />
-      ),
-
-      Route: "/mydocuments/upload",
-      children: null,
-    },
-
-    link5: {
-      IconSet: <i className="fa fa-fw fa-file" style={{ fontSize: "1vw" }} />,
-      Text: "Notifications",
+      IconSet: <i className="fa fa-fw fa-edit" style={{ fontSize: "1vw" }} />,
+      Text: "PORTFOLIO",
       Expandable: true,
       ExpandableIconset: (
         <i
@@ -147,7 +89,7 @@ const App = () => {
         />
       ),
 
-      Route: "/notifications",
+      Route: "/portfolio",
       children: [
         {
           IconSet: (
@@ -156,10 +98,10 @@ const App = () => {
               style={{ fontSize: "1vw", color: "white" }}
             ></i>
           ),
-          Text: "MC2830-2017",
+          Text: "PROJECT1",
           Expandable: false,
           children: null,
-          Route: "/mycases/mc2830-2017",
+          Route: "/portfolio/project1",
         },
 
         {
@@ -169,10 +111,55 @@ const App = () => {
               style={{ fontSize: "1vw", color: "white" }}
             ></i>
           ),
-          Text: "MC2831-2017",
+          Text: "PROJECT1",
           Expandable: false,
           children: null,
-          Route: "/mycases/mc2831-2017",
+          Route: "/portfolio/project2",
+        },
+      ],
+    },
+
+  
+
+    link4: {
+      IconSet: <i className="fa fa-fw fa-file" style={{ fontSize: "1vw" }} />,
+      Text: "About",
+      Expandable: false,
+      ExpandableIconset: (
+        <i
+          className="fas fa-angle-right angleIcon"
+          style={{ fontSize: "1vw", color: "white" }}
+        />
+      ),
+
+      Route: "/about",
+      children: null,
+    },
+
+    link5: {
+      IconSet: <i className="fa fa-fw fa-file" style={{ fontSize: "1vw" }} />,
+      Text: "CATELOGUES",
+      Expandable: true,
+      ExpandableIconset: (
+        <i
+          className="fas fa-angle-right angleIcon"
+          style={{ fontSize: "1vw", color: "white" }}
+        />
+      ),
+
+      Route: "/catelogues",
+      children: [
+        {
+          IconSet: (
+            <i
+              className="fas fa-gavel"
+              style={{ fontSize: "1vw", color: "white" }}
+            ></i>
+          ),
+          Text: "CATELOGUE1",
+          Expandable: false,
+          children: null,
+          Route: "/catelogues/catelogue1",
         },
 
         {
@@ -182,35 +169,13 @@ const App = () => {
               style={{ fontSize: "1vw", color: "white" }}
             ></i>
           ),
-          Text: "MC2832-2017",
+          Text: "CATELOGUE2",
           Expandable: false,
           children: null,
-          Route: "/mycases/mc2832-2017",
+          Route: "/catelogues/catelogue2",
         },
-        {
-          IconSet: (
-            <i
-              className="fas fa-gavel"
-              style={{ fontSize: "1vw", color: "white" }}
-            ></i>
-          ),
-          Text: "MC2832-2017",
-          Expandable: false,
-          children: null,
-          Route: "/mycases/mc2832-2017",
-        },
-        {
-          IconSet: (
-            <i
-              className="fas fa-gavel"
-              style={{ fontSize: "1vw", color: "white" }}
-            ></i>
-          ),
-          Text: "MC2832-2017",
-          Expandable: false,
-          children: null,
-          Route: "/mycases/mc2832-2017",
-        },
+
+       
       ],
     },
   };
