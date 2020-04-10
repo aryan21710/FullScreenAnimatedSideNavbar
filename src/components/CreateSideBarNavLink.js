@@ -151,53 +151,57 @@ class CreateSideBarNavLink extends Component {
 
   render(props) {
     console.count("render");
+    const {name,email,lastLogin}=this.props.myData.userInfo;
 
     const NavbarLinksGrid = (props) => {
       const { myData } = this.props;
       const returnData = [];
 
       for (let i in myData) {
-        const {
-          Expandable,
-          IconSet,
-          Text,
-          children,
-          ExpandableIconset,
-          Route,
-        } = myData[i];
-
-        returnData.push(
-          <div style={styles.parentLinkWrapper}>
-            <div
-              style={{ ...styles.flexStyling, ...styles.parentLinkIconWrapper }}
-            >
-              <div style={styles.parentLinkIcon}>{IconSet}</div>
-            </div>
-            <div style={{ ...styles.flexStyling, ...styles.parentLinkText }}>
-              <NavLink activeStyle={styles.navlinks} to={Route}>
-                {Text}
-              </NavLink>
-            </div>
-
-            {Expandable && (
+        if (i!=='userInfo') {
+          const {
+            Expandable,
+            IconSet,
+            Text,
+            children,
+            ExpandableIconset,
+            Route,
+          } = myData[i];
+  
+          returnData.push(
+            <div style={styles.parentLinkWrapper}>
               <div
-                style={this.updateStyleForToggleIcon(Text)}
-                data-value={Text}
-                onClick={() => {
-                  this.onExpand(Text);
-                }}
+                style={{ ...styles.flexStyling, ...styles.parentLinkIconWrapper }}
               >
-                {ExpandableIconset}
+                <div style={styles.parentLinkIcon}>{IconSet}</div>
               </div>
-            )}
-
-            {Expandable && (
-              <div style={this.updateStyleForChildLinkWrapper(Text)}>
-                {this.createChildLinks(children, Text)}
+              <div style={{ ...styles.flexStyling, ...styles.parentLinkText }}>
+                <NavLink activeStyle={styles.navlinks} to={Route}>
+                  {Text}
+                </NavLink>
               </div>
-            )}
-          </div>
-        );
+  
+              {Expandable && (
+                <div
+                  style={this.updateStyleForToggleIcon(Text)}
+                  data-value={Text}
+                  onClick={() => {
+                    this.onExpand(Text);
+                  }}
+                >
+                  {ExpandableIconset}
+                </div>
+              )}
+  
+              {Expandable && (
+                <div style={this.updateStyleForChildLinkWrapper(Text)}>
+                  {this.createChildLinks(children, Text)}
+                </div>
+              )}
+            </div>
+          );
+        }
+     
       }
       console.log("returnData", returnData);
 
@@ -210,7 +214,10 @@ class CreateSideBarNavLink extends Component {
           <React.Fragment>
             <div className={this.state.slide}>
               <div className="sideNavBarLinks">
-                <UserInfoGrid />
+                <UserInfoGrid name={name} 
+                email={email}
+                lastLogin={lastLogin}
+                />
                 <NavbarLinksGrid />
               </div>
             </div>

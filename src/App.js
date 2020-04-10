@@ -10,6 +10,12 @@ const App = () => {
   };
 
   const myData = {
+    userInfo: {
+      name: 'aryan sharma',
+      email: 'aryan@gmail.com',
+      lastLogin: '12/12/2019'
+
+    },
     link1: {
       IconSet: <i className="fa fa-fw fa-file" style={{ fontSize: "1vw" }} />,
       Text: "Home",

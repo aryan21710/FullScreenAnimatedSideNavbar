@@ -1,6 +1,6 @@
 import React from "react";
 
-const UserInfoGrid = () => {
+const UserInfoGrid = ({name,email,lastLogin}) => {
   return (
     <div style={styles.UserInfoGrid}>
       <div style={{ ...styles.profilePicWrapper, ...styles.flexStyling }}>
@@ -10,9 +10,9 @@ const UserInfoGrid = () => {
       </div>
       <div style={{ ...styles.flexStyling, ...styles.profileInfoWrapper }}>
         <div style={{ ...styles.flexStyling, ...styles.profileInfo }}>
-          <span style={styles.uname}>FirstName LastName</span>
-          <span style={styles.role}>Description/Role/Alias</span>
-          <span style={styles.role}>Email</span>
+          <span style={styles.uname}>{name.toUpperCase()}</span>
+          <span style={styles.role}>{email}</span>
+          <span style={styles.role}>{lastLogin}</span>
         </div>
       </div>
     </div>
