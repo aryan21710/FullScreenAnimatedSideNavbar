@@ -1,11 +1,19 @@
-import React from 'react'
+import React from "react";
+import App from "../../App";
 
 export const Product = () => {
-    return (
-        <div style={{marginRight: 'auto', 
-        marginLeft: 'auto', width: '25%',
-         color: 'red'}}>
-            <h1 style={{fontSize: '35px'}}>Products COMPONENT</h1> 
-        </div>
-    )
-}
+  return (
+    <React.Fragment>
+      <div
+        style={{
+          marginRight: "auto",
+          marginLeft: "auto",
+          width: "25%",
+          color: "red",
+        }}
+      >
+        <h1 style={{ fontSize: "35px" }}>Product COMPONENT</h1>
+      </div>
+    </React.Fragment>
+  );
+};

@@ -2,18 +2,6 @@ import React, { Component } from "react";
 import { BrowserRouter, NavLink, Route, Switch } from "react-router-dom";
 import "../../node_modules/@fortawesome/fontawesome-free/css/all.css";
 import UserInfoGrid from "./UserInfoGrid";
-import { Home } from "./Home/Home";
-import { About } from "./About/About";
-import { Product } from "./Product/Product";
-import { Product1 } from "./Product/Product1";
-import { Product2 } from "./Product/Product2";
-
-import { Portfolio } from "./Portfolio/Portfolio";
-import { Portfolio1 } from "./Portfolio/Portfolio1";
-
-import { Catelogue } from "./Catelogue/Catelogue";
-
-import App from "../App";
 
 class CreateSideBarNavLink extends Component {
   state = {
@@ -217,52 +205,18 @@ class CreateSideBarNavLink extends Component {
     };
 
     return (
-      <BrowserRouter>
-        <Route
-          render={({ location, history }) => (
-            <React.Fragment>
-              <div className={this.state.slide}>
-                <div className="sideNavBarLinks">
-                  <UserInfoGrid />
-                  <NavbarLinksGrid />
-                </div>
+      <Route
+        render={({ location, history }) => (
+          <React.Fragment>
+            <div className={this.state.slide}>
+              <div className="sideNavBarLinks">
+                <UserInfoGrid />
+                <NavbarLinksGrid />
               </div>
-            </React.Fragment>
-          )}
-        />
-
-        <div>
-          <Switch>
-            <Route exact={true} strict path="/">
-              <Home />
-            </Route>
-            <Route exact={true} strict path="/products">
-              <Product />
-            </Route>
-
-            <Route exact={true} strict path="/about">
-              <About />
-            </Route>
-            <Route exact={true} strict path="/portfolio">
-              <Portfolio />
-            </Route>
-            <Route exact={true} strict path="/catelogue">
-              <Catelogue />
-            </Route>
-            <Route exact={true} strict path="/products/product1">
-              <Product1 />
-            </Route>
-
-            <Route exact={true} strict path="/products/product2">
-              <Product2 />
-            </Route>
-
-            <Route exact={true} strict path="/portfolio/portfolio1">
-              <Portfolio1 />
-            </Route>
-          </Switch>
-        </div>
-      </BrowserRouter>
+            </div>
+          </React.Fragment>
+        )}
+      />
     );
   }
 }

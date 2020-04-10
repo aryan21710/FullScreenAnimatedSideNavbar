@@ -5,6 +5,9 @@ import { About } from "../components/About/About";
 import { Product } from "../components/Product/Product";
 import { Portfolio } from "../components/Portfolio/Portfolio";
 import { Catelogue } from "../components/Catelogue/Catelogue";
+import { Product1 } from "../components/Product/Product1";
+import { Product2 } from "../components/Product/Product2";
+import { Portfolio1 } from "../components/Portfolio/Portfolio1";
 import App from '../App'
 
 class DebugRouter extends BrowserRouter {
@@ -23,38 +26,43 @@ class DebugRouter extends BrowserRouter {
     }
   }
 
-export class Approutes extends Component {
+ class Approutes extends Component {
   render() {
     return (
-      <DebugRouter>
-        <div>
-          <Switch>
-            <Route exact={true}
-              strict path="/">
-              <Home />
-            </Route>
-            <Route exact={true}
-              strict path="/products">
-              <Product />
-            </Route>
-            <Route exact={true}
-              strict path="/sidebar" component={(props) => <App />} />
+      <BrowserRouter>
+      <div>
+      <App/>
+      <Switch>
+        <Route exact={true} strict path="/">
+          <Home />
+        </Route>
+        <Route exact={true} strict path="/products">
+          <Product />
+        </Route>
 
-            <Route exact={true}
-              strict path="/about">
-              <About />
-            </Route>
-            <Route exact={true}
-              strict path="/portfolio">
-              <Portfolio />
-            </Route>
-            <Route exact={true}
-              strict path="/catelogue">
-              <Catelogue />
-            </Route>
-          </Switch>
-        </div>
-      </DebugRouter>
+        <Route exact={true} strict path="/about">
+          <About />
+        </Route>
+        <Route exact={true} strict path="/portfolio">
+          <Portfolio />
+        </Route>
+        <Route exact={true} strict path="/catelogue">
+          <Catelogue />
+        </Route>
+        <Route exact={true} strict path="/products/product1">
+          <Product1 />
+        </Route>
+
+        <Route exact={true} strict path="/products/product2">
+          <Product2 />
+        </Route>
+
+        <Route exact={true} strict path="/portfolio/portfolio1">
+          <Portfolio1 />
+        </Route>
+      </Switch>
+    </div>
+      </BrowserRouter>
     );
   }
 }
