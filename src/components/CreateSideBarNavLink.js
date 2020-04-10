@@ -1,7 +1,19 @@
 import React, { Component } from "react";
-import { BrowserRouter, NavLink, Route } from "react-router-dom";
+import { BrowserRouter, NavLink, Route, Switch } from "react-router-dom";
 import "../../node_modules/@fortawesome/fontawesome-free/css/all.css";
 import UserInfoGrid from "./UserInfoGrid";
+import { Home } from "./Home/Home";
+import { About } from "./About/About";
+import { Product } from "./Product/Product";
+import { Product1 } from "./Product/Product1";
+import { Product2 } from "./Product/Product2";
+
+import { Portfolio } from "./Portfolio/Portfolio";
+import { Portfolio1 } from "./Portfolio/Portfolio1";
+
+import { Catelogue } from "./Catelogue/Catelogue";
+
+import App from "../App";
 
 class CreateSideBarNavLink extends Component {
   state = {
@@ -36,10 +48,10 @@ class CreateSideBarNavLink extends Component {
       return (
         <React.Fragment>
           <div style={{ ...styles.flexStyling, ...styles.iconChildren }}>
-            {children.map((_,idx) => {
+            {children.map((_, idx) => {
               return (
                 <div
-                key={idx}
+                  key={idx}
                   className={this.updateStyleForChidrenIconAndText(Text)}
                   style={styles.childIcon}
                 >
@@ -49,16 +61,17 @@ class CreateSideBarNavLink extends Component {
             })}
           </div>
           <div style={{ ...styles.flexStyling, ...styles.textChildren }}>
-            {children.map((_,idx) => {
-            
+            {children.map((_, idx) => {
               return (
                 <div
-                key={idx}
-
+                  key={idx}
                   className={this.updateStyleForChidrenIconAndText(Text)}
                   style={styles.childText}
                 >
-                  {_.Text}
+                  <NavLink activeStyle={styles.navlinks} to={_.Route}>
+                    {" "}
+                    {_.Text}
+                  </NavLink>
                 </div>
               );
             })}
@@ -162,7 +175,7 @@ class CreateSideBarNavLink extends Component {
           Text,
           children,
           ExpandableIconset,
-          Route
+          Route,
         } = myData[i];
 
         returnData.push(
@@ -173,8 +186,9 @@ class CreateSideBarNavLink extends Component {
               <div style={styles.parentLinkIcon}>{IconSet}</div>
             </div>
             <div style={{ ...styles.flexStyling, ...styles.parentLinkText }}>
-            <NavLink activeStyle={styles.navlinks} to={Route}>{Text}</NavLink>
-              
+              <NavLink activeStyle={styles.navlinks} to={Route}>
+                {Text}
+              </NavLink>
             </div>
 
             {Expandable && (
@@ -216,6 +230,38 @@ class CreateSideBarNavLink extends Component {
             </React.Fragment>
           )}
         />
+
+        <div>
+          <Switch>
+            <Route exact={true} strict path="/">
+              <Home />
+            </Route>
+            <Route exact={true} strict path="/products">
+              <Product />
+            </Route>
+
+            <Route exact={true} strict path="/about">
+              <About />
+            </Route>
+            <Route exact={true} strict path="/portfolio">
+              <Portfolio />
+            </Route>
+            <Route exact={true} strict path="/catelogue">
+              <Catelogue />
+            </Route>
+            <Route exact={true} strict path="/products/product1">
+              <Product1 />
+            </Route>
+
+            <Route exact={true} strict path="/products/product2">
+              <Product2 />
+            </Route>
+
+            <Route exact={true} strict path="/portfolio/portfolio1">
+              <Portfolio1 />
+            </Route>
+          </Switch>
+        </div>
       </BrowserRouter>
     );
   }
@@ -254,9 +300,9 @@ const styles = {
     marginLeft: "10px",
     cursor: "pointer",
   },
-  navlinks : {
-    textDecoration: 'none',
-    color: 'blue'
+  navlinks: {
+    textDecoration: "none",
+    color: "blue",
   },
   parentLinkExpandIcon: {
     display: "flex",
@@ -285,6 +331,7 @@ const styles = {
   childText: {
     margin: " 1vh 0vw 1vh 1vw",
     fontSize: "1vw",
+    cursor: "pointer",
   },
   childIcon: {
     margin: " 0.75vh 0vw",

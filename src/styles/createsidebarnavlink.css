@@ -8,14 +8,14 @@
   background: rgba(0, 0, 0, 1);
   position: absolute;
   top: 4.6vh;
-  left: -100vw;
+  left: -20vw;
   height: 95.4vh;
   z-index: 2;
 }
 
 .slideOutSideBar {
   background: rgba(0, 0, 0, 1);
-  width: 100vw;
+  width: 20vw;
   display: flex;
   flex-direction: row;
   position: absolute;
@@ -52,7 +52,7 @@
   }
 
   to {
-    left: -100vw;
+    left: -20vw;
     z-index: -1;
   }
 }

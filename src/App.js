@@ -21,7 +21,7 @@ const App = () => {
         />
       ),
 
-      Route: "/home",
+      Route: "/",
       children: null,
     },
     link2: {
@@ -63,18 +63,6 @@ const App = () => {
           Route: "/products/product2",
         },
 
-        {
-          IconSet: (
-            <i
-              className="fas fa-gavel"
-              style={{ fontSize: "1vw", color: "white" }}
-            ></i>
-          ),
-          Text: "PRODUCT3",
-          Expandable: false,
-          children: null,
-          Route: "/products/product3",
-        },
       ],
     },
 
@@ -98,24 +86,12 @@ const App = () => {
               style={{ fontSize: "1vw", color: "white" }}
             ></i>
           ),
-          Text: "PROJECT1",
+          Text: "PORTFOLIO1",
           Expandable: false,
           children: null,
-          Route: "/portfolio/project1",
+          Route: "/portfolio/portfolio1",
         },
 
-        {
-          IconSet: (
-            <i
-              className="fas fa-gavel"
-              style={{ fontSize: "1vw", color: "white" }}
-            ></i>
-          ),
-          Text: "PROJECT1",
-          Expandable: false,
-          children: null,
-          Route: "/portfolio/project2",
-        },
       ],
     },
 
