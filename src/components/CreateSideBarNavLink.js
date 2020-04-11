@@ -183,7 +183,7 @@ class CreateSideBarNavLink extends Component {
 
               {Expandable && (
                 <div
-                  style={styles.collapseIcon}
+                  style={this.updateStyleForToggleIcon(Text)}
                   data-value={Text}
                   onClick={() => {
                     this.onExpand(Text);
@@ -330,7 +330,8 @@ const styles = {
     overflow: "hidden",
   },
   expandIcon: {
-    transition: "rotate(90deg) 1s ease-in-out",
+    transform: "rotate(90deg)",
+    transition: "transform 0.1s ease-in-out",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -339,7 +340,8 @@ const styles = {
   },
 
   collapseIcon: {
-    transition: "rotate(0deg) 1s ease-in-out",
+    transform: "rotate(0deg)",
+    transition: "transform 0.1s ease-in-out",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
