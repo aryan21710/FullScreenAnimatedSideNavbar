@@ -72,34 +72,34 @@ const App = () => {
       ],
     },
 
-    // link3: {
-    //   IconSet: <i className="fa fa-fw fa-edit" style={{ fontSize: "1vw" }} />,
-    //   Text: "PORTFOLIO",
-    //   Expandable: true,
-    //   ExpandableIconset: (
-    //     <i
-    //       className="fas fa-angle-right angleIcon"
-    //       style={{ fontSize: "1vw", color: "white" }}
-    //     />
-    //   ),
+    link3: {
+      IconSet: <i className="fa fa-fw fa-edit" style={{ fontSize: "1vw" }} />,
+      Text: "PORTFOLIO",
+      Expandable: true,
+      ExpandableIconset: (
+        <i
+          className="fas fa-angle-right angleIcon"
+          style={{ fontSize: "1vw", color: "white" }}
+        />
+      ),
 
-    //   Route: "/portfolio",
-    //   children: [
-    //     {
-    //       IconSet: (
-    //         <i
-    //           className="fas fa-gavel"
-    //           style={{ fontSize: "1vw", color: "white" }}
-    //         ></i>
-    //       ),
-    //       Text: "PORTFOLIO1",
-    //       Expandable: false,
-    //       children: null,
-    //       Route: "/portfolio/portfolio1",
-    //     },
+      Route: "/portfolio",
+      children: [
+        {
+          IconSet: (
+            <i
+              className="fas fa-gavel"
+              style={{ fontSize: "1vw", color: "white" }}
+            ></i>
+          ),
+          Text: "PORTFOLIO1",
+          Expandable: false,
+          children: null,
+          Route: "/portfolio/portfolio1",
+        },
 
-    //   ],
-    // },
+      ],
+    },
 
   
 

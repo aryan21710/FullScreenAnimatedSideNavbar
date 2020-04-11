@@ -73,30 +73,18 @@ class CreateSideBarNavLink extends Component {
     }
   };
 
-  updateParentLinkWrapperStyle = (linkText) => {
-    const { linksAndStatus } = this.state;
-
-    for (let i in linksAndStatus) {
-      if (i === linkText) {
-        return linksAndStatus[i]["topPos"];
-      }
-    }
-  };
-
   updateTextArray = () => {
     const { myData } = this.props;
     const myObj = {};
 
     for (let i in myData) {
-      if (i !== "userInfo") {
-        const { Text } = myData[i];
-        myObj[Text] = {
-          toggle: false,
-          rotateIcon: styles.collapseIcon,
-          childLinkWrapper: "collapseChildren",
-          childLinkData: "hide",
-        };
-      }
+      const { Text } = myData[i];
+      myObj[Text] = {
+        toggle: false,
+        rotateIcon: styles.collapseIcon,
+        childLinkWrapper: "collapseChildren",
+        childLinkData: "hide",
+      };
     }
 
     this.setState({
@@ -107,21 +95,6 @@ class CreateSideBarNavLink extends Component {
   navBarLinksGrid = (props) => {
     const { myData } = this.props;
     const returnData = [];
-
-    returnData.push(
-      <div
-        style={styles.collapseIcon}
-        data-value={Text}
-        onClick={() => {
-          this.onExpand(Text);
-        }}
-      >
-        <i
-          className="fas fa-angle-right angleIcon"
-          style={{ fontSize: "2vw", color: "black" }}
-        />{" "}
-      </div>
-    );
 
     for (let i in myData) {
       if (i !== "userInfo") {
@@ -137,7 +110,31 @@ class CreateSideBarNavLink extends Component {
         returnData.push(
           <React.Fragment>
             <div style={styles.parentLinkWrapper}>
-           
+              <div
+                style={{
+                  ...styles.flexStyling,
+                  ...styles.parentLinkIconWrapper,
+                }}
+              >
+                <div style={styles.parentLinkIcon}>{IconSet}</div>
+              </div>
+              <div style={{ ...styles.flexStyling, ...styles.parentLinkText }}>
+                <NavLink activeStyle={styles.navlinks} to={Route}>
+                  {Text}
+                </NavLink>
+              </div>
+
+              {Expandable && (
+                <div
+                  style={styles.collapseIcon}
+                  data-value={Text}
+                  onClick={() => {
+                    this.onExpand(Text);
+                  }}
+                >
+                  {ExpandableIconset}
+                </div>
+              )}
             </div>
             {Expandable && (
               <div
@@ -146,7 +143,6 @@ class CreateSideBarNavLink extends Component {
                 }
               ></div>
             )}
-
           </React.Fragment>
         );
       }
@@ -160,7 +156,20 @@ class CreateSideBarNavLink extends Component {
 
     const { name, email, lastLogin } = this.props.myData.userInfo;
 
-    return <div>{this.navBarLinksGrid()}</div>;
+    return (
+      <Route
+        render={({ location, history }) => (
+          <React.Fragment>
+            <div className={this.state.slide}>
+              <div className="sideNavBarLinks">
+                <UserInfoGrid name={name} email={email} lastLogin={lastLogin} />
+                {this.navBarLinksGrid()}
+              </div>
+            </div>
+          </React.Fragment>
+        )}
+      />
+    );
   }
 }
 
@@ -172,11 +181,13 @@ const styles = {
   },
 
   parentLinkWrapper: {
+    display: "grid",
+    gridTemplateColumns: "4vw 13vw 3vw",
+    gridTemplateRows: "5vh",
     width: "20vw",
     margin: "1vh 0vw",
     background: "black",
     height: "5vh",
-    border: "1px solid white",
   },
   parentLinkIconWrapper: {
     gridArea: "1/1/2/2",

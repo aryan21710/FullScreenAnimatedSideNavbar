@@ -105,7 +105,7 @@
 
 
 .expandChildren {
-  transition: height 900ms ease-in;
+  transition: height 400ms ease-in;
 
 
   width: 20vw;
@@ -116,12 +116,12 @@
 }
 
 .collapseChildren {
-  transition: height 900ms ease-in;
+  transition: height 400ms ease-in;
 
   
   width: 20vw;
   color: white;
-  height: 1vh;
+  height: 0vh;
   background-color: red;
   font-family: sans-serif;
 }
