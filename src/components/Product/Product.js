@@ -6,9 +6,9 @@ export const Product = () => {
     <React.Fragment>
       <div
         style={{
-          marginRight: "auto",
-          marginLeft: "auto",
-          width: "25%",
+          position: "absolute",
+          top: "10vh",
+          left: "50vw",
           color: "red",
         }}
       >

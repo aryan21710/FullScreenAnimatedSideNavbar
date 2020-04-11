@@ -4,8 +4,8 @@ import App from '../../App'
 export const Home = () => {
     return (
         <React.Fragment>
-        <div style={{marginRight: 'auto', 
-        marginLeft: 'auto', width: '25%',
+        <div style={{ position: 'absolute',
+        top: '10vh', left: '50vw',
          color: 'red'}}>
             <h1 style={{fontSize: '35px'}}>HOME COMPONENT</h1> 
         </div>
