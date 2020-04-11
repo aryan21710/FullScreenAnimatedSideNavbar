@@ -6,7 +6,6 @@ import UserInfoGrid from "./UserInfoGrid";
 class CreateSideBarNavLink extends Component {
   state = {
     slide: "slideOutSideBar",
-    toggle1: false,
     whichLinkToToggle: [],
     linksAndStatus: {},
   };
@@ -35,7 +34,6 @@ class CreateSideBarNavLink extends Component {
     const { linksAndStatus } = this.state;
     this.setState({
       whichLinkToToggle: linkText,
-      toggle1: !this.state.toggle1,
     });
 
     const myobj = {};
@@ -53,6 +51,9 @@ class CreateSideBarNavLink extends Component {
       } else {
         _["toggle"] = linksAndStatus[i]["toggle"] === true ? false : false;
         _["rotateIcon"] = _["toggle"] ? styles.expandIcon : styles.collapseIcon;
+        _["childLinkWrapper"] = _["toggle"]
+          ? styles.expandChildren
+          : styles.collapseChildren;
         myobj[i] = _;
       }
     }
