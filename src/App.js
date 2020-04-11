@@ -16,20 +16,20 @@ const App = () => {
       lastLogin: '12/12/2019'
 
     },
-    // link1: {
-    //   IconSet: <i className="fa fa-fw fa-file" style={{ fontSize: "1vw" }} />,
-    //   Text: "Home",
-    //   Expandable: false,
-    //   ExpandableIconset: (
-    //     <i
-    //       className="fas fa-angle-right angleIcon"
-    //       style={{ fontSize: "1vw", color: "white" }}
-    //     />
-    //   ),
+    link1: {
+      IconSet: <i className="fa fa-fw fa-file" style={{ fontSize: "1vw" }} />,
+      Text: "Home",
+      Expandable: false,
+      ExpandableIconset: (
+        <i
+          className="fas fa-angle-right angleIcon"
+          style={{ fontSize: "1vw", color: "white" }}
+        />
+      ),
 
-    //   Route: "/",
-    //   children: null,
-    // },
+      Route: "/",
+      children: null,
+    },
     link2: {
       IconSet: <i className="fa fa-fw fa-list" style={{ fontSize: "1vw" }} />,
       Text: "Products",
@@ -118,48 +118,48 @@ const App = () => {
       children: null,
     },
 
-    // link5: {
-    //   IconSet: <i className="fa fa-fw fa-file" style={{ fontSize: "1vw" }} />,
-    //   Text: "CATELOGUES",
-    //   Expandable: true,
-    //   ExpandableIconset: (
-    //     <i
-    //       className="fas fa-angle-right angleIcon"
-    //       style={{ fontSize: "1vw", color: "white" }}
-    //     />
-    //   ),
+    link5: {
+      IconSet: <i className="fa fa-fw fa-file" style={{ fontSize: "1vw" }} />,
+      Text: "CATELOGUES",
+      Expandable: true,
+      ExpandableIconset: (
+        <i
+          className="fas fa-angle-right angleIcon"
+          style={{ fontSize: "1vw", color: "white" }}
+        />
+      ),
 
-    //   Route: "/catelogues",
-    //   children: [
-    //     {
-    //       IconSet: (
-    //         <i
-    //           className="fas fa-gavel"
-    //           style={{ fontSize: "1vw", color: "white" }}
-    //         ></i>
-    //       ),
-    //       Text: "CATELOGUE1",
-    //       Expandable: false,
-    //       children: null,
-    //       Route: "/catelogues/catelogue1",
-    //     },
+      Route: "/catelogues",
+      children: [
+        {
+          IconSet: (
+            <i
+              className="fas fa-gavel"
+              style={{ fontSize: "1vw", color: "white" }}
+            ></i>
+          ),
+          Text: "CATELOGUE1",
+          Expandable: false,
+          children: null,
+          Route: "/catelogues/catelogue1",
+        },
 
-    //     {
-    //       IconSet: (
-    //         <i
-    //           className="fas fa-gavel"
-    //           style={{ fontSize: "1vw", color: "white" }}
-    //         ></i>
-    //       ),
-    //       Text: "CATELOGUE2",
-    //       Expandable: false,
-    //       children: null,
-    //       Route: "/catelogues/catelogue2",
-    //     },
+        {
+          IconSet: (
+            <i
+              className="fas fa-gavel"
+              style={{ fontSize: "1vw", color: "white" }}
+            ></i>
+          ),
+          Text: "CATELOGUE2",
+          Expandable: false,
+          children: null,
+          Route: "/catelogues/catelogue2",
+        },
 
        
-    //   ],
-    // },
+      ],
+    },
   };
 
   return (

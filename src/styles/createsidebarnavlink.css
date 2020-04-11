@@ -2,7 +2,6 @@
   width: 20vw;
   height: 95vh;
   background: grey;
-
 }
 
 .SideBarWrapper {
@@ -103,83 +102,25 @@
   margin: 1vh 0vw;
 }
 
-
 .expandChildren {
   transition: height 400ms ease-in;
-
-
   width: 20vw;
   color: white;
   height: 10vh;
-  background-color: red;
-  font-family: sans-serif;
+  background: rgb(140, 140, 140);
+  box-shadow: black 0px 0px 4px 0px;
 }
 
 .collapseChildren {
   transition: height 400ms ease-in;
-
-  
   width: 20vw;
   color: white;
   height: 0vh;
-  background-color: red;
-  font-family: sans-serif;
-}
-
-.collapseChildren1 {
- 
-  width: 20vw;
-  color: white;
-  height: 5vh;
-  background-color: black;
-}
-
-.collapseChildren2 {
- margin-top: 2vh;
-  width: 20vw;
-  color: white;
-  height: 5vh;
-  background-color: black;
-}
-
-.slideBtnDwn {
-  transform: translateY(0vh);
-  transition: transform 900ms ease-in;
-  
-  width: 20vw;
-  color: white;
-  height: 5vh;
-  background-color: black;
-  font-family: sans-serif;
-  border: 1px solid blue;
-}
-
-.slideBtnUp {
-  transform: translateY(20vh);
-  transition: transform 900ms ease-in;
-  
-  width: 100px;
-  color: white;
-  height: 5vh;
-  background-color: black;
-  font-family: sans-serif;
 }
 
 
 
 
-
-
-
-
-@keyframes paddingForExpandIcon {
-  from {
-    padding: 0vh 0vw;
-  }
-  to {
-    padding: 2vh 0vw;
-  }
-}
 
 .expand {
   transform: rotate(90deg);
@@ -198,8 +139,3 @@
 .hide {
   display: none;
 }
-
-
-
-
-

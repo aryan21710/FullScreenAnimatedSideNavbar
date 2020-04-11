@@ -73,6 +73,55 @@ class CreateSideBarNavLink extends Component {
     }
   };
 
+  createChildLinks = (children, Text) => {
+    if (Text === this.state.whichLinkToToggle) {
+      return (
+        <React.Fragment>
+          <div style={{ ...styles.flexStyling, ...styles.iconChildren }}>
+            {children.map((_, idx) => {
+              return (
+                <div
+                  key={idx}
+                  className={this.updateStyleForChidrenIconAndText(Text)}
+                  style={styles.childIcon}
+                >
+                  {_.IconSet}
+                </div>
+              );
+            })}
+          </div>
+          <div style={{ ...styles.flexStyling, ...styles.textChildren }}>
+            {children.map((_, idx) => {
+              return (
+                <div
+                  key={idx}
+                  className={this.updateStyleForChidrenIconAndText(Text)}
+                  style={styles.childText}
+                >
+                  <NavLink activeStyle={styles.navlinks} to={_.Route}>
+                    {" "}
+                    {_.Text}
+                  </NavLink>
+                </div>
+              );
+            })}
+          </div>
+        </React.Fragment>
+      );
+    }
+  };
+
+  updateStyleForChidrenIconAndText = (linkText) => {
+    const { linksAndStatus } = this.state;
+
+    for (let i in linksAndStatus) {
+      if (i === linkText) {
+        return linksAndStatus[i]["childLinkData"];
+      }
+    }
+  };
+
+
   updateTextArray = () => {
     const { myData } = this.props;
     const myObj = {};
@@ -141,7 +190,11 @@ class CreateSideBarNavLink extends Component {
                 className={
                   this.state.toggle1 ? "expandChildren" : "collapseChildren"
                 }
-              ></div>
+
+              >
+              {this.createChildLinks(children, Text)}
+
+              </div>
             )}
           </React.Fragment>
         );
