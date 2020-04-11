@@ -33,6 +33,7 @@ const styles = {
     height: "20vh",
     borderBottom: "1px solid rgba(255,255,255,0.5)",
     boxSizing: "border-box",
+ 
   },
   profilePicWrapper: {
     width: "100%",

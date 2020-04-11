@@ -3,21 +3,18 @@ import React, { useState } from "react";
 export const About = () => {
   const [state, setstate] = useState(false);
 
-
- 
-
   return (
     <React.Fragment>
-      <div
-        className={state? "expandChildren" : "collapseChildren"}
-      ></div>
       <button
-      className={state? "slideBtnUp" : "slideBtnDwn"}
-
         onClick={() => {
           setstate(!state);
         }}
-      >slide</button>
+      >
+        slide
+      </button>
+      <div className={"collapseChildren1"}></div>
+      <div className={state ? "expandChildren" : "collapseChildren"}></div>
+      <div className={"collapseChildren2"}></div>
     </React.Fragment>
   );
 };
