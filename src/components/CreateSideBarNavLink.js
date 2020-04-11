@@ -35,7 +35,7 @@ class CreateSideBarNavLink extends Component {
     const { linksAndStatus } = this.state;
     this.setState({
       whichLinkToToggle: linkText,
-      toggle1: !this.state.toggle1,
+      toggle1: !this.state.toggle1
     });
 
     const myobj = {};
@@ -46,15 +46,13 @@ class CreateSideBarNavLink extends Component {
         _["toggle"] = !linksAndStatus[i]["toggle"];
         _["rotateIcon"] = _["toggle"] ? styles.expandIcon : styles.collapseIcon;
         _["childLinkWrapper"] = _["toggle"]
-          ? "expandChildren"
-          : "collapseChildren";
-        _["childLinkData"] = _["toggle"] ? "show" : "hide";
+          ? styles.expandChildren
+          : styles.collapseChildren;
 
         myobj[i] = _;
       } else {
         _["toggle"] = linksAndStatus[i]["toggle"] === true ? false : false;
         _["rotateIcon"] = _["toggle"] ? styles.expandIcon : styles.collapseIcon;
-        _["childLinkData"] = _["toggle"] ? "hide" : "show";
         myobj[i] = _;
       }
     }
@@ -69,6 +67,16 @@ class CreateSideBarNavLink extends Component {
     for (let i in linksAndStatus) {
       if (i === linkText) {
         return linksAndStatus[i]["rotateIcon"];
+      }
+    }
+  };
+
+  updateStyleForChildLinkWrapper = (linkText) => {
+    const { linksAndStatus } = this.state;
+
+    for (let i in linksAndStatus) {
+      if (i === linkText) {
+        return linksAndStatus[i]["childLinkWrapper"];
       }
     }
   };
@@ -121,7 +129,6 @@ class CreateSideBarNavLink extends Component {
     }
   };
 
-
   updateTextArray = () => {
     const { myData } = this.props;
     const myObj = {};
@@ -131,8 +138,7 @@ class CreateSideBarNavLink extends Component {
       myObj[Text] = {
         toggle: false,
         rotateIcon: styles.collapseIcon,
-        childLinkWrapper: "collapseChildren",
-        childLinkData: "hide",
+        childLinkWrapper: styles.collapseChildren,
       };
     }
 
@@ -187,13 +193,10 @@ class CreateSideBarNavLink extends Component {
             </div>
             {Expandable && (
               <div
-                className={
-                  this.state.toggle1 ? "expandChildren" : "collapseChildren"
-                }
-
+                
+                style={this.updateStyleForChildLinkWrapper(Text)}
               >
-              {this.createChildLinks(children, Text)}
-
+                {this.createChildLinks(children, Text)}
               </div>
             )}
           </React.Fragment>
@@ -303,26 +306,30 @@ const styles = {
     boxShadow: "black 0px 0px 4px 0px",
     fontSize: "1vw",
   },
-  // collapseChildren: {
-  //   padding: "0vh 0vw",
-  //   display: "flex",
-  //   flexDirection: "row",
-  //   justifyContent: "center",
-  //   marginTop: "0.5vh",
-  //   background: "rgb(140, 140, 140)",
-  //   boxShadow: "black 0px 0px 4px 0px",
-  //   width: "20vw",
-  // },
-  // expandChildren: {
-  //   padding: "2vh 0vw",
-  //   display: "flex",
-  //   flexDirection: "row",
-  //   justifyContent: "center",
-  //   marginTop: "0.5vh",
-  //   background: "rgb(140, 140, 140)",
-  //   boxShadow: "black 0px 0px 4px 0px",
-  //   width: "20vw",
-  // },
+  collapseChildren: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    marginTop: "0.5vh",
+    background: "rgb(140, 140, 140)",
+    boxShadow: "black 0px 0px 4px 0px",
+    width: "20vw",
+    transition: "height 400ms ease-in",
+    color: "white",
+    height: "0vh",
+  },
+  expandChildren: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    marginTop: "0.5vh",
+    background: "rgb(140, 140, 140)",
+    boxShadow: "black 0px 0px 4px 0px",
+    width: "20vw",
+    transition: "height 400ms ease-in",
+    color: "white",
+    height: "10vh",
+  },
   expandIcon: {
     transform: "rotate(90deg)",
     transition: "transform 1s ease-in-out",
