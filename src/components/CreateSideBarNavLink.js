@@ -241,7 +241,6 @@ const styles = {
     gridTemplateColumns: "4vw 13vw 3vw",
     gridTemplateRows: "5vh",
     width: "20vw",
-    margin: "1vh 0vw",
     background: "black",
     height: "5vh",
   },
@@ -305,30 +304,32 @@ const styles = {
     padding: "0.15vh 0.15vw",
     boxShadow: "black 0px 0px 4px 0px",
     fontSize: "1vw",
+    border: '1px solid black'
   },
   collapseChildren: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
-    marginTop: "0.5vh",
     background: "rgb(140, 140, 140)",
     boxShadow: "black 0px 0px 4px 0px",
     width: "20vw",
     transition: "height 400ms ease-in",
     color: "white",
     height: "0vh",
+    overflow: 'hidden'
   },
   expandChildren: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
-    marginTop: "0.5vh",
     background: "rgb(140, 140, 140)",
     boxShadow: "black 0px 0px 4px 0px",
     width: "20vw",
     transition: "height 400ms ease-in",
     color: "white",
     height: "10vh",
+    overflow: 'hidden'
+
   },
   expandIcon: {
     transform: "rotate(90deg)",
