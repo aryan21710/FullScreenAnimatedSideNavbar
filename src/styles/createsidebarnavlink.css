@@ -103,30 +103,56 @@
   margin: 1vh 0vw;
 }
 
-.collapseChildren {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-top: 0.5vh;
-  background: rgb(140, 140, 140);
-  box-shadow: black 0px 0px 4px 0px;
-  width: 20vw;
-  padding: 0vh 0vw;
-}
-
-
 
 .expandChildren {
-  animation: paddingForExpandIcon 0.001s 1 ease-in-out forwards;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-top: 0.5vh;
-  background: rgb(140, 140, 140);
-  box-shadow: black 0px 0px 4px 0px;
-  width: 20vw;
-  padding: 2vh 0vw;
+  transform: translateX(0);
+  transition: transform 900ms ease-in;
+  
+  width: 100px;
+  color: white;
+  height: 20vh;
+  background-color: red;
+  font-family: sans-serif;
 }
+
+.collapseChildren {
+  transform: translateX(-150px);
+  transition: transform 900ms ease-in;
+  
+  width: 100px;
+  color: white;
+  height: 20vh;
+  background-color: rgb(70, 40, 40);
+  font-family: sans-serif;
+}
+
+.slideBtnDwn {
+  transform: translateY(-20vh);
+  transition: transform 900ms ease-in;
+  
+  width: 100px;
+  color: white;
+  height: 100%;
+  background-color: black;
+  font-family: sans-serif;
+}
+
+.slideBtnUp {
+  transform: translateY(0vh);
+  transition: transform 900ms ease-in;
+  
+  width: 100px;
+  color: white;
+  height: 100%;
+  background-color: black;
+  font-family: sans-serif;
+}
+
+
+
+
+
+
 
 
 @keyframes paddingForExpandIcon {
@@ -155,4 +181,8 @@
 .hide {
   display: none;
 }
+
+
+
+
 

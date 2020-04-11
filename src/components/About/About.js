@@ -1,11 +1,23 @@
-import React from 'react'
+import React, { useState } from "react";
 
 export const About = () => {
-    return (
-        <div style={{marginRight: 'auto', 
-        marginLeft: 'auto', width: '25%',
-         color: 'red'}}>
-            <h1 style={{fontSize: '35px'}}>ABOUT COMPONENT</h1> 
-        </div>
-    )
-}
+  const [state, setstate] = useState(false);
+
+
+ 
+
+  return (
+    <React.Fragment>
+      <div
+        className={state? "expandChildren" : "collapseChildren"}
+      ></div>
+      <button
+      className={state? "slideBtnUp" : "slideBtnDwn"}
+
+        onClick={() => {
+          setstate(!state);
+        }}
+      >slide</button>
+    </React.Fragment>
+  );
+};
