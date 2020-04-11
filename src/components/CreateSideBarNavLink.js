@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter, NavLink, Route, Switch } from "react-router-dom";
+import { NavLink, Route } from "react-router-dom";
 import "../../node_modules/@fortawesome/fontawesome-free/css/all.css";
 import UserInfoGrid from "./UserInfoGrid";
 
@@ -35,7 +35,7 @@ class CreateSideBarNavLink extends Component {
     const { linksAndStatus } = this.state;
     this.setState({
       whichLinkToToggle: linkText,
-      toggle1: !this.state.toggle1
+      toggle1: !this.state.toggle1,
     });
 
     const myobj = {};
@@ -134,12 +134,14 @@ class CreateSideBarNavLink extends Component {
     const myObj = {};
 
     for (let i in myData) {
-      const { Text } = myData[i];
-      myObj[Text] = {
-        toggle: false,
-        rotateIcon: styles.collapseIcon,
-        childLinkWrapper: styles.collapseChildren,
-      };
+      if (i !== "userInfo") {
+        const { Text } = myData[i];
+        myObj[Text] = {
+          toggle: false,
+          rotateIcon: styles.collapseIcon,
+          childLinkWrapper: styles.collapseChildren,
+        };
+      }
     }
 
     this.setState({
@@ -192,10 +194,7 @@ class CreateSideBarNavLink extends Component {
               )}
             </div>
             {Expandable && (
-              <div
-                
-                style={this.updateStyleForChildLinkWrapper(Text)}
-              >
+              <div style={this.updateStyleForChildLinkWrapper(Text)}>
                 {this.createChildLinks(children, Text)}
               </div>
             )}
@@ -304,7 +303,7 @@ const styles = {
     padding: "0.15vh 0.15vw",
     boxShadow: "black 0px 0px 4px 0px",
     fontSize: "1vw",
-    border: '1px solid black'
+    border: "1px solid black",
   },
   collapseChildren: {
     display: "flex",
@@ -316,7 +315,7 @@ const styles = {
     transition: "height 400ms ease-in",
     color: "white",
     height: "0vh",
-    overflow: 'hidden'
+    overflow: "hidden",
   },
   expandChildren: {
     display: "flex",
@@ -328,12 +327,10 @@ const styles = {
     transition: "height 400ms ease-in",
     color: "white",
     height: "10vh",
-    overflow: 'hidden'
-
+    overflow: "hidden",
   },
   expandIcon: {
-    transform: "rotate(90deg)",
-    transition: "transform 1s ease-in-out",
+    transition: "rotate(90deg) 1s ease-in-out",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -342,8 +339,7 @@ const styles = {
   },
 
   collapseIcon: {
-    transform: "rotate(0deg)",
-    transition: "transform 1s ease-in-out",
+    transition: "rotate(0deg) 1s ease-in-out",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
