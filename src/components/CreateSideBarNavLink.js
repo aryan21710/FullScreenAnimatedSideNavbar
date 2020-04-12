@@ -5,29 +5,31 @@ import UserInfoGrid from "./UserInfoGrid";
 
 class CreateSideBarNavLink extends Component {
   state = {
-    slide: "SideBarWrapper",
+    slide: styles.sideBarWrapper,
     whichLinkToToggle: [],
     linksAndStatus: {},
-    clickStatus: false
+    clickStatus: false,
+    userStyle: {}
   };
 
   componentDidMount() {
     this.updateTextArray();
+    this.applyUserStyles();
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const {clickStatus} = this.state;
+    const { clickStatus } = this.state;
     if (prevState.clickStatus !== clickStatus) {
       this.toggleClassForSideBar();
     }
   }
 
   toggleClassForSideBar = () => {
-    const {clickStatus} = this.state;
+    const { clickStatus,userStyle } = this.state;
     if (clickStatus) {
-      this.setState({ slide: "slideOutSideBar" });
+      this.setState({ slide: {...styles.slideOutSideBar,...userStyle}});
     } else {
-      this.setState({ slide: "slideInSideBar" });
+      this.setState({ slide: styles.slideInSideBar });
     }
   };
 
@@ -136,7 +138,7 @@ class CreateSideBarNavLink extends Component {
     const myObj = {};
 
     for (let i in myData) {
-      if (i !== "userInfo") {
+      if (i !== "userInfo" && i !== "navBarSettings") {
         const { Text } = myData[i];
         myObj[Text] = {
           toggle: false,
@@ -156,7 +158,7 @@ class CreateSideBarNavLink extends Component {
     const returnData = [];
 
     for (let i in myData) {
-      if (i !== "userInfo") {
+      if (i !== "userInfo" && i !== "navBarSettings") {
         const {
           Expandable,
           IconSet,
@@ -208,30 +210,53 @@ class CreateSideBarNavLink extends Component {
     return returnData.map((_) => _);
   };
 
+  applyUserStyles = (props) => {
+    const { navBarWidth, theme } = this.props.myData.navBarSettings;
+    const newStyle = {};
+
+    const validateWidth=Number(navBarWidth.replace('vw','')) < 20 ? '20vw' : navBarWidth;
+    
+    newStyle["width"] =
+      validateWidth !== styles.sideNavBarLinks.width
+        ? validateWidth
+        : styles.sideNavBarLinks.width;
+
+    newStyle["background"] =
+      theme.primaryColor !== styles.sideNavBarLinks.background
+        ? theme.primaryColor
+        : styles.sideNavBarLinks.background;
+
+     
+
+    console.log('newStyle',newStyle)
+    this.setState({
+      userStyle: newStyle,
+    }) 
+  };
+
   render(props) {
     console.count("render");
-    const {clickStatus}=this.state
+    const { clickStatus } = this.state;
     const { name, email, lastLogin } = this.props.myData.userInfo;
 
     return (
       <Route
         render={({ location, history }) => (
           <React.Fragment>
-          <div
-          className="toggleBarWrapper"
-          onClick={() => {
-            this.setState({
-              clickStatus : !clickStatus
-
-            })
-          }}
-        >
-          <span className={clickStatus ? "hideme " : "bar1"}></span>
-          <span className={clickStatus ? "rotate45 bar2" : "bar2"}></span>
-          <span className={clickStatus ? "rotate-45 bar3" : "bar3"}></span>
-        </div>
-            <div className={this.state.slide}>
-              <div className="sideNavBarLinks">
+            <div
+              className="toggleBarWrapper"
+              onClick={() => {
+                this.setState({
+                  clickStatus: !clickStatus,
+                });
+              }}
+            >
+              <span className={clickStatus ? "hideme " : "bar1"}></span>
+              <span className={clickStatus ? "rotate45 bar2" : "bar2"}></span>
+              <span className={clickStatus ? "rotate-45 bar3" : "bar3"}></span>
+            </div>
+            <div className="SideBarWrapper" style={this.state.slide}>
+              <div className="sideNavBarLinks" style={this.state.userStyle}>
                 <UserInfoGrid name={name} email={email} lastLogin={lastLogin} />
                 {this.navBarLinksGrid()}
               </div>
@@ -244,6 +269,39 @@ class CreateSideBarNavLink extends Component {
 }
 
 const styles = {
+  sideBarWrapper: {
+    background: 'rgba(0, 0, 0, 1)',
+    position: 'absolute',
+    top: '4.6vh',
+    left: '-100vw',
+    height: '95.4vh',
+    zIndex: '2',
+  
+  },
+  sideNavBarLinks: {
+    width: "20vw",
+    height: "95vh",
+    background: "black",
+  },
+  slideOutSideBar: {
+    width: "20vw",
+    display: " flex",
+    flexDirection: " row",
+    position: " absolute",
+    top: " 4.6vh",
+    left: " -100vw", 
+    /* left: ' 0vw', */
+    height: " 95.4vh",
+    zIndex: " 1000",
+    animation: " slideOut 0.5s ease-in-out 1 forwards",
+  },
+  slideInSideBar: {
+    position: "absolute",
+    top: "4.6vh",
+    height: "95.4vh",
+    zIndex: "2",
+    animation: "slideIn 0.5s ease-in-out 1 forwards",
+  },
   flexStyling: {
     display: "flex",
     justifyContent: "center",

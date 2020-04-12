@@ -5,6 +5,14 @@ const App = () => {
 
 
   const myData = {
+    navBarSettings: {
+      navBarWidth: '100vw',
+      theme: {
+        primaryColor: 'pink',
+        secondaryColor: 'white',
+        additionalColor : 'orange'
+      }
+    },
     userInfo: {
       name: 'aryan sharma',
       email: 'aryan@gmail.com',
