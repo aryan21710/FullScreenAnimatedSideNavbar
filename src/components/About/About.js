@@ -1,25 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 
 export const About = () => {
-  const [state, setstate] = useState(false);
 
   return (
     <React.Fragment>
-      <button
-        onClick={() => {
-          setstate(!state);
-        }}
-      >
-        slide
-      </button>
-      <div className={"collapseChildren1"}></div>
-      <div className={state ? "expandChildren" : "collapseChildren"}>
-      cnxcnxzcxncmxnzc
-      bxcxcxcbc
-      bxcxbcxbcxzc
-      xcxcmxznczcx
-      </div>
-      <div className={"collapseChildren2"}></div>
-    </React.Fragment>
+        <div style={{ position: 'absolute',
+        top: '10vh', left: '50vw',
+         color: 'red'}}>
+            <h1 style={{fontSize: '35px'}}>ABOUT COMPONENT</h1> 
+        </div>
+
+        </React.Fragment>
   );
 };

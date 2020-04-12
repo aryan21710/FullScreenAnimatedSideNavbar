@@ -8,6 +8,7 @@ class CreateSideBarNavLink extends Component {
     slide: "SideBarWrapper",
     whichLinkToToggle: [],
     linksAndStatus: {},
+    clickStatus: false
   };
 
   componentDidMount() {
@@ -15,15 +16,15 @@ class CreateSideBarNavLink extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const openSideNavBar = this.props.openSideNavBar;
-    if (prevProps.openSideNavBar !== openSideNavBar) {
+    const {clickStatus} = this.state;
+    if (prevState.clickStatus !== clickStatus) {
       this.toggleClassForSideBar();
     }
   }
 
   toggleClassForSideBar = () => {
-    const openSideNavBar = this.props.openSideNavBar;
-    if (openSideNavBar) {
+    const {clickStatus} = this.state;
+    if (clickStatus) {
       this.setState({ slide: "slideOutSideBar" });
     } else {
       this.setState({ slide: "slideInSideBar" });
@@ -209,13 +210,26 @@ class CreateSideBarNavLink extends Component {
 
   render(props) {
     console.count("render");
-
+    const {clickStatus}=this.state
     const { name, email, lastLogin } = this.props.myData.userInfo;
 
     return (
       <Route
         render={({ location, history }) => (
           <React.Fragment>
+          <div
+          className="toggleBarWrapper"
+          onClick={() => {
+            this.setState({
+              clickStatus : !clickStatus
+
+            })
+          }}
+        >
+          <span className={clickStatus ? "hideme " : "bar1"}></span>
+          <span className={clickStatus ? "rotate45 bar2" : "bar2"}></span>
+          <span className={clickStatus ? "rotate-45 bar3" : "bar3"}></span>
+        </div>
             <div className={this.state.slide}>
               <div className="sideNavBarLinks">
                 <UserInfoGrid name={name} email={email} lastLogin={lastLogin} />
