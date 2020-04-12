@@ -18,7 +18,8 @@
   width: 20vw;
   display: flex;
   flex-direction: row;
-  top: 0vh;
+  position: absolute;
+  top: 4.6vh;
   left: -40vw;
   /* left: 0vw; */
   height: 95.4vh;

@@ -5,7 +5,7 @@ import UserInfoGrid from "./UserInfoGrid";
 
 class CreateSideBarNavLink extends Component {
   state = {
-    slide: "slideOutSideBar",
+    slide: "SideBarWrapper",
     whichLinkToToggle: [],
     linksAndStatus: {},
   };
