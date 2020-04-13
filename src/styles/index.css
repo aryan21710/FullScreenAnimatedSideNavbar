@@ -40,7 +40,6 @@ a {
 
 .bar3 {
   top: 2.9vh;
-
   transition: all 0.1s ease-in-out;
 }
 
@@ -60,4 +59,32 @@ a {
   top: 2.2vh;
   width: 1.5vw;
   transition: transform 0.1s ease-in-out;
+}
+
+@media screen and (min-width: 2000px) and (max-width: 2600px) {
+  .bar1 {
+    top: 1.4vh;
+  }
+
+  .bar2 {
+    top: 2.2vh;
+  }
+
+  .bar3 {
+    top: 2.9vh;
+  }
+
+  .rotate45 {
+    transform: rotate(-45deg);
+    top: 2.2vh;
+    transition: transform 0.1s ease-in-out;
+    width: 1.5vw;
+  }
+
+  .rotate-45 {
+    transform: rotate(45deg);
+    top: 2.2vh;
+    width: 1.5vw;
+    transition: transform 0.1s ease-in-out;
+  }
 }
