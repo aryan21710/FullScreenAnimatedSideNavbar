@@ -9,7 +9,7 @@ class CreateSideBarNavLink extends Component {
     whichLinkToToggle: [],
     linksAndStatus: {},
     clickStatus: false,
-    userStyle: {}
+    userStyle: {},
   };
 
   componentDidMount() {
@@ -25,9 +25,9 @@ class CreateSideBarNavLink extends Component {
   }
 
   toggleClassForSideBar = () => {
-    const { clickStatus,userStyle } = this.state;
+    const { clickStatus, userStyle } = this.state;
     if (clickStatus) {
-      this.setState({ slide: {...styles.slideOutSideBar,...userStyle}});
+      this.setState({ slide: { ...styles.slideOutSideBar, ...userStyle } });
     } else {
       this.setState({ slide: styles.slideInSideBar });
     }
@@ -214,8 +214,9 @@ class CreateSideBarNavLink extends Component {
     const { navBarWidth, theme } = this.props.myData.navBarSettings;
     const newStyle = {};
 
-    const validateWidth=Number(navBarWidth.replace('vw','')) < 20 ? '20vw' : navBarWidth;
-    
+    const validateWidth =
+      Number(navBarWidth.replace("vw", "")) < 20 ? "20vw" : navBarWidth;
+
     newStyle["width"] =
       validateWidth !== styles.sideNavBarLinks.width
         ? validateWidth
@@ -226,12 +227,10 @@ class CreateSideBarNavLink extends Component {
         ? theme.primaryColor
         : styles.sideNavBarLinks.background;
 
-     
-
-    console.log('newStyle',newStyle)
+    console.log("newStyle", newStyle);
     this.setState({
       userStyle: newStyle,
-    }) 
+    });
   };
 
   render(props) {
@@ -270,18 +269,15 @@ class CreateSideBarNavLink extends Component {
 
 const styles = {
   sideBarWrapper: {
-    background: 'rgba(0, 0, 0, 1)',
-    position: 'absolute',
-    top: '4.6vh',
-    left: '-100vw',
-    height: '95.4vh',
-    zIndex: '2',
-  
+    position: "absolute",
+    top: "4.6vh",
+    left: "-100vw",
+    height: "95.4vh",
+    zIndex: "2",
   },
   sideNavBarLinks: {
     width: "20vw",
     height: "95vh",
-    background: "black",
   },
   slideOutSideBar: {
     width: "20vw",
@@ -289,7 +285,7 @@ const styles = {
     flexDirection: " row",
     position: " absolute",
     top: " 4.6vh",
-    left: " -100vw", 
+    left: " -100vw",
     /* left: ' 0vw', */
     height: " 95.4vh",
     zIndex: " 1000",
@@ -313,7 +309,6 @@ const styles = {
     gridTemplateColumns: "4vw 13vw 3vw",
     gridTemplateRows: "5vh",
     width: "20vw",
-    background: "black",
     height: "5vh",
   },
   parentLinkIconWrapper: {

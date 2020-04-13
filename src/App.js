@@ -6,9 +6,9 @@ const App = () => {
 
   const myData = {
     navBarSettings: {
-      navBarWidth: '20vw',
+      navBarWidth: '100vw',
       theme: {
-        primaryColor: 'skyblue',
+        primaryColor: 'rgba(0,0,0,0.5)',
         secondaryColor: 'white',
         additionalColor : 'orange'
       }

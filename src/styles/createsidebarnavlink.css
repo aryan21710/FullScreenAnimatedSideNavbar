@@ -1,7 +1,6 @@
 
 
 .SideBarWrapper {
-  background: rgba(0, 0, 0, 1);
   position: absolute;
   top: 4.5vh;
   left: -100vw;
@@ -11,14 +10,12 @@
 }
 
 .slideOutSideBar {
-  background: rgba(0, 0, 0, 1);
   width: 50vw;
   display: flex;
   flex-direction: row;
   position: absolute;
   top: 4.6vh;
   left: -100vw;
-  /* left: 0vw; */
   height: 95.4vh;
   z-index: 1000;
   animation: slideOut 5s ease-in-out  1 forwards;
@@ -29,14 +26,12 @@
   height: 95.4vh;
   z-index: 2;
   animation: slideIn 5s ease-in-out  1 forwards;
-  background: rgba(0, 0, 0, 1);
 
 }
 
 .sideNavBarLinks {
   width: 20vw;
   height: 95vh;
-  background: grey;
 }
 
 @keyframes slideOut {
