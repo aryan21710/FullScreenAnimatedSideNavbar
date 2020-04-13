@@ -10,7 +10,7 @@ class CreateSideBarNavLink extends Component {
     linksAndStatus: {},
     clickStatus: false,
     hover: false,
-    hoveredLink: '',
+    hoveredLink: "",
     userStyleSideNavLink: {},
     userStyleToggleBtn: {},
   };
@@ -77,11 +77,13 @@ class CreateSideBarNavLink extends Component {
   };
 
   updateStyleForToggleIcon = (linkText) => {
-    const { linksAndStatus } = this.state;
+    const { linksAndStatus, hoveredLink } = this.state;
 
     for (let i in linksAndStatus) {
       if (i === linkText) {
-        return linksAndStatus[i]["rotateIcon"];
+        return i === hoveredLink
+          ? { ...linksAndStatus[i]["rotateIcon"], color: "white" }
+          : linksAndStatus[i]["rotateIcon"];
       }
     }
   };
@@ -167,7 +169,7 @@ class CreateSideBarNavLink extends Component {
   hoverEffect = (linkText) => {
     this.setState({
       hover: !this.state.hover,
-      hoveredLink: linkText
+      hoveredLink: linkText,
     });
   };
 
@@ -215,21 +217,20 @@ class CreateSideBarNavLink extends Component {
 
         returnData.push(
           <React.Fragment>
-            <div style={styles.parentLinkWrapper}
-            onMouseOver={() => this.hoverEffect(Text)}
-            onMouseLeave={() => this.hoverEffect(Text)}
+            <div
+              style={styles.parentLinkWrapper}
+              onMouseOver={() => this.hoverEffect(Text)}
+              onMouseLeave={() => this.hoverEffect(Text)}
             >
               <div
                 style={{
                   ...styles.flexStyling,
                   ...styles.parentLinkIconWrapper,
                 }}
-            
-
               >
                 <div
                   style={
-                    (this.state.hover && this.state.hoveredLink===Text)
+                    this.state.hover && this.state.hoveredLink === Text
                       ? { ...styles.parentLinkIcon, color: "white" }
                       : styles.parentLinkIcon
                   }
@@ -237,15 +238,16 @@ class CreateSideBarNavLink extends Component {
                   {IconSet}
                 </div>
               </div>
-              <div style={{...styles.flexStyling, ...styles.parentLinkText}}>
-                <NavLink className={
-                  this.state.hover && this.state.hoveredLink === Text
-                    ? "hoveredLink"
-                    : "nonhoveredLink"
-                }
-                 activeStyle={
-                  styles.navlinks
-                } to={Route}>
+              <div style={{ ...styles.flexStyling, ...styles.parentLinkText }}>
+                <NavLink
+                  className={
+                    this.state.hover && this.state.hoveredLink === Text
+                      ? "hoveredLink"
+                      : "nonhoveredLink"
+                  }
+                  activeStyle={styles.navlinks}
+                  to={Route}
+                >
                   {Text}
                 </NavLink>
               </div>
@@ -275,7 +277,7 @@ class CreateSideBarNavLink extends Component {
     return returnData.map((_) => _);
   };
 
-  render(props) {
+  render() {
     console.count("render");
     const { clickStatus } = this.state;
     const { name, email, lastLogin } = this.props.myData.userInfo;
@@ -373,7 +375,7 @@ const styles = {
     gridTemplateRows: "5vh",
     width: "20vw",
     height: "5vh",
-    margin: '0.5vh 0vw'
+    margin: "0.5vh 0vw",
   },
   parentLinkIconWrapper: {
     gridArea: "1/1/2/2",
@@ -394,6 +396,7 @@ const styles = {
     alignItems: "center",
     gridArea: "1/3/2/4",
     cursor: "pointer",
+    color: "rgba(255,255,255,0.6)",
   },
 
   collapseIcon: {
@@ -403,6 +406,7 @@ const styles = {
     justifyContent: "center",
     alignItems: "center",
     gridArea: "1/3/2/4",
+    color: "rgba(255,255,255,0.6)",
     cursor: "pointer",
   },
   parentLinkText: {
@@ -412,7 +416,6 @@ const styles = {
     color: "rgba(255,255,255,0.6)",
     marginLeft: "10px",
     cursor: "pointer",
-
   },
   navlinks: {
     textDecoration: "none",

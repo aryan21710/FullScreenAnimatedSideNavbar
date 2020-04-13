@@ -17,7 +17,8 @@ a {
   color: rgba(255,255,255,0.6);
 }
 
-.hoveredLink {
+
+ a:active, a:hover, .hoveredLink {
   text-decoration: none;
   color: white;
 }
@@ -26,6 +27,8 @@ a {
   text-decoration: none;
   color: rgba(255,255,255,0.6);
 }
+
+
 
 
 
