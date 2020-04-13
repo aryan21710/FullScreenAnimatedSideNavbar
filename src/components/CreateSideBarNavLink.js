@@ -10,7 +10,7 @@ class CreateSideBarNavLink extends Component {
     linksAndStatus: {},
     clickStatus: false,
     userStyleSideNavLink: {},
-    userStyleToggleBtn:{}
+    userStyleToggleBtn: {},
   };
 
   componentDidMount() {
@@ -28,20 +28,23 @@ class CreateSideBarNavLink extends Component {
   toggleClassForSideBar = () => {
     const { clickStatus, userStyleSideNavLink } = this.state;
     if (clickStatus) {
-      this.setState({ slide: { ...styles.slideOutSideBar, ...userStyleSideNavLink } });
+      this.setState({
+        slide: { ...styles.slideOutSideBar, ...userStyleSideNavLink },
+      });
     } else {
       this.setState({ slide: styles.slideInSideBar });
     }
   };
 
-  onExpand = (linkText) => {
-    const { navBarWidth, theme } = this.props.myData.navBarSettings;
+  onExpand = (linkText, children) => {
+    const { theme } = this.props.myData.navBarSettings;
     const { linksAndStatus } = this.state;
     this.setState({
       whichLinkToToggle: linkText,
     });
 
     const myobj = {};
+    const childrenLinkWrapperHeight = (4 * children.length) + "vh";
     for (let i in linksAndStatus) {
       const _ = {};
 
@@ -49,8 +52,12 @@ class CreateSideBarNavLink extends Component {
         _["toggle"] = !linksAndStatus[i]["toggle"];
         _["rotateIcon"] = _["toggle"] ? styles.expandIcon : styles.collapseIcon;
         _["childLinkWrapper"] = _["toggle"]
-          ? {...styles.expandChildren,background:theme.secondaryColor}
-          : {...styles.collapseChildren,background:theme.secondaryColor};
+          ? {
+              ...styles.expandChildren,
+              background: theme.secondaryColor,
+              height: childrenLinkWrapperHeight,
+            }
+          : { ...styles.collapseChildren, background: theme.secondaryColor };
 
         myobj[i] = _;
       } else {
@@ -175,7 +182,10 @@ class CreateSideBarNavLink extends Component {
     console.log("newStyle", newStyle);
     this.setState({
       userStyleSideNavLink: newStyle,
-      userStyleToggleBtn: {...styles.toggleBarWrapper,background:theme.toggleButtonColor}
+      userStyleToggleBtn: {
+        ...styles.toggleBarWrapper,
+        background: theme.toggleButtonColor,
+      },
     });
   };
 
@@ -216,7 +226,7 @@ class CreateSideBarNavLink extends Component {
                   style={this.updateStyleForToggleIcon(Text)}
                   data-value={Text}
                   onClick={() => {
-                    this.onExpand(Text);
+                    this.onExpand(Text, children);
                   }}
                 >
                   {ExpandableIconset}
@@ -235,8 +245,6 @@ class CreateSideBarNavLink extends Component {
     console.log("returnData", returnData);
     return returnData.map((_) => _);
   };
-
-
 
   render(props) {
     console.count("render");
@@ -260,12 +268,18 @@ class CreateSideBarNavLink extends Component {
               <span className={clickStatus ? "rotate-45 bar3" : "bar3"}></span>
             </div>
             <div className="SideBarWrapper" style={this.state.slide}>
-              <div className="sideNavBarLinks" style={this.state.userStyleSideNavLink}>
+              <div
+                className="sideNavBarLinks"
+                style={this.state.userStyleSideNavLink}
+              >
                 <div style={styles.borderSeparator}>
-                <UserInfoGrid name={name} email={email} lastLogin={lastLogin} />
-                {this.navBarLinksGrid()}
+                  <UserInfoGrid
+                    name={name}
+                    email={email}
+                    lastLogin={lastLogin}
+                  />
+                  {this.navBarLinksGrid()}
                 </div>
-              
               </div>
             </div>
           </React.Fragment>
@@ -277,12 +291,12 @@ class CreateSideBarNavLink extends Component {
 
 const styles = {
   toggleBarWrapper: {
-    width: '3.2vw',
-    height: '4.6vh',
-    lineHeight: '4.6vh',
-    cursor: 'pointer',
-    position: 'relative',
-    background: 'rgba(255, 102, 0, 0.877)',
+    width: "3.2vw",
+    height: "4.6vh",
+    lineHeight: "4.6vh",
+    cursor: "pointer",
+    position: "relative",
+    background: "rgba(255, 102, 0, 0.877)",
   },
   sideBarWrapper: {
     position: "absolute",
@@ -295,7 +309,6 @@ const styles = {
     width: "20vw",
     height: "95.4vh",
     borderRight: "1px solid rgba(255,255,255,0.3)",
-
   },
   sideNavBarLinks: {
     width: "20vw",
@@ -311,7 +324,6 @@ const styles = {
     height: " 95.4vh",
     zIndex: " 1000",
     animation: " slideOut 0.5s ease-in-out 1 forwards",
-
   },
   slideInSideBar: {
     position: "absolute",
@@ -407,7 +419,8 @@ const styles = {
     width: "20vw",
     transition: "height 400ms ease-in",
     color: "white",
-    height: "10vh",
+    height: "0vh",
+    padding: '2vh 0vw',
     overflow: "hidden",
   },
 
