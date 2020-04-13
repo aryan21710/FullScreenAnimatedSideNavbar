@@ -19,28 +19,15 @@ const App = () => {
       lastLogin: '12/12/2019'
 
     },
-    link1: {
-      IconSet: <i className="fa fa-fw fa-file" style={{ fontSize: "1vw" }} />,
-      Text: "Home",
-      Expandable: false,
-      ExpandableIconset: (
-        <i
-          className="fas fa-angle-right angleIcon"
-          style={{ fontSize: "1vw", color: "white" }}
-        />
-      ),
 
-      Route: "/",
-      children: null,
-    },
-    link2: {
+    link1: {
       IconSet: <i className="fa fa-fw fa-list" style={{ fontSize: "1vw" }} />,
       Text: "Products",
       Expandable: true,
       ExpandableIconset: (
         <i
           className="fas fa-angle-right angleIcon"
-          style={{ fontSize: "1vw", color: "white" }}
+          style={{ fontSize: "1vw", color: "rgba(255,255,255,0.6)" }}
         />
       ),
 
@@ -50,7 +37,7 @@ const App = () => {
           IconSet: (
             <i
               className="fas fa-gavel"
-              style={{ fontSize: "1vw", color: "white" }}
+              style={{ fontSize: "1vw", color: "rgba(255,255,255,0.6)" }}
             ></i>
           ),
           Text: "Product1",
@@ -63,7 +50,7 @@ const App = () => {
           IconSet: (
             <i
               className="fas fa-gavel"
-              style={{ fontSize: "1vw", color: "white" }}
+              style={{ fontSize: "1vw", color: "rgba(255,255,255,0.6)" }}
             ></i>
           ),
           Text: "Product2",
@@ -75,7 +62,7 @@ const App = () => {
           IconSet: (
             <i
               className="fas fa-gavel"
-              style={{ fontSize: "1vw", color: "white" }}
+              style={{ fontSize: "1vw", color: "rgba(255,255,255,0.6)" }}
             ></i>
           ),
           Text: "Product3",
@@ -86,7 +73,7 @@ const App = () => {
           IconSet: (
             <i
               className="fas fa-gavel"
-              style={{ fontSize: "1vw", color: "white" }}
+              style={{ fontSize: "1vw", color: "rgba(255,255,255,0.6)" }}
             ></i>
           ),
           Text: "Product4",
@@ -98,14 +85,14 @@ const App = () => {
       ],
     },
 
-    link3: {
+    link2: {
       IconSet: <i className="fa fa-fw fa-edit" style={{ fontSize: "1vw" }} />,
       Text: "Portfolio",
       Expandable: true,
       ExpandableIconset: (
         <i
           className="fas fa-angle-right angleIcon"
-          style={{ fontSize: "1vw", color: "white" }}
+          style={{ fontSize: "1vw", color: "rgba(255,255,255,0.6)" }}
         />
       ),
 
@@ -115,7 +102,7 @@ const App = () => {
           IconSet: (
             <i
               className="fas fa-gavel"
-              style={{ fontSize: "1vw", color: "white" }}
+              style={{ fontSize: "1vw", color: "rgba(255,255,255,0.6)" }}
             ></i>
           ),
           Text: "Portfolio1",
@@ -129,14 +116,14 @@ const App = () => {
 
   
 
-    link4: {
+    link3: {
       IconSet: <i className="fa fa-fw fa-file" style={{ fontSize: "1vw" }} />,
       Text: "About",
       Expandable: false,
       ExpandableIconset: (
         <i
           className="fas fa-angle-right angleIcon"
-          style={{ fontSize: "1vw", color: "white" }}
+          style={{ fontSize: "1vw", color: "rgba(255,255,255,0.6)" }}
         />
       ),
 
@@ -144,14 +131,14 @@ const App = () => {
       children: null,
     },
 
-    link5: {
+    link4: {
       IconSet: <i className="fa fa-fw fa-file" style={{ fontSize: "1vw" }} />,
       Text: "Catelogues",
       Expandable: true,
       ExpandableIconset: (
         <i
           className="fas fa-angle-right angleIcon"
-          style={{ fontSize: "1vw", color: "white" }}
+          style={{ fontSize: "1vw", color: "rgba(255,255,255,0.6)" }}
         />
       ),
 
@@ -161,7 +148,7 @@ const App = () => {
           IconSet: (
             <i
               className="fas fa-gavel"
-              style={{ fontSize: "1vw", color: "white" }}
+              style={{ fontSize: "1vw", color: "rgba(255,255,255,0.6)" }}
             ></i>
           ),
           Text: "Catelogues1",
@@ -174,7 +161,7 @@ const App = () => {
           IconSet: (
             <i
               className="fas fa-gavel"
-              style={{ fontSize: "1vw", color: "white" }}
+              style={{ fontSize: "1vw", color: "rgba(255,255,255,0.6)" }}
             ></i>
           ),
           Text: "Catelogues2",
@@ -185,6 +172,20 @@ const App = () => {
 
        
       ],
+    },
+    link5: {
+      IconSet: <i className="fa fa-fw fa-file" style={{ fontSize: "1vw" }} />,
+      Text: "Contact Us",
+      Expandable: false,
+      ExpandableIconset: (
+        <i
+          className="fas fa-angle-right angleIcon"
+          style={{ fontSize: "1vw", color: "rgba(255,255,255,0.6)" }}
+        />
+      ),
+
+      Route: "/contactus",
+      children: null,
     },
   };
 

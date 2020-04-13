@@ -5,6 +5,7 @@ body {
   overflow: hidden;
 }
 
+
 .flexStyling {
   display: flex;
   justify-content: center;
@@ -13,8 +14,20 @@ body {
 
 a {
   text-decoration: none;
+  color: rgba(255,255,255,0.6);
+}
+
+.hoveredLink {
+  text-decoration: none;
   color: white;
 }
+
+.nonhoveredLink {
+  text-decoration: none;
+  color: rgba(255,255,255,0.6);
+}
+
+
 
 .bar1,
 .bar2,

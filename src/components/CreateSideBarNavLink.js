@@ -9,6 +9,8 @@ class CreateSideBarNavLink extends Component {
     whichLinkToToggle: [],
     linksAndStatus: {},
     clickStatus: false,
+    hover: false,
+    hoveredLink: '',
     userStyleSideNavLink: {},
     userStyleToggleBtn: {},
   };
@@ -44,7 +46,7 @@ class CreateSideBarNavLink extends Component {
     });
 
     const myobj = {};
-    const childrenLinkWrapperHeight = (4 * children.length) + "vh";
+    const childrenLinkWrapperHeight = 4 * children.length + "vh";
     for (let i in linksAndStatus) {
       const _ = {};
 
@@ -162,6 +164,13 @@ class CreateSideBarNavLink extends Component {
     });
   };
 
+  hoverEffect = (linkText) => {
+    this.setState({
+      hover: !this.state.hover,
+      hoveredLink: linkText
+    });
+  };
+
   applyUserStyles = (props) => {
     const { navBarWidth, theme } = this.props.myData.navBarSettings;
     const newStyle = {};
@@ -206,17 +215,37 @@ class CreateSideBarNavLink extends Component {
 
         returnData.push(
           <React.Fragment>
-            <div style={styles.parentLinkWrapper}>
+            <div style={styles.parentLinkWrapper}
+            onMouseOver={() => this.hoverEffect(Text)}
+            onMouseLeave={() => this.hoverEffect(Text)}
+            >
               <div
                 style={{
                   ...styles.flexStyling,
                   ...styles.parentLinkIconWrapper,
                 }}
+            
+
               >
-                <div style={styles.parentLinkIcon}>{IconSet}</div>
+                <div
+                  style={
+                    (this.state.hover && this.state.hoveredLink===Text)
+                      ? { ...styles.parentLinkIcon, color: "white" }
+                      : styles.parentLinkIcon
+                  }
+                >
+                  {IconSet}
+                </div>
               </div>
-              <div style={{ ...styles.flexStyling, ...styles.parentLinkText }}>
-                <NavLink activeStyle={styles.navlinks} to={Route}>
+              <div style={{...styles.flexStyling, ...styles.parentLinkText}}>
+                <NavLink className={
+                  this.state.hover && this.state.hoveredLink === Text
+                    ? "hoveredLink"
+                    : "nonhoveredLink"
+                }
+                 activeStyle={
+                  styles.navlinks
+                } to={Route}>
                   {Text}
                 </NavLink>
               </div>
@@ -351,8 +380,8 @@ const styles = {
   },
   parentLinkIcon: {
     borderRadius: "5px",
-    background: "#cccccc",
-    color: "white",
+    background: "black",
+    color: "rgba(255,255,255,0.6)",
     padding: "0.5vh 0.5vw",
     boxShadow: " black 0px 0px 4px 0px",
   },
@@ -379,13 +408,14 @@ const styles = {
     gridArea: "1/2/2/3",
     justifyContent: "flex-start",
     fontSize: "1.1vw",
-    color: "white",
+    color: "rgba(255,255,255,0.6)",
     marginLeft: "10px",
     cursor: "pointer",
+
   },
   navlinks: {
     textDecoration: "none",
-    color: "white",
+    color: "rgba(255,255,255,0.6)",
   },
   parentLinkExpandIcon: {
     display: "flex",
@@ -407,7 +437,7 @@ const styles = {
     boxShadow: "black -1px 2px 0px 0px",
     width: "20vw",
     transition: "height 400ms ease-in",
-    color: "white",
+    color: "rgba(255,255,255,0.6)",
     height: "0vh",
     overflow: "hidden",
   },
@@ -418,9 +448,9 @@ const styles = {
     boxShadow: "black -1px 2px 0px 0px",
     width: "20vw",
     transition: "height 400ms ease-in",
-    color: "white",
+    color: "rgba(255,255,255,0.6)",
     height: "0vh",
-    padding: '2vh 0vw',
+    padding: "2vh 0vw",
     overflow: "hidden",
   },
 
@@ -444,7 +474,7 @@ const styles = {
   childIcon: {
     margin: " 0.75vh 0vw",
     borderRadius: "5px",
-    background: "#cccccc",
+    background: "black",
     color: "rgba(255,255,255,0.6)",
     padding: "0.15vh 0.15vw",
     boxShadow: "black 0px 0px 4px 0px",

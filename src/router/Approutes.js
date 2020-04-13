@@ -1,19 +1,21 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { Home } from "../components/Home/Home";
-import { About } from "../components/About/About";
-import { Product } from "../components/Product/Product";
-import { Portfolio } from "../components/Portfolio/Portfolio";
-import { Catelogue } from "../components/Catelogue/Catelogue";
-import { Catelogue1 } from "../components/Catelogue/Catelogue1";
-import { Catelogue2 } from "../components/Catelogue/Catelogue2";
+import { Home } from "../components/Home";
+import { About } from "../components/About";
+import { Product } from "../components/Product";
+import { Portfolio } from "../components/Portfolio";
+import { Catelogue } from "../components/Catelogue";
+import { Contactus } from "../components/Contactus";
 
-import { Product1 } from "../components/Product/Product1";
-import { Product2 } from "../components/Product/Product2";
-import { Product3 } from "../components/Product/Product3";
-import { Product4 } from "../components/Product/Product4";
+import { Catelogue1 } from "../components/Catelogue1";
+import { Catelogue2 } from "../components/Catelogue2";
 
-import { Portfolio1 } from "../components/Portfolio/Portfolio1";
+import { Product1 } from "../components/Product1";
+import { Product2 } from "../components/Product2";
+import { Product3 } from "../components/Product3";
+import { Product4 } from "../components/Product4";
+
+import { Portfolio1 } from "../components/Portfolio1";
 
 import App from "../App";
 
@@ -54,6 +56,9 @@ class Approutes extends Component {
             </Route>
             <Route exact={true} strict path="/catelogue">
               <Catelogue />
+            </Route>
+            <Route exact={true} strict path="/contactus">
+              <Contactus />
             </Route>
             <Route exact={true} strict path="/catelogue/catelogue1">
               <Catelogue1 />
