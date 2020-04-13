@@ -8,9 +8,9 @@ const App = () => {
     navBarSettings: {
       navBarWidth: '100vw',
       theme: {
-        primaryColor: 'rgba(0,0,0,0.5)',
-        secondaryColor: '#bfbfbf',
-        toggleButtonColor : 'blue'
+        primaryColor: 'rgb(0, 51, 153,0.5)',
+        secondaryColor: 'rgb(0, 85, 255)',
+        toggleButtonColor : 'rgb(0, 85, 255)'
       }
     },
     userInfo: {
@@ -53,7 +53,7 @@ const App = () => {
               style={{ fontSize: "1vw", color: "white" }}
             ></i>
           ),
-          Text: "PRODUCT1",
+          Text: "Product1",
           Expandable: false,
           children: null,
           Route: "/products/product1",
@@ -66,10 +66,33 @@ const App = () => {
               style={{ fontSize: "1vw", color: "white" }}
             ></i>
           ),
-          Text: "PRODUCT2",
+          Text: "Product2",
           Expandable: false,
           children: null,
           Route: "/products/product2",
+        },
+        {
+          IconSet: (
+            <i
+              className="fas fa-gavel"
+              style={{ fontSize: "1vw", color: "white" }}
+            ></i>
+          ),
+          Text: "Product3",
+          Expandable: false,
+          children: null,
+          Route: "/products/product3",
+        }, {
+          IconSet: (
+            <i
+              className="fas fa-gavel"
+              style={{ fontSize: "1vw", color: "white" }}
+            ></i>
+          ),
+          Text: "Product4",
+          Expandable: false,
+          children: null,
+          Route: "/products/product4",
         },
 
       ],
@@ -77,7 +100,7 @@ const App = () => {
 
     link3: {
       IconSet: <i className="fa fa-fw fa-edit" style={{ fontSize: "1vw" }} />,
-      Text: "PORTFOLIO",
+      Text: "Portfolio",
       Expandable: true,
       ExpandableIconset: (
         <i
@@ -95,7 +118,7 @@ const App = () => {
               style={{ fontSize: "1vw", color: "white" }}
             ></i>
           ),
-          Text: "PORTFOLIO1",
+          Text: "Portfolio1",
           Expandable: false,
           children: null,
           Route: "/portfolio/portfolio1",
@@ -123,7 +146,7 @@ const App = () => {
 
     link5: {
       IconSet: <i className="fa fa-fw fa-file" style={{ fontSize: "1vw" }} />,
-      Text: "CATELOGUES",
+      Text: "Catelogues",
       Expandable: true,
       ExpandableIconset: (
         <i
@@ -132,7 +155,7 @@ const App = () => {
         />
       ),
 
-      Route: "/catelogues",
+      Route: "/catelogue",
       children: [
         {
           IconSet: (
@@ -141,10 +164,10 @@ const App = () => {
               style={{ fontSize: "1vw", color: "white" }}
             ></i>
           ),
-          Text: "CATELOGUE1",
+          Text: "Catelogues1",
           Expandable: false,
           children: null,
-          Route: "/catelogues/catelogue1",
+          Route: "/catelogue/catelogue1",
         },
 
         {
@@ -154,10 +177,10 @@ const App = () => {
               style={{ fontSize: "1vw", color: "white" }}
             ></i>
           ),
-          Text: "CATELOGUE2",
+          Text: "Catelogues2",
           Expandable: false,
           children: null,
-          Route: "/catelogues/catelogue2",
+          Route: "/catelogue/catelogue2",
         },
 
        
