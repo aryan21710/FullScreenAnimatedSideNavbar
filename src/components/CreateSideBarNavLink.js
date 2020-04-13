@@ -373,6 +373,7 @@ const styles = {
     gridTemplateRows: "5vh",
     width: "20vw",
     height: "5vh",
+    margin: '0.5vh 0vw'
   },
   parentLinkIconWrapper: {
     gridArea: "1/1/2/2",
