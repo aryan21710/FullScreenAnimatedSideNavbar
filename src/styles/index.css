@@ -16,15 +16,6 @@ a {
   color: white;
 }
 
-.toggleBarWrapper {
-  width: 3.2vw;
-  height: 4.6vh;
-  line-height: 4.6vh;
-  cursor: pointer;
-  position: relative;
-  background: rgba(255, 102, 0, 0.877);
-}
-
 .bar1,
 .bar2,
 .bar3 {

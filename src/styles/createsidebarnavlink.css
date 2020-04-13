@@ -6,7 +6,6 @@
   left: -100vw;
   height: 95.4vh;
   z-index: 2;
-
 }
 
 .slideOutSideBar {
@@ -32,6 +31,8 @@
 .sideNavBarLinks {
   width: 20vw;
   height: 95vh;
+  border-right: 1px solid rgba(255,255,255,0.5);
+
 }
 
 @keyframes slideOut {

@@ -1,21 +1,24 @@
 import React from "react";
 
-const UserInfoGrid = ({name,email,lastLogin}) => {
+const UserInfoGrid = ({ name, email, lastLogin }) => {
   return (
-    <div style={styles.UserInfoGrid}>
-      <div style={{ ...styles.profilePicWrapper, ...styles.flexStyling }}>
-        <div style={{ ...styles.flexStyling, ...styles.profilePic }}>
-          <i className="fas fa-user-tie" style={styles.profilePicIcon}></i>
+    <React.Fragment>
+      <div style={styles.UserInfoGrid}>
+        <div style={{ ...styles.profilePicWrapper, ...styles.flexStyling }}>
+          <div style={{ ...styles.flexStyling, ...styles.profilePic }}>
+            <i className="fas fa-user-tie" style={styles.profilePicIcon}></i>
+          </div>
+        </div>
+        <div style={{ ...styles.flexStyling, ...styles.profileInfoWrapper }}>
+          <div style={{ ...styles.flexStyling, ...styles.profileInfo }}>
+            <span style={styles.uname}>{name.toUpperCase()}</span>
+            <span style={styles.role}>{email}</span>
+            <span style={styles.role}>{lastLogin}</span>
+          </div>
         </div>
       </div>
-      <div style={{ ...styles.flexStyling, ...styles.profileInfoWrapper }}>
-        <div style={{ ...styles.flexStyling, ...styles.profileInfo }}>
-          <span style={styles.uname}>{name.toUpperCase()}</span>
-          <span style={styles.role}>{email}</span>
-          <span style={styles.role}>{lastLogin}</span>
-        </div>
-      </div>
-    </div>
+      <div style={styles.borderSeparator}></div>
+    </React.Fragment>
   );
 };
 
@@ -30,10 +33,15 @@ const styles = {
   UserInfoGrid: {
     display: "grid",
     gridTemplateColumns: "8vw 12vw",
-    height: "20vh",
-    borderBottom: "1px solid rgba(255,255,255,0.5)",
+    height: "22vh",
     boxSizing: "border-box",
- 
+  },
+  borderSeparator: {
+    width: "20vw",
+    height: "1px",
+    backgroundColor: "rgba(255,255,255,0.3)",
+    marginBottom: '3vh'
+
   },
   profilePicWrapper: {
     width: "100%",
@@ -67,5 +75,5 @@ const styles = {
   },
   profilePicIcon: {
     fontSize: "4vw",
-  }
+  },
 };

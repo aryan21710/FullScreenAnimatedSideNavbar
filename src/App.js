@@ -9,8 +9,8 @@ const App = () => {
       navBarWidth: '100vw',
       theme: {
         primaryColor: 'rgba(0,0,0,0.5)',
-        secondaryColor: 'white',
-        additionalColor : 'orange'
+        secondaryColor: '#bfbfbf',
+        toggleButtonColor : 'blue'
       }
     },
     userInfo: {

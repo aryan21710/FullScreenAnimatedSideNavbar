@@ -9,7 +9,8 @@ class CreateSideBarNavLink extends Component {
     whichLinkToToggle: [],
     linksAndStatus: {},
     clickStatus: false,
-    userStyle: {},
+    userStyleSideNavLink: {},
+    userStyleToggleBtn:{}
   };
 
   componentDidMount() {
@@ -25,15 +26,16 @@ class CreateSideBarNavLink extends Component {
   }
 
   toggleClassForSideBar = () => {
-    const { clickStatus, userStyle } = this.state;
+    const { clickStatus, userStyleSideNavLink } = this.state;
     if (clickStatus) {
-      this.setState({ slide: { ...styles.slideOutSideBar, ...userStyle } });
+      this.setState({ slide: { ...styles.slideOutSideBar, ...userStyleSideNavLink } });
     } else {
       this.setState({ slide: styles.slideInSideBar });
     }
   };
 
   onExpand = (linkText) => {
+    const { navBarWidth, theme } = this.props.myData.navBarSettings;
     const { linksAndStatus } = this.state;
     this.setState({
       whichLinkToToggle: linkText,
@@ -47,8 +49,8 @@ class CreateSideBarNavLink extends Component {
         _["toggle"] = !linksAndStatus[i]["toggle"];
         _["rotateIcon"] = _["toggle"] ? styles.expandIcon : styles.collapseIcon;
         _["childLinkWrapper"] = _["toggle"]
-          ? styles.expandChildren
-          : styles.collapseChildren;
+          ? {...styles.expandChildren,background:theme.secondaryColor}
+          : {...styles.collapseChildren,background:theme.secondaryColor};
 
         myobj[i] = _;
       } else {
@@ -153,6 +155,30 @@ class CreateSideBarNavLink extends Component {
     });
   };
 
+  applyUserStyles = (props) => {
+    const { navBarWidth, theme } = this.props.myData.navBarSettings;
+    const newStyle = {};
+
+    const validateWidth =
+      Number(navBarWidth.replace("vw", "")) < 20 ? "20vw" : navBarWidth;
+
+    newStyle["width"] =
+      validateWidth !== styles.sideNavBarLinks.width
+        ? validateWidth
+        : styles.sideNavBarLinks.width;
+
+    newStyle["background"] =
+      theme.primaryColor !== styles.sideNavBarLinks.background
+        ? theme.primaryColor
+        : styles.sideNavBarLinks.background;
+
+    console.log("newStyle", newStyle);
+    this.setState({
+      userStyleSideNavLink: newStyle,
+      userStyleToggleBtn: {...styles.toggleBarWrapper,background:theme.toggleButtonColor}
+    });
+  };
+
   navBarLinksGrid = (props) => {
     const { myData } = this.props;
     const returnData = [];
@@ -210,28 +236,7 @@ class CreateSideBarNavLink extends Component {
     return returnData.map((_) => _);
   };
 
-  applyUserStyles = (props) => {
-    const { navBarWidth, theme } = this.props.myData.navBarSettings;
-    const newStyle = {};
 
-    const validateWidth =
-      Number(navBarWidth.replace("vw", "")) < 20 ? "20vw" : navBarWidth;
-
-    newStyle["width"] =
-      validateWidth !== styles.sideNavBarLinks.width
-        ? validateWidth
-        : styles.sideNavBarLinks.width;
-
-    newStyle["background"] =
-      theme.primaryColor !== styles.sideNavBarLinks.background
-        ? theme.primaryColor
-        : styles.sideNavBarLinks.background;
-
-    console.log("newStyle", newStyle);
-    this.setState({
-      userStyle: newStyle,
-    });
-  };
 
   render(props) {
     console.count("render");
@@ -243,7 +248,7 @@ class CreateSideBarNavLink extends Component {
         render={({ location, history }) => (
           <React.Fragment>
             <div
-              className="toggleBarWrapper"
+              style={this.state.userStyleToggleBtn}
               onClick={() => {
                 this.setState({
                   clickStatus: !clickStatus,
@@ -255,9 +260,12 @@ class CreateSideBarNavLink extends Component {
               <span className={clickStatus ? "rotate-45 bar3" : "bar3"}></span>
             </div>
             <div className="SideBarWrapper" style={this.state.slide}>
-              <div className="sideNavBarLinks" style={this.state.userStyle}>
+              <div className="sideNavBarLinks" style={this.state.userStyleSideNavLink}>
+                <div style={styles.borderSeparator}>
                 <UserInfoGrid name={name} email={email} lastLogin={lastLogin} />
                 {this.navBarLinksGrid()}
+                </div>
+              
               </div>
             </div>
           </React.Fragment>
@@ -268,12 +276,26 @@ class CreateSideBarNavLink extends Component {
 }
 
 const styles = {
+  toggleBarWrapper: {
+    width: '3.2vw',
+    height: '4.6vh',
+    lineHeight: '4.6vh',
+    cursor: 'pointer',
+    position: 'relative',
+    background: 'rgba(255, 102, 0, 0.877)',
+  },
   sideBarWrapper: {
     position: "absolute",
     top: "4.6vh",
     left: "-100vw",
     height: "95.4vh",
     zIndex: "2",
+  },
+  borderSeparator: {
+    width: "20vw",
+    height: "95.4vh",
+    borderRight: "1px solid rgba(255,255,255,0.3)",
+
   },
   sideNavBarLinks: {
     width: "20vw",
@@ -290,6 +312,7 @@ const styles = {
     height: " 95.4vh",
     zIndex: " 1000",
     animation: " slideOut 0.5s ease-in-out 1 forwards",
+
   },
   slideInSideBar: {
     position: "absolute",
@@ -322,6 +345,25 @@ const styles = {
     padding: "0.5vh 0.5vw",
     boxShadow: " black 0px 0px 4px 0px",
   },
+  expandIcon: {
+    transform: "rotate(90deg)",
+    transition: "transform 0.1s ease-in-out",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    gridArea: "1/3/2/4",
+    cursor: "pointer",
+  },
+
+  collapseIcon: {
+    transform: "rotate(0deg)",
+    transition: "transform 0.1s ease-in-out",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    gridArea: "1/3/2/4",
+    cursor: "pointer",
+  },
   parentLinkText: {
     gridArea: "1/2/2/3",
     justifyContent: "flex-start",
@@ -346,6 +388,30 @@ const styles = {
     color: "red",
     fontWeight: "900",
   },
+
+  collapseChildren: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    boxShadow: "black 0px 0px 4px 0px",
+    width: "20vw",
+    transition: "height 400ms ease-in",
+    color: "white",
+    height: "0vh",
+    overflow: "hidden",
+  },
+  expandChildren: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    boxShadow: "black 0px 0px 4px 0px",
+    width: "20vw",
+    transition: "height 400ms ease-in",
+    color: "white",
+    height: "10vh",
+    overflow: "hidden",
+  },
+
   textChildren: {
     flexDirection: "column",
     justifyContent: "center",
@@ -372,49 +438,6 @@ const styles = {
     boxShadow: "black 0px 0px 4px 0px",
     fontSize: "1vw",
     border: "1px solid black",
-  },
-  collapseChildren: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-    background: "rgb(140, 140, 140)",
-    boxShadow: "black 0px 0px 4px 0px",
-    width: "20vw",
-    transition: "height 400ms ease-in",
-    color: "white",
-    height: "0vh",
-    overflow: "hidden",
-  },
-  expandChildren: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-    background: "rgb(140, 140, 140)",
-    boxShadow: "black 0px 0px 4px 0px",
-    width: "20vw",
-    transition: "height 400ms ease-in",
-    color: "white",
-    height: "10vh",
-    overflow: "hidden",
-  },
-  expandIcon: {
-    transform: "rotate(90deg)",
-    transition: "transform 0.1s ease-in-out",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    gridArea: "1/3/2/4",
-    cursor: "pointer",
-  },
-
-  collapseIcon: {
-    transform: "rotate(0deg)",
-    transition: "transform 0.1s ease-in-out",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    gridArea: "1/3/2/4",
-    cursor: "pointer",
   },
 };
 
