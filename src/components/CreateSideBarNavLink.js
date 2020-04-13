@@ -8,7 +8,7 @@ class CreateSideBarNavLink extends Component {
     slide: styles.sideBarWrapper,
     whichLinkToToggle: [],
     linksAndStatus: {},
-    clickStatus: false,
+    toggleBtnStatus: false,
     hover: false,
     hoveredLink: "",
     userStyleSideNavLink: {},
@@ -21,15 +21,15 @@ class CreateSideBarNavLink extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { clickStatus } = this.state;
-    if (prevState.clickStatus !== clickStatus) {
+    const { toggleBtnStatus } = this.state;
+    if (prevState.toggleBtnStatus !== toggleBtnStatus) {
       this.toggleClassForSideBar();
     }
   }
 
   toggleClassForSideBar = () => {
-    const { clickStatus, userStyleSideNavLink } = this.state;
-    if (clickStatus) {
+    const { toggleBtnStatus, userStyleSideNavLink } = this.state;
+    if (toggleBtnStatus) {
       this.setState({
         slide: { ...styles.slideOutSideBar, ...userStyleSideNavLink },
       });
@@ -211,7 +211,6 @@ class CreateSideBarNavLink extends Component {
           IconSet,
           Text,
           children,
-          ExpandableIconset,
           Route,
         } = myData[i];
 
@@ -242,8 +241,8 @@ class CreateSideBarNavLink extends Component {
                 <NavLink
                   className={
                     this.state.hover && this.state.hoveredLink === Text
-                      ? "hoveredLink"
-                      : "nonhoveredLink"
+                      ? "hoverLink"
+                      : "nonhoverLink"
                   }
                   activeStyle={styles.navlinks}
                   to={Route}
@@ -253,14 +252,16 @@ class CreateSideBarNavLink extends Component {
               </div>
 
               {Expandable && (
-                <div
-                  style={this.updateStyleForToggleIcon(Text)}
-                  data-value={Text}
-                  onClick={() => {
-                    this.onExpand(Text, children);
+                <div style={this.updateStyleForToggleIcon(Text)}>
+                  <i
+                    className="fas fa-angle-right angleIcon"
+                    style={{ fontSize: "1vw", cursor: "pointer",
                   }}
-                >
-                  {ExpandableIconset}
+                    data-value={Text}
+                    onClick={() => {
+                      this.onExpand(Text, children);
+                    }}
+                  />
                 </div>
               )}
             </div>
@@ -279,7 +280,7 @@ class CreateSideBarNavLink extends Component {
 
   render() {
     console.count("render");
-    const { clickStatus } = this.state;
+    const { toggleBtnStatus } = this.state;
     const { name, email, lastLogin } = this.props.myData.userInfo;
 
     return (
@@ -290,13 +291,13 @@ class CreateSideBarNavLink extends Component {
               style={this.state.userStyleToggleBtn}
               onClick={() => {
                 this.setState({
-                  clickStatus: !clickStatus,
+                  toggleBtnStatus: !toggleBtnStatus,
                 });
               }}
             >
-              <span className={clickStatus ? "hideme " : "bar1"}></span>
-              <span className={clickStatus ? "rotate45 bar2" : "bar2"}></span>
-              <span className={clickStatus ? "rotate-45 bar3" : "bar3"}></span>
+              <span className={toggleBtnStatus ? "hideme " : "bar1"}></span>
+              <span className={toggleBtnStatus ? "rotate45 bar2" : "bar2"}></span>
+              <span className={toggleBtnStatus ? "rotate-45 bar3" : "bar3"}></span>
             </div>
             <div className="SideBarWrapper" style={this.state.slide}>
               <div
@@ -395,7 +396,6 @@ const styles = {
     justifyContent: "center",
     alignItems: "center",
     gridArea: "1/3/2/4",
-    cursor: "pointer",
     color: "rgba(255,255,255,0.6)",
   },
 
@@ -407,7 +407,6 @@ const styles = {
     alignItems: "center",
     gridArea: "1/3/2/4",
     color: "rgba(255,255,255,0.6)",
-    cursor: "pointer",
   },
   parentLinkText: {
     gridArea: "1/2/2/3",
@@ -415,7 +414,7 @@ const styles = {
     fontSize: "1.1vw",
     color: "rgba(255,255,255,0.6)",
     marginLeft: "10px",
-    cursor: "pointer",
+
   },
   navlinks: {
     textDecoration: "none",
@@ -483,7 +482,6 @@ const styles = {
     padding: "0.15vh 0.15vw",
     boxShadow: "black 0px 0px 4px 0px",
     fontSize: "1vw",
-    border: "1px solid black",
   },
 };
 
