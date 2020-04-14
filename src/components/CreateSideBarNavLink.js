@@ -405,7 +405,7 @@ const styles = {
   },
   navlinks: {
     textDecoration: "none",
-    color: "rgba(255,255,255,0.6)",
+    color: "rgba(255,255,255,1)",
   },
   parentLinkExpandIcon: {
     display: "flex",
