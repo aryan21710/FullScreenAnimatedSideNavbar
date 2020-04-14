@@ -69,6 +69,27 @@
   cursor: pointer;
 }
 
+.demo {
+  border: 1px solid red;
+}
+
+.demo:hover > div > p {
+  color: blue;
+}
+
+
+.myclassname:hover > div  > a, 
+.myclassname:hover > div  > div > .fa-list,
+.myclassname:hover > div  > div > .fa-edit,
+.myclassname:hover > div  > div > .fa-file,
+.myclassname:hover > div  > div > .fa-bell,
+.myclassname:hover >  div > .fa-angle-right
+
+{
+  color: white
+}
+
+
 .mainList {
   list-style-type: none;
   flex-direction: column;

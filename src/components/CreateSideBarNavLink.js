@@ -9,8 +9,6 @@ class CreateSideBarNavLink extends Component {
     whichLinkToToggle: [],
     linksAndStatus: {},
     toggleBtnStatus: false,
-    hover: false,
-    hoveredLink: "",
     userStyleSideNavLink: {},
     userStyleToggleBtn: {},
   };
@@ -77,13 +75,12 @@ class CreateSideBarNavLink extends Component {
   };
 
   updateStyleForToggleIcon = (linkText) => {
-    const { linksAndStatus, hoveredLink } = this.state;
+    const { linksAndStatus } = this.state;
 
     for (let i in linksAndStatus) {
       if (i === linkText) {
-        return i === hoveredLink
-          ? { ...linksAndStatus[i]["rotateIcon"], color: "white" }
-          : linksAndStatus[i]["rotateIcon"];
+     
+          return linksAndStatus[i]["rotateIcon"];
       }
     }
   };
@@ -166,13 +163,8 @@ class CreateSideBarNavLink extends Component {
     });
   };
 
-  hoverEffect = (linkText) => {
-    this.setState({
-      hover: !this.state.hover,
-      hoveredLink: linkText,
-    });
-  };
 
+  
   applyUserStyles = (props) => {
     const { navBarWidth, theme } = this.props.myData.navBarSettings;
     const newStyle = {};
@@ -214,12 +206,13 @@ class CreateSideBarNavLink extends Component {
           Route,
         } = myData[i];
 
+        const classname=Text.replace(' ','').toLowerCase()
+
         returnData.push(
           <React.Fragment>
             <div
               style={styles.parentLinkWrapper}
-              onMouseOver={() => this.hoverEffect(Text)}
-              onMouseLeave={() => this.hoverEffect(Text)}
+              className="myclassname"
             >
               <div
                 style={{
@@ -229,9 +222,7 @@ class CreateSideBarNavLink extends Component {
               >
                 <div
                   style={
-                    this.state.hover && this.state.hoveredLink === Text
-                      ? { ...styles.parentLinkIcon, color: "white" }
-                      : styles.parentLinkIcon
+                    styles.parentLinkIcon
                   }
                 >
                   {IconSet}
@@ -239,11 +230,7 @@ class CreateSideBarNavLink extends Component {
               </div>
               <div style={{ ...styles.flexStyling, ...styles.parentLinkText }}>
                 <NavLink
-                  className={
-                    this.state.hover && this.state.hoveredLink === Text
-                      ? "hoverLink"
-                      : "nonhoverLink"
-                  }
+                 
                   activeStyle={styles.navlinks}
                   to={Route}
                 >

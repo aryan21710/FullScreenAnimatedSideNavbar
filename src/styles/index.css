@@ -18,15 +18,6 @@ a {
 }
 
 
- a:active, a:hover, .hoverLink {
-  text-decoration: none;
-  color: white;
-}
-
-.nonhoverLink {
-  text-decoration: none;
-  color: rgba(255,255,255,0.6);
-}
 
 
 
