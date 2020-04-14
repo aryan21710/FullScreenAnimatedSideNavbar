@@ -1,21 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import CreateSideBarNavLink from "./components/CreateSideBarNavLink";
 
 const App = () => {
-
-
   const myData = {
     navBarSettings: {
-      navBarWidth: '20vw',
+      navBarWidth: "100vw",
       theme: {
-        primaryColor: 'rgb(0, 51, 153,0.5)',
-        secondaryColor: 'rgb(0, 85, 255)',
-        toggleButtonColor : 'rgb(0, 85, 255)'
-      }
+        primaryColor: "rgb(0, 51, 153,0.5)",
+        secondaryColor: "rgb(0, 85, 255)",
+        toggleButtonColor: "rgb(0, 85, 255)",
+      },
     },
     userInfo: {
-      name: 'aryan sharma',
-      email: 'aryan@gmail.com',
+      name: "aryan sharma",
+      email: "aryan@gmail.com",
     },
 
     link1: {
@@ -32,12 +30,7 @@ const App = () => {
       Route: "/products",
       children: [
         {
-          IconSet: (
-            <i
-              className="fas fa-gavel"
-              style={{ fontSize: "1vw" }}
-            ></i>
-          ),
+          IconSet: <i className="fas fa-gavel" style={{ fontSize: "1vw" }}></i>,
           Text: "Product1",
           Expandable: false,
           children: null,
@@ -45,41 +38,26 @@ const App = () => {
         },
 
         {
-          IconSet: (
-            <i
-              className="fas fa-gavel"
-              style={{ fontSize: "1vw" }}
-            ></i>
-          ),
+          IconSet: <i className="fas fa-gavel" style={{ fontSize: "1vw" }}></i>,
           Text: "Product2",
           Expandable: false,
           children: null,
           Route: "/products/product2",
         },
         {
-          IconSet: (
-            <i
-              className="fas fa-gavel"
-              style={{ fontSize: "1vw" }}
-            ></i>
-          ),
+          IconSet: <i className="fas fa-gavel" style={{ fontSize: "1vw" }}></i>,
           Text: "Product3",
           Expandable: false,
           children: null,
           Route: "/products/product3",
-        }, {
-          IconSet: (
-            <i
-              className="fas fa-gavel"
-              style={{ fontSize: "1vw" }}
-            ></i>
-          ),
+        },
+        {
+          IconSet: <i className="fas fa-gavel" style={{ fontSize: "1vw" }}></i>,
           Text: "Product4",
           Expandable: false,
           children: null,
           Route: "/products/product4",
         },
-
       ],
     },
 
@@ -97,22 +75,14 @@ const App = () => {
       Route: "/portfolio",
       children: [
         {
-          IconSet: (
-            <i
-              className="fas fa-gavel"
-              style={{ fontSize: "1vw" }}
-            ></i>
-          ),
+          IconSet: <i className="fas fa-gavel" style={{ fontSize: "1vw" }}></i>,
           Text: "Portfolio1",
           Expandable: false,
           children: null,
           Route: "/portfolio/portfolio1",
         },
-
       ],
     },
-
-  
 
     link3: {
       IconSet: <i className="fa fa-fw fa-bell" style={{ fontSize: "1vw" }} />,
@@ -143,12 +113,7 @@ const App = () => {
       Route: "/catelogue",
       children: [
         {
-          IconSet: (
-            <i
-              className="fas fa-gavel"
-              style={{ fontSize: "1vw" }}
-            ></i>
-          ),
+          IconSet: <i className="fas fa-gavel" style={{ fontSize: "1vw" }}></i>,
           Text: "Catelogues1",
           Expandable: false,
           children: null,
@@ -156,19 +121,12 @@ const App = () => {
         },
 
         {
-          IconSet: (
-            <i
-              className="fas fa-gavel"
-              style={{ fontSize: "1vw" }}
-            ></i>
-          ),
+          IconSet: <i className="fas fa-gavel" style={{ fontSize: "1vw" }}></i>,
           Text: "Catelogues2",
           Expandable: false,
           children: null,
           Route: "/catelogue/catelogue2",
         },
-
-       
       ],
     },
     link5: {
@@ -188,9 +146,9 @@ const App = () => {
   };
 
   return (
-    <div className="App">
-      <CreateSideBarNavLink  myData={myData} />
-    </div>
+    <React.Fragment>
+      <CreateSideBarNavLink myData={myData} />
+    </React.Fragment>
   );
 };
 

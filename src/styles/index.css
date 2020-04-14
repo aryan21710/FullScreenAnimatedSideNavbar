@@ -15,6 +15,7 @@ body {
 a {
   text-decoration: none;
   color: rgba(255,255,255,0.6);
+  cursor: pointer;
 }
 
 
@@ -62,6 +63,66 @@ a {
   width: 1.5vw;
   transition: transform 0.1s ease-in-out;
 }
+
+.SideBarWrapper {
+  position: absolute;
+  top: 4.5vh;
+  left: -100vw;
+  height: 95.4vh;
+  z-index: 2;
+}
+
+.sideNavBarLinks {
+  width: 20vw;
+  height: 95vh;
+  border-right: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+@keyframes slideOut {
+  from {
+    z-index: -1;
+  }
+
+  to {
+    left: 0vw;
+    z-index: 1000;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    left: 0vw;
+    z-index: 2;
+  }
+
+  to {
+    left: -100vw;
+    z-index: -1;
+  }
+}
+
+.childLinkWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 20vw;
+}
+
+.parentLinkWrapper:hover > div > a,
+.parentLinkWrapper:hover > div > div > .fa-list,
+.parentLinkWrapper:hover > div > div > .fa-edit,
+.parentLinkWrapper:hover > div > div > .fa-file,
+.parentLinkWrapper:hover > div > div > .fa-bell,
+.parentLinkWrapper:hover > div > .fa-angle-right,
+.childLinkWrapper:hover > div > div > .fa-gavel,
+.childLinkWrapper:hover > div > div > a {
+  color: white;
+}
+
+a {
+  cursor: "pointer";
+}
+
 
 @media screen and (min-width: 2000px) and (max-width: 2600px) {
   .bar1 {

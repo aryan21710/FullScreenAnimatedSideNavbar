@@ -4,7 +4,7 @@ const UserInfoGrid = ({ name, email }) => {
   return (
     <React.Fragment>
       <div style={styles.UserInfoGrid}>
-        <div style={{  ...styles.flexStyling, ...styles.profilePicWrapper }}>
+        <div style={{ ...styles.flexStyling, ...styles.profilePicWrapper }}>
           <div style={{ ...styles.flexStyling, ...styles.profilePic }}>
             <i className="fas fa-user-tie" style={styles.profilePicIcon}></i>
           </div>
@@ -32,30 +32,28 @@ const styles = {
   UserInfoGrid: {
     height: "22vh",
     boxSizing: "border-box",
-    position: 'relative'
+    position: "relative",
   },
   borderSeparator: {
     width: "20vw",
     height: "1px",
     backgroundColor: "rgba(255,255,255,0.3)",
-    marginBottom: '3vh'
-
+    marginBottom: "3vh",
   },
   profilePicWrapper: {
     width: "5vw",
     height: "5vh",
-    position: 'absolute',
-    left: '1vw',
-    top: '40%',
+    position: "absolute",
+    left: "1vw",
+    top: "40%",
   },
   profileInfoWrapper: {
-
     justifyContent: "flex-start",
-    position: 'absolute',
+    position: "absolute",
     width: "12vw",
     height: "5vh",
-    left: '6.5vw',
-    top: '40%',
+    left: "6.5vw",
+    top: "40%",
   },
   profilePic: {
     background: "white",
