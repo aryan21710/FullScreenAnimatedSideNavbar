@@ -1,7 +1,12 @@
 {
   "name": "animated-fullscreen-sidenavbar",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "Animated Side Navigation Bar with Variable Width",
+  "private": false,
+  "author": {
+    "name": "aryan sharma",
+    "email": "arysharma1209@gmail.com"
+  },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.13.0",
     "@testing-library/jest-dom": "^4.2.4",
