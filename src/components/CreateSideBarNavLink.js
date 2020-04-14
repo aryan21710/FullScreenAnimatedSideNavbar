@@ -202,7 +202,7 @@ class CreateSideBarNavLink extends Component {
 
         returnData.push(
           <React.Fragment>
-            <div style={styles.parentLinkWrapper} className="parentLinkWrapper">
+            <div style={{...styles.flexStyling,...styles.parentLinkWrapper}} className="parentLinkWrapper">
               <div
                 style={{
                   ...styles.flexStyling,
@@ -327,14 +327,14 @@ const styles = {
     left: " -100vw",
     height: " 95.4vh",
     zIndex: " 1000",
-    animation: " slideOut 0.5s ease-in-out 1 forwards",
+    animation: " slideOut 0.5s linear 1 forwards",
   },
   slideInSideBar: {
     position: "absolute",
     top: "4.6vh",
     height: "95.4vh",
     zIndex: "2",
-    animation: "slideIn 0.5s ease-in-out 1 forwards",
+    animation: "slideIn 0.5s linear 1 forwards",
   },
   flexStyling: {
     display: "flex",
@@ -343,12 +343,10 @@ const styles = {
   },
 
   parentLinkWrapper: {
-  
     position: 'relative',
     width: "20vw",
     height: "5vh",
     margin: "0.5vh 0vw",
-    border: '1px solid red'
   },
   parentLinkIconWrapper: {
     position: 'absolute',
@@ -365,7 +363,7 @@ const styles = {
   },
   expandIcon: {
     transform: "rotate(90deg)",
-    transition: "transform 0.1s ease-in-out",
+    transition: "transform 0.1s linear",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -378,7 +376,7 @@ const styles = {
 
   collapseIcon: {
     transform: "rotate(0deg)",
-    transition: "transform 0.1s ease-in-out",
+    transition: "transform 0.1s linear",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
