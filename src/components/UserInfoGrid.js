@@ -4,7 +4,7 @@ const UserInfoGrid = ({ name, email, lastLogin }) => {
   return (
     <React.Fragment>
       <div style={styles.UserInfoGrid}>
-        <div style={{ ...styles.profilePicWrapper, ...styles.flexStyling }}>
+        <div style={{  ...styles.flexStyling, ...styles.profilePicWrapper }}>
           <div style={{ ...styles.flexStyling, ...styles.profilePic }}>
             <i className="fas fa-user-tie" style={styles.profilePicIcon}></i>
           </div>
@@ -13,7 +13,6 @@ const UserInfoGrid = ({ name, email, lastLogin }) => {
           <div style={{ ...styles.flexStyling, ...styles.profileInfo }}>
             <span style={styles.uname}>{name.toUpperCase()}</span>
             <span style={styles.role}>{email}</span>
-            <span style={styles.role}>{lastLogin}</span>
           </div>
         </div>
       </div>
@@ -31,10 +30,9 @@ const styles = {
     alignItems: "center",
   },
   UserInfoGrid: {
-    display: "grid",
-    gridTemplateColumns: "8vw 12vw",
     height: "22vh",
     boxSizing: "border-box",
+    position: 'relative'
   },
   borderSeparator: {
     width: "20vw",
@@ -44,34 +42,40 @@ const styles = {
 
   },
   profilePicWrapper: {
-    width: "100%",
-    height: "100%",
+    width: "5vw",
+    height: "5vh",
+    position: 'absolute',
+    left: '1vw',
+    top: '40%',
   },
   profileInfoWrapper: {
-    width: "100%",
-    height: "100%",
+
     justifyContent: "flex-start",
+    position: 'absolute',
+    width: "12vw",
+    height: "5vh",
+    left: '6.5vw',
+    top: '40%',
   },
   profilePic: {
     background: "white",
-    padding: "1vh 1vw",
+    padding: "0.25vh 0.25vw",
     borderRadius: "10px",
   },
   profileInfo: {
-    padding: "1vh 1vw",
     flexDirection: "column",
     alignItems: "start",
     justifyContent: "flex-start",
   },
   uname: {
-    fontSize: "1vw",
+    fontSize: "1.1vw",
     color: "white",
-    margin: "0.5vh 0vw",
+    margin: "0.7vh 0vw",
   },
   role: {
-    fontSize: "0.8vw",
+    fontSize: "1vw",
     color: "white",
-    margin: "0.5vh 0vw",
+    margin: "0.7vh 0vw",
   },
   profilePicIcon: {
     fontSize: "4vw",
