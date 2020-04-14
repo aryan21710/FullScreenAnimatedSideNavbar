@@ -130,7 +130,6 @@ class CreateSideBarNavLink extends Component {
         );
       });
 
-      console.log("returnData in createChildLinks", returnData);
       return returnData.map((_) => _);
     }
   };
@@ -182,7 +181,6 @@ class CreateSideBarNavLink extends Component {
         ? theme.primaryColor
         : styles.sideNavBarLinks.background;
 
-    console.log("newStyle", newStyle);
     this.setState({
       userStyleSideNavLink: newStyle,
       userStyleToggleBtn: {
@@ -257,7 +255,6 @@ class CreateSideBarNavLink extends Component {
         );
       }
     }
-    console.log("returnData", returnData);
     return returnData.map((_) => _);
   };
 
