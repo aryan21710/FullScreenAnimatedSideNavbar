@@ -16,8 +16,6 @@ const App = () => {
     userInfo: {
       name: 'aryan sharma',
       email: 'aryan@gmail.com',
-      lastLogin: '12/12/2019'
-
     },
 
     link1: {

@@ -1,6 +1,6 @@
 import React from "react";
 
-const UserInfoGrid = ({ name, email, lastLogin }) => {
+const UserInfoGrid = ({ name, email }) => {
   return (
     <React.Fragment>
       <div style={styles.UserInfoGrid}>
