@@ -259,7 +259,6 @@ class CreateSideBarNavLink extends Component {
   };
 
   render() {
-    console.count("render");
     const { toggleBtnStatus } = this.state;
     const { name, email, lastLogin } = this.props.myData.userInfo;
 
