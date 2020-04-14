@@ -2,7 +2,7 @@ import React from 'react'
 
 export const Catelogue1 = () => {
     return (
-        <React.Fragment>Catelogue1
+        <React.Fragment>
         <div style={{marginRight: 'auto', 
         marginLeft: 'auto', width: '25%',
          color: 'red'}}>

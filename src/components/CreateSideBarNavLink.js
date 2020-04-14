@@ -79,8 +79,7 @@ class CreateSideBarNavLink extends Component {
 
     for (let i in linksAndStatus) {
       if (i === linkText) {
-     
-          return linksAndStatus[i]["rotateIcon"];
+        return linksAndStatus[i]["rotateIcon"];
       }
     }
   };
@@ -97,39 +96,35 @@ class CreateSideBarNavLink extends Component {
 
   createChildLinks = (children, Text) => {
     if (Text === this.state.whichLinkToToggle) {
-      return (
-        <React.Fragment>
-          <div style={{ ...styles.flexStyling, ...styles.iconChildren }}>
-            {children.map((_, idx) => {
-              return (
-                <div
-                  key={idx}
-                  className={this.updateStyleForChidrenIconAndText(Text)}
-                  style={styles.childIcon}
-                >
-                  {_.IconSet}
-                </div>
-              );
-            })}
+      const returnData = [];
+      children.forEach((_, idx) => {
+        returnData.push(
+          <div className="childLinkWrapper">
+            <div style={{ ...styles.flexStyling, ...styles.iconChildren }}>
+              <div
+                className={this.updateStyleForChidrenIconAndText(Text)}
+                style={styles.childIcon}
+              >
+                {_.IconSet}
+              </div>
+            </div>
+            <div style={{ ...styles.flexStyling, ...styles.textChildren }}>
+              <div
+                className={this.updateStyleForChidrenIconAndText(Text)}
+                style={styles.childText}
+              >
+                <NavLink activeStyle={styles.navlinks} to={_.Route}>
+                  {" "}
+                  {_.Text}
+                </NavLink>
+              </div>
+            </div>
           </div>
-          <div style={{ ...styles.flexStyling, ...styles.textChildren }}>
-            {children.map((_, idx) => {
-              return (
-                <div
-                  key={idx}
-                  className={this.updateStyleForChidrenIconAndText(Text)}
-                  style={styles.childText}
-                >
-                  <NavLink activeStyle={styles.navlinks} to={_.Route}>
-                    {" "}
-                    {_.Text}
-                  </NavLink>
-                </div>
-              );
-            })}
-          </div>
-        </React.Fragment>
-      );
+        );
+      });
+
+      console.log("returnData in createChildLinks", returnData);
+      return returnData.map((_) => _);
     }
   };
 
@@ -163,8 +158,6 @@ class CreateSideBarNavLink extends Component {
     });
   };
 
-
-  
   applyUserStyles = (props) => {
     const { navBarWidth, theme } = this.props.myData.navBarSettings;
     const newStyle = {};
@@ -204,56 +197,44 @@ class CreateSideBarNavLink extends Component {
           Text,
           children,
           Route,
+          ExpandableIconset,
         } = myData[i];
-
-        const classname=Text.replace(' ','').toLowerCase()
 
         returnData.push(
           <React.Fragment>
-            <div
-              style={styles.parentLinkWrapper}
-              className="myclassname"
-            >
+            <div style={styles.parentLinkWrapper} className="parentLinkWrapper">
               <div
                 style={{
                   ...styles.flexStyling,
                   ...styles.parentLinkIconWrapper,
                 }}
               >
-                <div
-                  style={
-                    styles.parentLinkIcon
-                  }
-                >
-                  {IconSet}
-                </div>
+                <div style={styles.parentLinkIcon}>{IconSet}</div>
               </div>
               <div style={{ ...styles.flexStyling, ...styles.parentLinkText }}>
-                <NavLink
-                 
-                  activeStyle={styles.navlinks}
-                  to={Route}
-                >
+                <NavLink activeStyle={styles.navlinks} to={Route}>
                   {Text}
                 </NavLink>
               </div>
 
               {Expandable && (
-                <div style={this.updateStyleForToggleIcon(Text)}>
-                  <i
-                    className="fas fa-angle-right angleIcon"
-                    style={{ fontSize: "1vw", cursor: "pointer",
+                <div
+                  style={this.updateStyleForToggleIcon(Text)}
+                  data-value={Text}
+                  onClick={() => {
+                    this.onExpand(Text, children);
                   }}
-                    data-value={Text}
-                    onClick={() => {
-                      this.onExpand(Text, children);
-                    }}
-                  />
+                >
+                  {" "}
+                  {ExpandableIconset}
                 </div>
               )}
             </div>
             {Expandable && (
-              <div style={this.updateStyleForChildLinkWrapper(Text)}>
+              <div
+                className="childLinkWrapper"
+                style={this.updateStyleForChildLinkWrapper(Text)}
+              >
                 {this.createChildLinks(children, Text)}
               </div>
             )}
@@ -283,8 +264,12 @@ class CreateSideBarNavLink extends Component {
               }}
             >
               <span className={toggleBtnStatus ? "hideme " : "bar1"}></span>
-              <span className={toggleBtnStatus ? "rotate45 bar2" : "bar2"}></span>
-              <span className={toggleBtnStatus ? "rotate-45 bar3" : "bar3"}></span>
+              <span
+                className={toggleBtnStatus ? "rotate45 bar2" : "bar2"}
+              ></span>
+              <span
+                className={toggleBtnStatus ? "rotate-45 bar3" : "bar3"}
+              ></span>
             </div>
             <div className="SideBarWrapper" style={this.state.slide}>
               <div
@@ -384,6 +369,7 @@ const styles = {
     alignItems: "center",
     gridArea: "1/3/2/4",
     color: "rgba(255,255,255,0.6)",
+
   },
 
   collapseIcon: {
@@ -394,6 +380,7 @@ const styles = {
     alignItems: "center",
     gridArea: "1/3/2/4",
     color: "rgba(255,255,255,0.6)",
+
   },
   parentLinkText: {
     gridArea: "1/2/2/3",
@@ -401,7 +388,6 @@ const styles = {
     fontSize: "1.1vw",
     color: "rgba(255,255,255,0.6)",
     marginLeft: "10px",
-
   },
   navlinks: {
     textDecoration: "none",
@@ -422,7 +408,7 @@ const styles = {
 
   collapseChildren: {
     display: "flex",
-    flexDirection: "row",
+    flexDirection: "column",
     justifyContent: "center",
     boxShadow: "black -1px 2px 0px 0px",
     width: "20vw",
@@ -433,7 +419,7 @@ const styles = {
   },
   expandChildren: {
     display: "flex",
-    flexDirection: "row",
+    flexDirection: "column",
     justifyContent: "center",
     boxShadow: "black -1px 2px 0px 0px",
     width: "20vw",

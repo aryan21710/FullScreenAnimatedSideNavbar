@@ -76,14 +76,23 @@
 .demo:hover > div > p {
   color: blue;
 }
+.childLinkWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 20vw;
+}
 
 
-.myclassname:hover > div  > a, 
-.myclassname:hover > div  > div > .fa-list,
-.myclassname:hover > div  > div > .fa-edit,
-.myclassname:hover > div  > div > .fa-file,
-.myclassname:hover > div  > div > .fa-bell,
-.myclassname:hover >  div > .fa-angle-right
+.parentLinkWrapper:hover > div  > a, 
+.parentLinkWrapper:hover > div  > div > .fa-list,
+.parentLinkWrapper:hover > div  > div > .fa-edit,
+.parentLinkWrapper:hover > div  > div > .fa-file,
+.parentLinkWrapper:hover > div  > div > .fa-bell,
+.parentLinkWrapper:hover >  div > .fa-angle-right,
+.childLinkWrapper:hover > div > div  > .fa-gavel,
+.childLinkWrapper:hover > div > div  > a
+
 
 {
   color: white
