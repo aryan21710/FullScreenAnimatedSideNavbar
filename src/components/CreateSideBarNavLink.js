@@ -113,7 +113,13 @@ class CreateSideBarNavLink extends Component {
                 className={this.updateStyleForChidrenIconAndText(Text)}
                 style={styles.childText}
               >
-                <NavLink activeStyle={styles.navlinks} to={_.Route}>
+                <NavLink activeStyle={styles.navlinks} to={_.Route}
+                onClick={() => {
+                  this.setState({
+                    toggleBtnStatus: !this.state.toggleBtnStatus,
+                  });
+                }}
+                >
                   {" "}
                   {_.Text}
                 </NavLink>
@@ -212,7 +218,13 @@ class CreateSideBarNavLink extends Component {
                 <div style={styles.parentLinkIcon}>{IconSet}</div>
               </div>
               <div style={{ ...styles.flexStyling, ...styles.parentLinkText }}>
-                <NavLink activeStyle={styles.navlinks} to={Route}>
+                <NavLink activeStyle={styles.navlinks} to={Route}
+                onClick={() => {
+                  this.setState({
+                    toggleBtnStatus: !this.state.toggleBtnStatus,
+                  });
+                }}
+                >
                   {Text}
                 </NavLink>
               </div>
@@ -327,14 +339,14 @@ const styles = {
     left: " -100vw",
     height: " 95.4vh",
     zIndex: " 1000",
-    animation: " slideOut 0.5s linear 1 forwards",
+    animation: " slideOut 0.25s linear 1 forwards",
   },
   slideInSideBar: {
     position: "absolute",
     top: "4.6vh",
     height: "95.4vh",
     zIndex: "2",
-    animation: "slideIn 0.5s linear 1 forwards",
+    animation: "slideIn 0.25s linear 1 forwards",
   },
   flexStyling: {
     display: "flex",
