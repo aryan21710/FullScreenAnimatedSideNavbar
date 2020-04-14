@@ -343,15 +343,17 @@ const styles = {
   },
 
   parentLinkWrapper: {
-    display: "grid",
-    gridTemplateColumns: "4vw 13vw 3vw",
-    gridTemplateRows: "5vh",
+  
+    position: 'relative',
     width: "20vw",
     height: "5vh",
     margin: "0.5vh 0vw",
+    border: '1px solid red'
   },
   parentLinkIconWrapper: {
-    gridArea: "1/1/2/2",
+    position: 'absolute',
+    left: '1vw',
+    width: '3vw',
     justifyContent: "flex-end",
   },
   parentLinkIcon: {
@@ -367,7 +369,9 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    gridArea: "1/3/2/4",
+    position: 'absolute',
+    left: '18vw',
+    width: '1vw',
     color: "rgba(255,255,255,0.6)",
 
   },
@@ -378,12 +382,16 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    gridArea: "1/3/2/4",
+    position: 'absolute',
+    left: '18vw',
+    width: '1vw',
     color: "rgba(255,255,255,0.6)",
 
   },
   parentLinkText: {
-    gridArea: "1/2/2/3",
+    position: 'absolute',
+    left: '4.5vw',
+    width: '12vw',
     justifyContent: "flex-start",
     fontSize: "1.1vw",
     color: "rgba(255,255,255,0.6)",
@@ -397,7 +405,6 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    gridArea: "1/3/2/4",
     cursor: "pointer",
   },
   error: {
