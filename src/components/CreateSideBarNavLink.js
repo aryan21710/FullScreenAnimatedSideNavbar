@@ -95,6 +95,7 @@ class CreateSideBarNavLink extends Component {
   };
 
   createChildLinks = (children, Text) => {
+    const {navBarWidth}=this.props.myData.navBarSettings
     if (Text === this.state.whichLinkToToggle) {
       const returnData = [];
       children.forEach((_, idx) => {
@@ -115,7 +116,7 @@ class CreateSideBarNavLink extends Component {
               >
                 <NavLink activeStyle={styles.navlinks} to={_.Route}
                 onClick={() => {
-                  this.setState({
+                  navBarWidth==='100vw' && this.setState({
                     toggleBtnStatus: !this.state.toggleBtnStatus,
                   });
                 }}
@@ -194,6 +195,8 @@ class CreateSideBarNavLink extends Component {
   navBarLinksGrid = (props) => {
     const { myData } = this.props;
     const returnData = [];
+    const {navBarWidth}=this.props.myData.navBarSettings
+
 
     for (let i in myData) {
       if (i !== "userInfo" && i !== "navBarSettings") {
@@ -220,7 +223,7 @@ class CreateSideBarNavLink extends Component {
               <div style={{ ...styles.flexStyling, ...styles.parentLinkText }}>
                 <NavLink activeStyle={styles.navlinks} to={Route}
                 onClick={() => {
-                  this.setState({
+                  navBarWidth==='100vw' && this.setState({
                     toggleBtnStatus: !this.state.toggleBtnStatus,
                   });
                 }}

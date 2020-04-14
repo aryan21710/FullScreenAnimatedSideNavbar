@@ -6,7 +6,7 @@ const App = () => {
 
   const myData = {
     navBarSettings: {
-      navBarWidth: '100vw',
+      navBarWidth: '20vw',
       theme: {
         primaryColor: 'rgb(0, 51, 153,0.5)',
         secondaryColor: 'rgb(0, 85, 255)',
