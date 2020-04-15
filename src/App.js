@@ -8,7 +8,7 @@ const App = () => {
       theme: {
         primaryColor: "rgb(0, 51, 153,1)",
         secondaryColor: "rgb(0, 85, 255)",
-        toggleButtonColor: "rgb(0, 85, 255)",
+        toggleButtonColor: "rgb(0, 51, 153,1)",
       },
     },
     userInfo: {
@@ -132,6 +132,20 @@ const App = () => {
     link5: {
       IconSet: <i className="fa fa-fw fa-list" style={{ fontSize: window.innerWidth > 768 ? "1vw" : "4vw" }} />,
       Text: "Contact Us",
+      Expandable: false,
+      ExpandableIconset: (
+        <i
+          className="fas fa-angle-right angleIcon"
+          style={{ fontSize: window.innerWidth > 768 ? "1vw" : "4vw", color: "rgba(255,255,255,0.6)" }}
+        />
+      ),
+
+      Route: "/contactus",
+      children: null,
+    },
+    link6: {
+      IconSet: <i className="fa fa-fw fa-list" style={{ fontSize: window.innerWidth > 768 ? "1vw" : "4vw" }} />,
+      Text: "Index",
       Expandable: false,
       ExpandableIconset: (
         <i

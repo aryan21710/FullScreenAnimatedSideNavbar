@@ -68,13 +68,13 @@ a {
   position: absolute;
   top: 4.5vh;
   left: -100vw;
-  height: 95.4vh;
+  height: 100vh;
   z-index: 2;
 }
 
 .sideNavBarLinks {
   width: 20vw;
-  height: 95vh;
+  height: 100vh;
   border-right: 1px solid rgba(255, 255, 255, 0.5);
 }
 
@@ -85,7 +85,7 @@ a {
 
   to {
     left: 0vw;
-    z-index: 1000;
+    z-index: 2;
   }
 }
 
