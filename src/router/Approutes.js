@@ -1,21 +1,21 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { Home } from "../components/Home";
-import { About } from "../components/About";
-import { Product } from "../components/Product";
-import { Portfolio } from "../components/Portfolio";
-import { Catelogue } from "../components/Catelogue";
-import { Contactus } from "../components/Contactus";
+import { Home } from "../examples/components/Home";
+import { About } from "../examples/components/About";
+import { Product } from "../examples/components/Product";
+import { Portfolio } from "../examples/components/Portfolio";
+import { Catelogue } from "../examples/components/Catelogue";
+import { Contactus } from "../examples/components/Contactus";
 
-import { Catelogue1 } from "../components/Catelogue1";
-import { Catelogue2 } from "../components/Catelogue2";
+import { Catelogue1 } from "../examples/components/Catelogue1";
+import { Catelogue2 } from "../examples/components/Catelogue2";
 
-import { Product1 } from "../components/Product1";
-import { Product2 } from "../components/Product2";
-import { Product3 } from "../components/Product3";
-import { Product4 } from "../components/Product4";
+import { Product1 } from "../examples/components/Product1";
+import { Product2 } from "../examples/components/Product2";
+import { Product3 } from "../examples/components/Product3";
+import { Product4 } from "../examples/components/Product4";
 
-import { Portfolio1 } from "../components/Portfolio1";
+import { Portfolio1 } from "../examples/components/Portfolio1";
 
 import App from "../App";
 

@@ -1,5 +1,5 @@
 import React from "react";
-import CreateSideBarNavLink from "./components/CreateSideBarNavLink";
+import CreateSideBarNavLink from "./examples/components/CreateSideBarNavLink.js";
 
 const App = () => {
   const myData = {
