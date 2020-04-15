@@ -359,7 +359,7 @@ const styles = {
   parentLinkWrapper: {
     position: 'relative',
     width: window.innerWidth > 768 ? "20vw" : "100vw",
-    height: window.innerWidth > 768 ? "5vh" : "7vh",
+    height: window.innerWidth > 768 ? "5vh" : "9vh",
   },
   parentLinkIconWrapper: {
     position: 'absolute',
