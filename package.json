@@ -48,7 +48,7 @@
   },
   "scripts": {
     "build": "webpack --watch",
-    "clean": "rm -rf ./public/build/*.js",
+    "clean": "rm -rf ./public/build/*.js*",
     "devserver": "webpack-dev-server --config ./webpack.config.js --mode development"
   },
   "eslintConfig": {

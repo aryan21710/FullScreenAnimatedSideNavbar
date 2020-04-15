@@ -306,7 +306,7 @@ class CreateSideBarNavLink extends Component {
 
 const styles = {
   toggleBarWrapper: {
-    width: "3.2vw",
+    width: window.innerWidth > 768 ? "3.2vw" : "10vw",
     height: "4.6vh",
     lineHeight: "4.6vh",
     cursor: "pointer",
@@ -321,16 +321,16 @@ const styles = {
     zIndex: "2",
   },
   borderSeparator: {
-    width: "20vw",
+    width: window.innerWidth > 768 ? "20vw" : "100vw",
     height: "95.4vh",
     borderRight: "1px solid rgba(255,255,255,0.3)",
   },
   sideNavBarLinks: {
-    width: "20vw",
+    width: window.innerWidth > 768 ? "20vw" : "100vw",
     height: "95vh",
   },
   slideOutSideBar: {
-    width: "20vw",
+    width: window.innerWidth > 768 ? "20vw" : "100vw",
     display: " flex",
     flexDirection: " row",
     position: " absolute",
@@ -355,14 +355,14 @@ const styles = {
 
   parentLinkWrapper: {
     position: 'relative',
-    width: "20vw",
+    width: window.innerWidth > 768 ? "20vw" : "100vw",
     height: "5vh",
     margin: "0.5vh 0vw",
   },
   parentLinkIconWrapper: {
     position: 'absolute',
-    left: '1vw',
-    width: '3vw',
+    left: window.innerWidth > 768 ? '1vw' : "3vw",
+    width: window.innerWidth > 768 ? "3vw" : "10vw",
     justifyContent: "flex-end",
   },
   parentLinkIcon: {
@@ -379,8 +379,8 @@ const styles = {
     justifyContent: "center",
     alignItems: "center",
     position: 'absolute',
-    left: '18vw',
-    width: '1vw',
+    left: window.innerWidth > 768 ? '18vw' : '60vw',
+    width: window.innerWidth > 768 ? "1vw" : "3vw",
     color: "rgba(255,255,255,0.6)",
 
   },
@@ -392,17 +392,17 @@ const styles = {
     justifyContent: "center",
     alignItems: "center",
     position: 'absolute',
-    left: '18vw',
-    width: '1vw',
+    left: window.innerWidth > 768 ? '18vw' : '60vw',
+    width: window.innerWidth > 768 ? "1vw" : "3vw",
     color: "rgba(255,255,255,0.6)",
 
   },
   parentLinkText: {
     position: 'absolute',
-    left: '4.5vw',
-    width: '12vw',
+    left: window.innerWidth > 768 ? '4.5vw' : '13vw',
+    width: window.innerWidth > 768 ? "12vw" : "40vw",
     justifyContent: "flex-start",
-    fontSize: "1.1vw",
+    fontSize: window.innerWidth > 768 ? "1.1vw" : "3.5vw",
     color: "rgba(255,255,255,0.6)",
     marginLeft: "10px",
   },
@@ -417,7 +417,7 @@ const styles = {
     cursor: "pointer",
   },
   error: {
-    fontSize: "1.5vw",
+    fontSize: window.innerWidth > 768 ? "1.1vw" : "4.5vw",
     color: "red",
     fontWeight: "900",
   },
@@ -427,7 +427,7 @@ const styles = {
     flexDirection: "column",
     justifyContent: "center",
     boxShadow: "black -1px 2px 0px 0px",
-    width: "20vw",
+    width: window.innerWidth > 768 ? "20vw" : "100vw",
     transition: "height 200ms ease-in",
     color: "rgba(255,255,255,0.6)",
     height: "0vh",
@@ -438,7 +438,7 @@ const styles = {
     flexDirection: "column",
     justifyContent: "center",
     boxShadow: "black -1px 2px 0px 0px",
-    width: "20vw",
+    width: window.innerWidth > 768 ? "20vw" : "100vw",
     transition: "height 200ms ease-in",
     color: "rgba(255,255,255,0.6)",
     height: "0vh",
@@ -451,7 +451,7 @@ const styles = {
     justifyContent: "center",
     alignItems: "flex-start",
     color: "rgba(255,255,255,0.6)",
-    fontSize: "1vw",
+    fontSize: window.innerWidth > 768 ? "1vw" : "3vw"
   },
   iconChildren: {
     flexDirection: "column",
@@ -460,7 +460,7 @@ const styles = {
   },
   childText: {
     margin: " 1vh 0vw 1vh 1vw",
-    fontSize: "1vw",
+    fontSize: window.innerWidth > 768 ? "1vw" : "3vw",
     cursor: "pointer",
   },
   childIcon: {
@@ -470,7 +470,7 @@ const styles = {
     color: "rgba(255,255,255,0.6)",
     padding: "0.15vh 0.15vw",
     boxShadow: "black 0px 0px 4px 0px",
-    fontSize: "1vw",
+    fontSize: window.innerWidth > 768 ? "1vw" : "3vw",
   },
 };
 
