@@ -8,7 +8,7 @@ module.exports = () => {
     //
     entry: ["babel-polyfill", path.join(__dirname, "src/index.js")],
     devServer: {
-      contentBase: path.join(__dirname, "public", "dist"),
+      contentBase: path.join(__dirname),
       hot: true,
       inline: true,
       historyApiFallback: true,
