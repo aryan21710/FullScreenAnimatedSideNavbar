@@ -142,21 +142,7 @@ const App = () => {
 
       Route: "/contactus",
       children: null,
-    },
-    link6: {
-      IconSet: <i className="fa fa-fw fa-list" style={{ fontSize: window.innerWidth > 768 ? "1vw" : "4vw" }} />,
-      Text: "Index",
-      Expandable: false,
-      ExpandableIconset: (
-        <i
-          className="fas fa-angle-right angleIcon"
-          style={{ fontSize: window.innerWidth > 768 ? "1vw" : "4vw", color: "rgba(255,255,255,0.6)" }}
-        />
-      ),
-
-      Route: "/contactus",
-      children: null,
-    },
+    }
   };
 
   return (
