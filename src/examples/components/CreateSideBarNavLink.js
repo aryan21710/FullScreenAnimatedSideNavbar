@@ -109,7 +109,7 @@ class CreateSideBarNavLink extends Component {
                 {_.IconSet}
               </div>
             </div>
-            <div style={{ ...styles.flexStyling, ...styles.textChildren }}>
+            <div style={{ ...styles.flexStyling, ...styles.childTextWrapper }}>
               <div
                 className={this.updateStyleForChidrenIconAndText(Text)}
                 style={styles.childText}
@@ -218,7 +218,7 @@ class CreateSideBarNavLink extends Component {
               >
                 <div style={styles.parentLinkIcon}>{IconSet}</div>
               </div>
-              <div style={{ ...styles.flexStyling, ...styles.parentLinkText }}>
+              <div style={{ ...styles.parentLinkText }}>
                 <NavLink activeStyle={styles.navlinks} to={Route}
                 onClick={() => {
                   navBarWidth==='100vw' && this.setState({
@@ -356,20 +356,20 @@ const styles = {
   parentLinkWrapper: {
     position: 'relative',
     width: window.innerWidth > 768 ? "20vw" : "100vw",
-    height: "5vh",
-    margin: "0.5vh 0vw",
+    height: window.innerWidth > 768 ? "5vh" : "7vh",
+    margin: "1.25vh 0vw",
   },
   parentLinkIconWrapper: {
     position: 'absolute',
     left: window.innerWidth > 768 ? '1vw' : "3vw",
-    width: window.innerWidth > 768 ? "3vw" : "10vw",
+    width: window.innerWidth > 768 ? "3vw" : "15vw",
     justifyContent: "flex-end",
   },
   parentLinkIcon: {
     borderRadius: "5px",
     background: "black",
     color: "rgba(255,255,255,0.6)",
-    padding: "0.5vh 0.5vw",
+    padding: window.innerWidth > 768 ? "0.5vh 0.5vw" : "2vh 2vw",
     boxShadow: " black 0px 0px 4px 0px",
   },
   expandIcon: {
@@ -399,10 +399,9 @@ const styles = {
   },
   parentLinkText: {
     position: 'absolute',
-    left: window.innerWidth > 768 ? '4.5vw' : '13vw',
+    left: window.innerWidth > 768 ? '4.5vw' : '22vw',
     width: window.innerWidth > 768 ? "12vw" : "40vw",
-    justifyContent: "flex-start",
-    fontSize: window.innerWidth > 768 ? "1.1vw" : "3.5vw",
+    fontSize: window.innerWidth > 768 ? "1.1vw" : "5vw",
     color: "rgba(255,255,255,0.6)",
     marginLeft: "10px",
   },
@@ -446,12 +445,12 @@ const styles = {
     overflow: "hidden",
   },
 
-  textChildren: {
+  childTextWrapper: {
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "flex-start",
     color: "rgba(255,255,255,0.6)",
-    fontSize: window.innerWidth > 768 ? "1vw" : "3vw"
+    fontSize: window.innerWidth > 768 ? "1vw" : "4vw"
   },
   iconChildren: {
     flexDirection: "column",
@@ -459,18 +458,18 @@ const styles = {
     alignItems: "flex-end",
   },
   childText: {
-    margin: " 1vh 0vw 1vh 1vw",
-    fontSize: window.innerWidth > 768 ? "1vw" : "3vw",
+    margin: " 1vh 0vw 1vh 5vw",
+    fontSize: window.innerWidth > 768 ? "1vw" : "4vw",
     cursor: "pointer",
   },
   childIcon: {
-    margin: " 0.75vh 0vw",
+    margin: " 0.5vh 0vw",
     borderRadius: "5px",
     background: "black",
     color: "rgba(255,255,255,0.6)",
-    padding: "0.15vh 0.15vw",
+    padding: "0.35vh 0.35vw",
     boxShadow: "black 0px 0px 4px 0px",
-    fontSize: window.innerWidth > 768 ? "1vw" : "3vw",
+    fontSize: window.innerWidth > 768 ? "1vw" : "5vw",
   },
 };
 

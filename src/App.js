@@ -6,7 +6,7 @@ const App = () => {
     navBarSettings: {
       navBarWidth: "100vw",
       theme: {
-        primaryColor: "rgb(0, 51, 153,0.5)",
+        primaryColor: "rgb(0, 51, 153,1)",
         secondaryColor: "rgb(0, 85, 255)",
         toggleButtonColor: "rgb(0, 85, 255)",
       },
@@ -17,20 +17,20 @@ const App = () => {
     },
 
     link1: {
-      IconSet: <i className="fa fa-fw fa-list" style={{ fontSize: window.innerWidth > 768 ? "1vw" : "3vw" }} />,
+      IconSet: <i className="fa fa-fw fa-list" style={{ fontSize: window.innerWidth > 768 ? "1vw" : "4vw" }} />,
       Text: "Products",
       Expandable: true,
       ExpandableIconset: (
         <i
           className="fas fa-angle-right angleIcon"
-          style={{ fontSize: window.innerWidth > 768 ? "1vw" : "3vw" }}
+          style={{ fontSize: window.innerWidth > 768 ? "1vw" : "4vw" }}
         />
       ),
 
       Route: "/products",
       children: [
         {
-          IconSet: <i className="fas fa-gavel" style={{ fontSize: window.innerWidth > 768 ? "1vw" : "3vw" }}></i>,
+          IconSet: <i className="fas fa-gavel" style={{ fontSize: window.innerWidth > 768 ? "1vw" : "4vw" }}></i>,
           Text: "Product1",
           Expandable: false,
           children: null,
@@ -38,21 +38,21 @@ const App = () => {
         },
 
         {
-          IconSet: <i className="fas fa-gavel" style={{ fontSize: window.innerWidth > 768 ? "1vw" : "3vw" }}></i>,
+          IconSet: <i className="fas fa-gavel" style={{ fontSize: window.innerWidth > 768 ? "1vw" : "4vw" }}></i>,
           Text: "Product2",
           Expandable: false,
           children: null,
           Route: "/products/product2",
         },
         {
-          IconSet: <i className="fas fa-gavel" style={{ fontSize: window.innerWidth > 768 ? "1vw" : "3vw" }}></i>,
+          IconSet: <i className="fas fa-gavel" style={{ fontSize: window.innerWidth > 768 ? "1vw" : "4vw" }}></i>,
           Text: "Product3",
           Expandable: false,
           children: null,
           Route: "/products/product3",
         },
         {
-          IconSet: <i className="fas fa-gavel" style={{ fontSize: window.innerWidth > 768 ? "1vw" : "3vw" }}></i>,
+          IconSet: <i className="fas fa-gavel" style={{ fontSize: window.innerWidth > 768 ? "1vw" : "4vw" }}></i>,
           Text: "Product4",
           Expandable: false,
           children: null,
@@ -62,20 +62,20 @@ const App = () => {
     },
 
     link2: {
-      IconSet: <i className="fa fa-fw fa-edit" style={{ fontSize: window.innerWidth > 768 ? "1vw" : "3vw" }} />,
+      IconSet: <i className="fa fa-fw fa-edit" style={{ fontSize: window.innerWidth > 768 ? "1vw" : "4vw" }} />,
       Text: "Portfolio",
       Expandable: true,
       ExpandableIconset: (
         <i
           className="fas fa-angle-right angleIcon"
-          style={{ fontSize: window.innerWidth > 768 ? "1vw" : "3vw" }}
+          style={{ fontSize: window.innerWidth > 768 ? "1vw" : "4vw" }}
         />
       ),
 
       Route: "/portfolio",
       children: [
         {
-          IconSet: <i className="fas fa-gavel" style={{ fontSize: window.innerWidth > 768 ? "1vw" : "3vw" }}></i>,
+          IconSet: <i className="fas fa-gavel" style={{ fontSize: window.innerWidth > 768 ? "1vw" : "4vw" }}></i>,
           Text: "Portfolio1",
           Expandable: false,
           children: null,
@@ -85,13 +85,13 @@ const App = () => {
     },
 
     link3: {
-      IconSet: <i className="fa fa-fw fa-bell" style={{ fontSize: window.innerWidth > 768 ? "1vw" : "3vw" }} />,
+      IconSet: <i className="fa fa-fw fa-bell" style={{ fontSize: window.innerWidth > 768 ? "1vw" : "4vw" }} />,
       Text: "About",
       Expandable: false,
       ExpandableIconset: (
         <i
           className="fas fa-angle-right angleIcon"
-          style={{ fontSize: window.innerWidth > 768 ? "1vw" : "3vw" }}
+          style={{ fontSize: window.innerWidth > 768 ? "1vw" : "4vw" }}
         />
       ),
 
@@ -100,20 +100,20 @@ const App = () => {
     },
 
     link4: {
-      IconSet: <i className="fa fa-fw fa-file" style={{ fontSize: window.innerWidth > 768 ? "1vw" : "3vw" }} />,
+      IconSet: <i className="fa fa-fw fa-file" style={{ fontSize: window.innerWidth > 768 ? "1vw" : "4vw" }} />,
       Text: "Catelogues",
       Expandable: true,
       ExpandableIconset: (
         <i
           className="fas fa-angle-right angleIcon"
-          style={{ fontSize: window.innerWidth > 768 ? "1vw" : "3vw" }}
+          style={{ fontSize: window.innerWidth > 768 ? "1vw" : "4vw" }}
         />
       ),
 
       Route: "/catelogue",
       children: [
         {
-          IconSet: <i className="fas fa-gavel" style={{ fontSize: window.innerWidth > 768 ? "1vw" : "3vw" }}></i>,
+          IconSet: <i className="fas fa-gavel" style={{ fontSize: window.innerWidth > 768 ? "1vw" : "4vw" }}></i>,
           Text: "Catelogues1",
           Expandable: false,
           children: null,
@@ -121,7 +121,7 @@ const App = () => {
         },
 
         {
-          IconSet: <i className="fas fa-gavel" style={{ fontSize: window.innerWidth > 768 ? "1vw" : "3vw" }}></i>,
+          IconSet: <i className="fas fa-gavel" style={{ fontSize: window.innerWidth > 768 ? "1vw" : "4vw" }}></i>,
           Text: "Catelogues2",
           Expandable: false,
           children: null,
@@ -130,13 +130,13 @@ const App = () => {
       ],
     },
     link5: {
-      IconSet: <i className="fa fa-fw fa-list" style={{ fontSize: window.innerWidth > 768 ? "1vw" : "3vw" }} />,
+      IconSet: <i className="fa fa-fw fa-list" style={{ fontSize: window.innerWidth > 768 ? "1vw" : "4vw" }} />,
       Text: "Contact Us",
       Expandable: false,
       ExpandableIconset: (
         <i
           className="fas fa-angle-right angleIcon"
-          style={{ fontSize: window.innerWidth > 768 ? "1vw" : "3vw", color: "rgba(255,255,255,0.6)" }}
+          style={{ fontSize: window.innerWidth > 768 ? "1vw" : "4vw", color: "rgba(255,255,255,0.6)" }}
         />
       ),
 

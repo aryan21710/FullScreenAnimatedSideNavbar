@@ -41,23 +41,23 @@ const styles = {
     marginBottom: "3vh",
   },
   profilePicWrapper: {
-    width: window.innerWidth > 768 ? "5vw" : "15vw",
-    height: "5vh",
+    width: window.innerWidth > 768 ? "5vw" : "20vw",
+    height: window.innerWidth > 768 ? "5vh" : "10vh",
     position: "absolute",
-    left: window.innerWidth > 768 ? "1vw" : "5.5vw",
-    top: "40%",
+    left: window.innerWidth > 768 ? "1vw" : "8vw",
+    top: window.innerWidth > 768 ? "40%" : "30%"
   },
   profileInfoWrapper: {
     justifyContent: "flex-start",
     position: "absolute",
-    width: window.innerWidth > 768 ? "12vw" : "36vw",
-    height: "5vh",
-    left: window.innerWidth > 768 ? "6.5vw" : "25vw",
-    top: "40%",
+    width: window.innerWidth > 768 ? "12vw" : "60vw",
+    height: window.innerWidth > 768 ? "5vh" : "10vh",
+    left: window.innerWidth > 768 ? "6.5vw" : "35vw",
+    top: window.innerWidth > 768 ? "40%" : "30%"
   },
   profilePic: {
     background: "white",
-    padding: "0.25vh 0.25vw",
+    padding: window.innerWidth > 768 ? "0.25vh 0.25vw": "0.5vh 0.5vw",
     borderRadius: "10px",
   },
   profileInfo: {
@@ -66,16 +66,16 @@ const styles = {
     justifyContent: "flex-start",
   },
   uname: {
-    fontSize: window.innerWidth > 768 ? "1.1vw" : "3.5vw",
+    fontSize: window.innerWidth > 768 ? "1.1vw" : "5vw",
     color: "white",
     margin: "0.7vh 0vw",
   },
   role: {
-    fontSize: window.innerWidth > 768 ? "1vw" : "3vw",
+    fontSize: window.innerWidth > 768 ? "1vw" : "4.5vw",
     color: "white",
     margin: "0.7vh 0vw",
   },
   profilePicIcon: {
-    fontSize: window.innerWidth > 768 ? "4vw" : "12vw"
+    fontSize: window.innerWidth > 768 ? "4vw" : "20vw"
   },
 };
