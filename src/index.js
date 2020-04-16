@@ -7,4 +7,4 @@ import CreateSideBarNavLink from '../src/examples/components/CreateSideBarNavLin
 
 ReactDOM.render(<Approutes />, document.getElementById("root"));
 
-module.exports=CreateSideBarNavLink
+module.exports={CreateSideBarNavLink}

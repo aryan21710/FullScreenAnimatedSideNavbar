@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { NavLink, Route } from "react-router-dom";
 import "../../../node_modules/@fortawesome/fontawesome-free/css/all.css";
 import UserInfoGrid from "./UserInfoGrid";
+import "../../styles/index.css";
+
 
 class CreateSideBarNavLink extends Component {
   state = {

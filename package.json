@@ -1,17 +1,19 @@
 {
   "name": "react-animated-fullscreen-sidenavbar",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Animated Side Navigation Bar with Variable Width",
   "private": false,
   "homepage": "https://github.com/aryan21710/reactFullScreenAnimatedSideNavbar-github.io",
-  "main": "webpack.config.js",
+  "main": "lib/index.js",
   "license": "MIT",
   "author": {
     "name": "aryan sharma",
     "email": "arysharma1209@gmail.com"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.13.0",
+    "@fortawesome/fontawesome-free": "^5.13.0"
+  },
+  "dev-dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
@@ -47,23 +49,25 @@
     "url": "https://github.com/aryan21710/reactFullScreenAnimatedSideNavbar-github.io/issues"
   },
   "scripts": {
-    "build": "webpack --watch",
-    "clean": "rm -rf ./public/build/*.js*",
-    "devserver": "webpack-dev-server --config ./webpack.config.js --mode development"
+    "build": "cd ./src/examples; webpack --watch",
+    "prepublish": "npm run clean &&  npm run build && npm run buildExample",
+    "buildExample" : "cd ./src/examples/; webpack",
+    "clean": "rm -rf ./public/build/*.js*;",
+    "devserver": "cd ./src/examples; webpack-dev-server --config webpack.config.js --mode development"
   },
+  "keywords": [
+    "sidenavbar",
+    "react",
+    "react-sidenavbar",
+    "animated-sidenavbar",
+    "react-animated-fullscreen-sidenavbar"
+  ],
+
   "eslintConfig": {
     "extends": "react-app"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "peerDependencies": {
+    "react": ">=15.0.0"
   }
+
 }

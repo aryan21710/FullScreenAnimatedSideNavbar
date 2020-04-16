@@ -6,22 +6,12 @@ module.exports = () => {
     mode: "development",
     // babel-polyfill allows us to use all the latest es7 javascript features like Array.includes , Array.from and so on
     //
-    entry: ["babel-polyfill", path.join(__dirname, "src/index.js")],
-    devServer: {
-      contentBase: path.join(__dirname),
-      hot: true,
-      inline: true,
-      historyApiFallback: true,
-      watchContentBase: true,
-      port: 3001,
-      watchOptions: {
-        ignored: [path.resolve(__dirname, "/node_modules/")],
-      },
-    },
+    entry: ["babel-polyfill", path.join(__dirname, "lib/index.js")],
+
     output: {
-      path: path.join(__dirname, "public", "build"),
-      publicPath: "/build",
-      filename: "bundle.js",
+      path: path.join(__dirname, 'lib'),
+      filename: 'index.js',
+      libraryTarget: 'commonjs2'
     },
     module: {
       rules: [
@@ -33,10 +23,6 @@ module.exports = () => {
         {
           test: /\.s?css$/,
           use: ["style-loader", "css-loader", "sass-loader"],
-        },
-        {
-          test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|svg|jpg)$/,
-          loader: "url-loader",
         },
       ],
     },
