@@ -4,9 +4,8 @@ const webpack = require("webpack");
 module.exports = () => {
   return {
     mode: "development",
-    // babel-polyfill allows us to use all the latest es7 javascript features like Array.includes , Array.from and so on
-    //
-    entry: ["babel-polyfill", path.join(__dirname, "index.js")],
+    
+    entry: ["babel-polyfill",path.join(__dirname, "index.js")],
 
     output: {
       path: path.join(__dirname, 'lib'),
@@ -23,6 +22,10 @@ module.exports = () => {
         {
           test: /\.s?css$/,
           use: ["style-loader", "css-loader", "sass-loader"],
+        },
+        {
+          test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|svg|jpg)$/,
+          loader: "url-loader",
         },
       ],
     },
