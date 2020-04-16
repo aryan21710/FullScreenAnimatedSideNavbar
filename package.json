@@ -1,6 +1,6 @@
 {
   "name": "react-animated-fullscreen-sidenavbar",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Animated Side Navigation Bar with Variable Width",
   "private": false,
   "homepage": "https://github.com/aryan21710/reactFullScreenAnimatedSideNavbar-github.io",
@@ -50,7 +50,6 @@
   },
   "scripts": {
     "build": "cd ./src/examples; webpack --watch",
-    "prepublish": "npm run clean &&  npm run build && npm run buildExample",
     "buildExample" : "cd ./src/examples/; webpack",
     "clean": "rm -rf ./public/build/*.js*;",
     "devserver": "cd ./src/examples; webpack-dev-server --config webpack.config.js --mode development"

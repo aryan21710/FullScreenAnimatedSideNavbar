@@ -6,7 +6,7 @@ module.exports = () => {
     mode: "development",
     // babel-polyfill allows us to use all the latest es7 javascript features like Array.includes , Array.from and so on
     //
-    entry: ["babel-polyfill", path.join(__dirname, "lib/index.js")],
+    entry: ["babel-polyfill", path.join(__dirname, "index.js")],
 
     output: {
       path: path.join(__dirname, 'lib'),
