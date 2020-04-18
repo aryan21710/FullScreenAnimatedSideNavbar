@@ -1,12 +1,12 @@
 import React from "react";
-import CreateSideBarNavLink from "./examples/components/CreateSideBarNavLink.js";
+import CreateSideBarNavLink from "./examples/components/CreateSideBarNavLink";
 
 const App = () => {
   const myData = {
     navBarSettings: {
       navBarWidth: "100vw",
       theme: {
-        primaryColor: "rgb(0, 51, 153,1)",
+        primaryColor: "rgb(0, 51, 153,0.4)",
         secondaryColor: "rgb(0, 85, 255)",
         toggleButtonColor: "rgb(0, 51, 153,1)",
       },
