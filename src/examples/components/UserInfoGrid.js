@@ -33,6 +33,7 @@ const styles = {
     height: "22vh",
     boxSizing: "border-box",
     position: "relative",
+    background: 'rgb(0, 51, 153,1)'
   },
   borderSeparator: {
     width: window.innerWidth > 768 ? "20vw" : "100vw",
