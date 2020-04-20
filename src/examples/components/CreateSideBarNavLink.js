@@ -95,7 +95,7 @@ class CreateSideBarNavLink extends Component {
   };
 
   createChildLinks = (children, Text) => {
-    const {navBarWidth}=this.props.myData.navBarSettings
+    const { navBarWidth } = this.props.myData.navBarSettings;
     if (Text === this.state.whichLinkToToggle) {
       const returnData = [];
       children.forEach((_, idx) => {
@@ -114,12 +114,15 @@ class CreateSideBarNavLink extends Component {
                 className={this.updateStyleForChidrenIconAndText(Text)}
                 style={styles.childText}
               >
-                <NavLink activeStyle={styles.navlinks} to={_.Route}
-                onClick={() => {
-                  navBarWidth==='100vw' && this.setState({
-                    toggleBtnStatus: !this.state.toggleBtnStatus,
-                  });
-                }}
+                <NavLink
+                  activeStyle={styles.navlinks}
+                  to={_.Route}
+                  onClick={() => {
+                    navBarWidth === "100vw" &&
+                      this.setState({
+                        toggleBtnStatus: !this.state.toggleBtnStatus,
+                      });
+                  }}
                 >
                   {" "}
                   {_.Text}
@@ -193,8 +196,7 @@ class CreateSideBarNavLink extends Component {
   navBarLinksGrid = (props) => {
     const { myData } = this.props;
     const returnData = [];
-    const {navBarWidth}=this.props.myData.navBarSettings
-
+    const { navBarWidth } = this.props.myData.navBarSettings;
 
     for (let i in myData) {
       if (i !== "userInfo" && i !== "navBarSettings") {
@@ -209,7 +211,10 @@ class CreateSideBarNavLink extends Component {
 
         returnData.push(
           <React.Fragment>
-            <div style={{...styles.flexStyling,...styles.parentLinkWrapper}} className="parentLinkWrapper">
+            <div
+              style={{ ...styles.flexStyling, ...styles.parentLinkWrapper }}
+              className="parentLinkWrapper"
+            >
               <div
                 style={{
                   ...styles.flexStyling,
@@ -219,12 +224,15 @@ class CreateSideBarNavLink extends Component {
                 <div style={styles.parentLinkIcon}>{IconSet}</div>
               </div>
               <div style={{ ...styles.parentLinkText }}>
-                <NavLink activeStyle={styles.navlinks} to={Route}
-                onClick={() => {
-                  navBarWidth==='100vw' && this.setState({
-                    toggleBtnStatus: !this.state.toggleBtnStatus,
-                  });
-                }}
+                <NavLink
+                  activeStyle={styles.navlinks}
+                  to={Route}
+                  onClick={() => {
+                    navBarWidth === "100vw" &&
+                      this.setState({
+                        toggleBtnStatus: !this.state.toggleBtnStatus,
+                      });
+                  }}
                 >
                   {Text}
                 </NavLink>
@@ -257,6 +265,13 @@ class CreateSideBarNavLink extends Component {
     }
     return returnData.map((_) => _);
   };
+  toggleNavigation = () => {
+    const { toggleBtnStatus } = this.state;
+    this.setState({
+      toggleBtnStatus: !toggleBtnStatus,
+    });
+    this.updateTextArray();
+  };
 
   render() {
     const { toggleBtnStatus } = this.state;
@@ -268,11 +283,7 @@ class CreateSideBarNavLink extends Component {
           <React.Fragment>
             <div
               style={this.state.userStyleToggleBtn}
-              onClick={() => {
-                this.setState({
-                  toggleBtnStatus: !toggleBtnStatus,
-                });
-              }}
+              onClick={this.toggleNavigation}
             >
               <span className={toggleBtnStatus ? "hideme " : "bar1"}></span>
               <span
@@ -310,11 +321,11 @@ const styles = {
     height: "4.6vh",
     lineHeight: "4.6vh",
     cursor: "pointer",
-    top:'0vh',
-    left: '0vw',
+    top: "0vh",
+    left: "0vw",
     position: "absolute",
     background: "rgba(255, 102, 0, 0.877)",
-    zIndex: '1000'
+    zIndex: "1000",
   },
   sideBarWrapper: {
     position: "absolute",
@@ -357,13 +368,13 @@ const styles = {
   },
 
   parentLinkWrapper: {
-    position: 'relative',
+    position: "relative",
     width: window.innerWidth > 768 ? "20vw" : "100vw",
     height: window.innerWidth > 768 ? "5vh" : "9vh",
   },
   parentLinkIconWrapper: {
-    position: 'absolute',
-    left: window.innerWidth > 768 ? '1vw' : "3vw",
+    position: "absolute",
+    left: window.innerWidth > 768 ? "1vw" : "3vw",
     width: window.innerWidth > 768 ? "3vw" : "15vw",
     justifyContent: "flex-end",
   },
@@ -380,11 +391,10 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    position: 'absolute',
-    left: window.innerWidth > 768 ? '18vw' : '60vw',
+    position: "absolute",
+    left: window.innerWidth > 768 ? "18vw" : "60vw",
     width: window.innerWidth > 768 ? "1vw" : "3vw",
     color: "rgba(255,255,255,0.6)",
-
   },
 
   collapseIcon: {
@@ -393,15 +403,14 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    position: 'absolute',
-    left: window.innerWidth > 768 ? '18vw' : '60vw',
+    position: "absolute",
+    left: window.innerWidth > 768 ? "18vw" : "60vw",
     width: window.innerWidth > 768 ? "1vw" : "3vw",
     color: "rgba(255,255,255,0.6)",
-
   },
   parentLinkText: {
-    position: 'absolute',
-    left: window.innerWidth > 768 ? '4.5vw' : '22vw',
+    position: "absolute",
+    left: window.innerWidth > 768 ? "4.5vw" : "22vw",
     width: window.innerWidth > 768 ? "12vw" : "40vw",
     fontSize: window.innerWidth > 768 ? "1.1vw" : "5vw",
     color: "rgba(255,255,255,0.6)",
@@ -452,7 +461,7 @@ const styles = {
     justifyContent: "center",
     alignItems: "flex-start",
     color: "rgba(255,255,255,0.6)",
-    fontSize: window.innerWidth > 768 ? "1vw" : "4vw"
+    fontSize: window.innerWidth > 768 ? "1vw" : "4vw",
   },
   iconChildren: {
     flexDirection: "column",
