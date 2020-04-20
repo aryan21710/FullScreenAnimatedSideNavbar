@@ -22,8 +22,6 @@ class CreateSideBarNavLink extends Component {
     const { toggleBtnStatus } = this.state;
     if (prevState.toggleBtnStatus !== toggleBtnStatus) {
       this.toggleClassForSideBar();
-      this.updateTextArray();
-
     }
   }
 
@@ -40,40 +38,44 @@ class CreateSideBarNavLink extends Component {
 
   onExpand = (linkText, children) => {
     const { theme } = this.props.myData.navBarSettings;
-    const { linksAndStatus } = this.state;
+    const { linksAndStatus,toggleBtnStatus } = this.state;
     this.setState({
       whichLinkToToggle: linkText,
     });
 
     const myobj = {};
     const childrenLinkWrapperHeight = 4 * children.length + "vh";
-    for (let i in linksAndStatus) {
-      const _ = {};
-      _["toggle"] = !linksAndStatus[i]["toggle"];
-      if (i === linkText) {
-        _["rotateIcon"] = _["toggle"] ? styles.expandIcon : styles.collapseIcon;
-        _["childLinkWrapper"] = _["toggle"]
-          ? {
-              ...styles.expandChildren,
-              background: theme.secondaryColor,
-              height: childrenLinkWrapperHeight,
-            }
-          : { ...styles.collapseChildren, background: theme.secondaryColor };
-
-        myobj[i] = _;
-      } else {
-        _["toggle"] = linksAndStatus[i]["toggle"] === true ? false : false;
-        _["rotateIcon"] = _["toggle"] ? styles.expandIcon : styles.collapseIcon;
-        _["childLinkWrapper"] = _["toggle"]
-          ? styles.expandChildren
-          : styles.collapseChildren;
-        myobj[i] = _;
+    if (toggleBtnStatus) {
+      for (let i in linksAndStatus) {
+        const _ = {};
+        _["toggle"] = !linksAndStatus[i]["toggle"];
+        if (i === linkText) {
+          _["rotateIcon"] = _["toggle"] ? styles.expandIcon : styles.collapseIcon;
+          _["childLinkWrapper"] = _["toggle"]
+            ? {
+                ...styles.expandChildren,
+                background: theme.secondaryColor,
+                height: childrenLinkWrapperHeight,
+              }
+            : { ...styles.collapseChildren, background: theme.secondaryColor };
+  
+          myobj[i] = _;
+        } else {
+          _["toggle"] = linksAndStatus[i]["toggle"] === true ? false : false;
+          _["rotateIcon"] = _["toggle"] ? styles.expandIcon : styles.collapseIcon;
+          _["childLinkWrapper"] = _["toggle"]
+            ? styles.expandChildren
+            : styles.collapseChildren;
+          myobj[i] = _;
+        }
       }
+      this.setState({
+        linksAndStatus: myobj,
+      });
     }
 
-    this.setState({
-      linksAndStatus: myobj,
-    });
+
+  
    
   };
 
