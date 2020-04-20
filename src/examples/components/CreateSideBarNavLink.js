@@ -309,7 +309,9 @@ class CreateSideBarNavLink extends Component {
                     email={email}
                     lastLogin={lastLogin}
                   />
+                  <div style={styles.navBarWrapper}>
                   {this.navBarLinksGrid()}
+                  </div>
                 </div>
               </div>
             </div>
@@ -370,6 +372,10 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+  },
+  navBarWrapper: {
+    overflow: 'auto',
+    height: '73vh',
   },
 
   parentLinkWrapper: {
