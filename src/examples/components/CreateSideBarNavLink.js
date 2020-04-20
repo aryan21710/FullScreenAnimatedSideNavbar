@@ -22,6 +22,8 @@ class CreateSideBarNavLink extends Component {
     const { toggleBtnStatus } = this.state;
     if (prevState.toggleBtnStatus !== toggleBtnStatus) {
       this.toggleClassForSideBar();
+      this.updateTextArray();
+
     }
   }
 
@@ -47,9 +49,8 @@ class CreateSideBarNavLink extends Component {
     const childrenLinkWrapperHeight = 4 * children.length + "vh";
     for (let i in linksAndStatus) {
       const _ = {};
-
+      _["toggle"] = !linksAndStatus[i]["toggle"];
       if (i === linkText) {
-        _["toggle"] = !linksAndStatus[i]["toggle"];
         _["rotateIcon"] = _["toggle"] ? styles.expandIcon : styles.collapseIcon;
         _["childLinkWrapper"] = _["toggle"]
           ? {
@@ -69,9 +70,11 @@ class CreateSideBarNavLink extends Component {
         myobj[i] = _;
       }
     }
+
     this.setState({
       linksAndStatus: myobj,
     });
+   
   };
 
   updateStyleForToggleIcon = (linkText) => {
@@ -265,12 +268,12 @@ class CreateSideBarNavLink extends Component {
     }
     return returnData.map((_) => _);
   };
+
   toggleNavigation = () => {
     const { toggleBtnStatus } = this.state;
     this.setState({
       toggleBtnStatus: !toggleBtnStatus,
     });
-    this.updateTextArray();
   };
 
   render() {
@@ -436,7 +439,7 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    boxShadow: "black -1px 2px 0px 0px",
+    // boxShadow: "black -1px 2px 0px 0px",
     width: window.innerWidth > 768 ? "20vw" : "100vw",
     transition: "height 200ms ease-in",
     color: "rgba(255,255,255,0.6)",
@@ -447,7 +450,7 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    boxShadow: "black -1px 2px 0px 0px",
+    // boxShadow: "black -1px 2px 0px 0px",
     width: window.innerWidth > 768 ? "20vw" : "100vw",
     transition: "height 200ms ease-in",
     color: "rgba(255,255,255,0.6)",
