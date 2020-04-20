@@ -4,14 +4,13 @@ export const Home = () => {
   return (
     <React.Fragment>
       <div
+        className="flexStyling"
         style={{
-          marginRight: "auto",
-          marginLeft: "auto",
-          width: "25%",
+          width: "100%",
           color: "red",
         }}
       >
-        <h1 style={{ fontSize: "35px" }}>HOME Component</h1>
+        <h1>HOME Component</h1>
       </div>
     </React.Fragment>
   );
