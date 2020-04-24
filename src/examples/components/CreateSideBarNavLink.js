@@ -38,19 +38,21 @@ class CreateSideBarNavLink extends Component {
 
   onExpand = (linkText, children) => {
     const { theme } = this.props.myData.navBarSettings;
-    const { linksAndStatus,toggleBtnStatus } = this.state;
+    const { linksAndStatus, toggleBtnStatus } = this.state;
     this.setState({
       whichLinkToToggle: linkText,
     });
 
     const myobj = {};
-    const childrenLinkWrapperHeight = 4 * children.length + "vh";
+    const childrenLinkWrapperHeight = 4.5 * children.length + "vh";
     if (toggleBtnStatus) {
       for (let i in linksAndStatus) {
         const _ = {};
         _["toggle"] = !linksAndStatus[i]["toggle"];
         if (i === linkText) {
-          _["rotateIcon"] = _["toggle"] ? styles.expandIcon : styles.collapseIcon;
+          _["rotateIcon"] = _["toggle"]
+            ? styles.expandIcon
+            : styles.collapseIcon;
           _["childLinkWrapper"] = _["toggle"]
             ? {
                 ...styles.expandChildren,
@@ -58,11 +60,13 @@ class CreateSideBarNavLink extends Component {
                 height: childrenLinkWrapperHeight,
               }
             : { ...styles.collapseChildren, background: theme.secondaryColor };
-  
+
           myobj[i] = _;
         } else {
           _["toggle"] = linksAndStatus[i]["toggle"] === true ? false : false;
-          _["rotateIcon"] = _["toggle"] ? styles.expandIcon : styles.collapseIcon;
+          _["rotateIcon"] = _["toggle"]
+            ? styles.expandIcon
+            : styles.collapseIcon;
           _["childLinkWrapper"] = _["toggle"]
             ? styles.expandChildren
             : styles.collapseChildren;
@@ -73,10 +77,6 @@ class CreateSideBarNavLink extends Component {
         linksAndStatus: myobj,
       });
     }
-
-
-  
-   
   };
 
   updateStyleForToggleIcon = (linkText) => {
@@ -193,7 +193,6 @@ class CreateSideBarNavLink extends Component {
       userStyleSideNavLink: newStyle,
       userStyleToggleBtn: {
         ...styles.toggleBarWrapper,
-        background: theme.toggleButtonColor,
       },
     });
   };
@@ -280,7 +279,8 @@ class CreateSideBarNavLink extends Component {
 
   render() {
     const { toggleBtnStatus } = this.state;
-    const { name, email, lastLogin } = this.props.myData.userInfo;
+    const { name, email } = this.props.myData.userInfo;
+    const {secondaryColor}=this.props.myData.navBarSettings.theme
 
     return (
       <Route
@@ -307,10 +307,10 @@ class CreateSideBarNavLink extends Component {
                   <UserInfoGrid
                     name={name}
                     email={email}
-                    lastLogin={lastLogin}
+                    secondaryColor={secondaryColor}
                   />
                   <div style={styles.navBarWrapper}>
-                  {this.navBarLinksGrid()}
+                    {this.navBarLinksGrid()}
                   </div>
                 </div>
               </div>
@@ -325,14 +325,17 @@ class CreateSideBarNavLink extends Component {
 const styles = {
   toggleBarWrapper: {
     width: window.innerWidth > 768 ? "3.2vw" : "10vw",
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     height: "4.6vh",
     lineHeight: "4.6vh",
     cursor: "pointer",
     top: "0vh",
     left: "0vw",
     position: "absolute",
-    background: "rgba(255, 102, 0, 0.877)",
     zIndex: "1000",
+    background: "transparent"
   },
   sideBarWrapper: {
     position: "absolute",
@@ -374,14 +377,14 @@ const styles = {
     alignItems: "center",
   },
   navBarWrapper: {
-    overflow: 'auto',
-    height: '73vh',
+    overflow: "auto",
+    height: "73vh",
   },
 
   parentLinkWrapper: {
     position: "relative",
     width: window.innerWidth > 768 ? "20vw" : "100vw",
-    height: window.innerWidth > 768 ? "5vh" : "9vh",
+    height: window.innerWidth > 768 ? "6vh" : "9vh",
   },
   parentLinkIconWrapper: {
     position: "absolute",
@@ -423,7 +426,12 @@ const styles = {
     position: "absolute",
     left: window.innerWidth > 768 ? "4.5vw" : "22vw",
     width: window.innerWidth > 768 ? "12vw" : "40vw",
-    fontSize: window.innerWidth > 768 ? "1.1vw" : "5vw",
+    fontSize:
+      window.innerWidth > 2000
+        ? "0.8vw"
+        : window.innerWidth > 768 && window.innerWidth < 2000
+        ? "0.9vw"
+        : "4.5vw",
     color: "rgba(255,255,255,0.6)",
     marginLeft: "10px",
   },
@@ -481,8 +489,11 @@ const styles = {
   },
   childText: {
     margin: window.innerWidth > 768 ? " 1vh 0vw 1vh 1vw" : " 1vh 0vw 1vh 5vw",
-    fontSize: window.innerWidth > 768 ? "1vw" : "4vw",
-    cursor: "pointer",
+    fontSize: window.innerWidth > 2000
+    ? "0.8vw"
+    : window.innerWidth > 768 && window.innerWidth < 2000
+    ? "0.9vw"
+    : "4vw",    cursor: "pointer",
   },
   childIcon: {
     margin: " 0.5vh 0vw",

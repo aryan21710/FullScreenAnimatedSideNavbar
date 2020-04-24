@@ -1,9 +1,10 @@
 import React from "react";
 
-const UserInfoGrid = ({ name, email }) => {
+const UserInfoGrid = (props) => {
+  const { name, email, secondaryColor }=props
   return (
     <React.Fragment>
-      <div style={styles.UserInfoGrid}>
+      <div style={{...styles.UserInfoGrid,background:secondaryColor}}>
         <div style={{ ...styles.flexStyling, ...styles.profilePicWrapper }}>
           <div style={{ ...styles.flexStyling, ...styles.profilePic }}>
             <i className="fas fa-user-tie" style={styles.profilePicIcon}></i>

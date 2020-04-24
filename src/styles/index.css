@@ -30,8 +30,8 @@ a {
 .bar1,
 .bar2,
 .bar3 {
-  width: 1.5vw;
-  background-color: white;
+  width: 1.2vw;
+  background-color: rgba(0, 51, 153,1);
   height: 2px;
   margin: 2px 0px;
   position: absolute;
@@ -63,6 +63,8 @@ a {
   top: 2.2vh;
   transition: transform 0.1s ease-in-out;
   width: 1.5vw;
+  background-color: white;
+
 }
 
 .rotate-45 {
@@ -70,6 +72,8 @@ a {
   top: 2.2vh;
   width: 1.5vw;
   transition: transform 0.1s ease-in-out;
+  background-color: white;
+
 }
 
 .SideBarWrapper {
@@ -148,6 +152,7 @@ a {
   .bar2 {
     top: 2.1vh;
     width: 4.5vw;
+    color: red
 
   }
 
@@ -180,30 +185,37 @@ a {
 }
 }
 
-@media screen and (min-width: 1750px) and (max-width: 2100px) {
+@media screen and (min-width: 1750px) and (max-width: 2600px) {
   .bar1 {
     top: 1.4vh;
+    width: 1vw;
+
   }
 
   .bar2 {
     top: 2.2vh;
+    width: 1vw;
+
   }
 
   .bar3 {
     top: 2.9vh;
+    width: 1vw;
+
   }
 
   .rotate45 {
     transform: rotate(-45deg);
     top: 2.2vh;
     transition: transform 0.1s ease-in-out;
-    width: 1.5vw;
+    width: 1vw;
   }
 
   .rotate-45 {
     transform: rotate(45deg);
     top: 2.2vh;
-    width: 1.5vw;
+    width: 1vw;
     transition: transform 0.1s ease-in-out;
   }
+
 }

@@ -8,7 +8,6 @@ const App = () => {
       theme: {
         primaryColor: "rgb(0, 51, 153,0.5)",
         secondaryColor: "rgb(0, 51, 153,1)",
-        toggleButtonColor: "rgb(0, 51, 153,1)",
       },
     },
     userInfo: {
@@ -23,7 +22,7 @@ const App = () => {
           style={{ fontSize: window.innerWidth > 768 ? "1vw" : "4vw" }}
         />
       ),
-      Text: "Products",
+      Text: "Example of a Very Long Product Link",
       Expandable: true,
       ExpandableIconset: (
         <i
