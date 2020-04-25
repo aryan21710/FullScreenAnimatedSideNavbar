@@ -193,6 +193,7 @@ class CreateSideBarNavLink extends Component {
       userStyleSideNavLink: newStyle,
       userStyleToggleBtn: {
         ...styles.toggleBarWrapper,
+        top:theme.toggleBarTopCordinates
       },
     });
   };
@@ -280,7 +281,7 @@ class CreateSideBarNavLink extends Component {
   render() {
     const { toggleBtnStatus } = this.state;
     const { name, email } = this.props.myData.userInfo;
-    const {secondaryColor}=this.props.myData.navBarSettings.theme
+    const {secondaryColor,toggleBarColor}=this.props.myData.navBarSettings.theme
 
     return (
       <Route
@@ -290,12 +291,14 @@ class CreateSideBarNavLink extends Component {
               style={this.state.userStyleToggleBtn}
               onClick={this.toggleNavigation}
             >
-              <span className={toggleBtnStatus ? "hideme " : "bar1"}></span>
               <span
-                className={toggleBtnStatus ? "rotate45 bar2" : "bar2"}
+                className={toggleBtnStatus ? "rotate45 bar1" : "bar1"}
+                style={{background:toggleBarColor}}
               ></span>
               <span
                 className={toggleBtnStatus ? "rotate-45 bar3" : "bar3"}
+                style={{background:toggleBarColor}}
+
               ></span>
             </div>
             <div className="SideBarWrapper" style={this.state.slide}>
@@ -308,6 +311,7 @@ class CreateSideBarNavLink extends Component {
                     name={name}
                     email={email}
                     secondaryColor={secondaryColor}
+                    toggleBarColor={toggleBarColor}
                   />
                   <div style={styles.navBarWrapper}>
                     {this.navBarLinksGrid()}

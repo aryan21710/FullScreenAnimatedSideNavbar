@@ -8,6 +8,8 @@ const App = () => {
       theme: {
         primaryColor: "rgb(0, 51, 153,0.5)",
         secondaryColor: "rgb(0, 51, 153,1)",
+        toggleBarTopCordinates: "1vh",
+        toggleBarColor: "red"
       },
     },
     userInfo: {
